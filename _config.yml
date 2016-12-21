@@ -7,7 +7,7 @@ title:            jyt0532's Blog
 tagline:          'A Jekyll theme'
 description:      'Life of an engineer in SV.'
 url:              https://jyt0532.github.io/blog/
-baseurl:          ""
+baseurl:          ''
 
 author:
   name:           'Bo-Yu Chiang'

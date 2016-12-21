@@ -3,11 +3,11 @@ highlighter:      rouge
 permalink:        pretty
 
 # Setup
-title:            Jyt0532
+title:            jyt0532's Blog
 tagline:          'A Jekyll theme'
 description:      'Life of an engineer in SV.'
-url:              https://jyt0532.github.io
-baseurl:          /blog/
+url:              https://jyt0532.github.io/blog
+baseurl:          /
 
 author:
   name:           'Bo-Yu Chiang'

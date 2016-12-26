@@ -3,6 +3,7 @@ layout: post
 title: Introduction to C++ multithread Part 1
 comments: True
 subtitle: Thread 基本應用以及語法 
+tags: c++ multi-thread
 ---
 
 深入淺出C++ multithread part1

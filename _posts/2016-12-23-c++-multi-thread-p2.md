@@ -4,6 +4,7 @@ title: Introduction to C++ multithread Part 2
 comments: True 
 subtitle: mutex 教學
 tags: c++ multi-thread
+author: jyt0532
 ---
 
 深入淺出C++ multithread part2

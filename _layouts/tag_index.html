@@ -16,18 +16,6 @@
                 </h3>
                 <p>
                 <span class="post-date">Posted by {{ post.author }} on {{ post.date | date: "%B %-d, %Y" }}</span>
-                <small>
-                    <span class="fa-stack fa-sm">
-                        <i class="fa fa-tags fa-stack-1x"></i>
-                    </span> :
-                    {% for tag in post.tags %} <a class="tag-wrapper" href="/tags/{{ tag }}" title="View posts tagged with &quot;{{ tag }}&quot;"><i class="tags">{{ tag }}</i></a>  {% if forloop.last != true %} {% endif %} {% endfor %}
-                </small>
-                <small class="comment-count">
-                    <span class="fa-stack fa-sm">
-                        <i class="fa fa-comments fa-stack-1x"></i>
-                    </span>
-                    <a href="https://rhadow.github.com{{ post.url }}#disqus_thread" data-disqus-identifier="{{ post.url }}"></a>
-                </small>
                 </p>
             </td>
         </tr>

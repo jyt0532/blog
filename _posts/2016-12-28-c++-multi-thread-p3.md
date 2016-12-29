@@ -57,6 +57,7 @@ void incre(){
 ### RAII
 
 [Resource acquisition is initialization](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization)
+
 > In RAII, holding a resource is tied to object lifetime: resource allocation is done during object creation by the constructor, while resource deallocation is done during object destruction by the destructor. Thus the resource is guaranteed to be held between when initialization finishes and finalization starts and to be held only when the object is alive.
 
 這是個被非常推崇的習慣 特別是C++在處理resource leak或是excpetion safety的時候必須謹記在心的

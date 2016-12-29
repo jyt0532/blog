@@ -7,7 +7,7 @@ tags: c++ multi-thread
 author: jyt0532
 ---
 
-深入淺出C++ multithread part1
+Thread 基本應用以及語法
 
 ### 為什麼要學multithread
 我認為在學校念書的時候 沒有什麼機會寫multi-thread的程式 上系統程式比較多琢磨在multi-process 但其實在業界非常常需要處裡多線程的問題 

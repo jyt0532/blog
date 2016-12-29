@@ -7,7 +7,7 @@ tags: c++ multi-thread
 author: jyt0532
 ---
 
-深入淺出C++ multithread part2
+mutex 教學
 
 ### lock
 恭喜你 現在已經走出十里坡 現在開始來動真格了 

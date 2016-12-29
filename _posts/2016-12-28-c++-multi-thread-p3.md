@@ -7,7 +7,7 @@ tags: c++ multi-thread
 author: jyt0532
 ---
 
-深入淺出C++ multithread part3
+lock_guard, unique_lock 教學
 
 ### problem with lock/unlock
 
@@ -90,7 +90,7 @@ void func( int x )
 C++的compiler會在一個scope要結束的時候(about to go out of scope or exception thrown)去執行所有變數的destructor **in reverse order**
 為什麼要相反順序呢 因為後面宣告的變數可能用到之前宣告的變數當作constructor的參數 先destruct後宣告的變數比較安全
 
-所以在multi-thread的世界裡也是一樣 C++為了支援RAII 建議用以下兩個寶貝
+所以在multi-thread的世界裡也是一樣 C++為了支援RAII 發明了以下兩個寶貝
 
 ### lock_guard, unique_lock
 

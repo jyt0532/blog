@@ -118,4 +118,4 @@ unique_lock用途又更廣了 除了以上的基本款之外unique_lock還可以
 有興趣的可以詳讀這篇
 [Flexible locking with unique_lock<>](https://www.justsoftwaresolutions.co.uk/threading/multithreading-in-c++0x-part-5-flexible-locking.html)
 
-下一篇進入本系列作的高潮 conditional variable
+下一篇進入本系列作的高潮 condition variable

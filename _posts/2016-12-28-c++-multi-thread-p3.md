@@ -18,7 +18,7 @@ author: jyt0532
 {% highlight cpp %}
 void incre(){
     mu.lock();
-    funA();//if function incre() terminate here, the lock will never release
+    funA();//if funA throw unexpected exception, the lock will never release
     mu.unlock();
 }  
 {% endhighlight %}

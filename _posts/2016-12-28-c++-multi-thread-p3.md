@@ -52,7 +52,7 @@ void incre(){
 那你就必須在所有可能的exit point unlock你的鎖 你的程式就會越來越難maintain
 
 
-那該怎麼解決這個問題呢?
+那麼該怎麼讓一個function在結束之前保證release lock呢?
 
 ### RAII
 
@@ -86,10 +86,10 @@ void func( int x )
 }
 {% endhighlight %}
 
-C++的compiler會在一個變數要失效的時候(about to out of scope or exception thrown)去執行所有變數的destructor **in reverse order**
+C++的compiler會在一個scope要結束的時候(about to go out of scope or exception thrown)去執行所有變數的destructor **in reverse order**
 為什麼要相反順序呢 因為後面宣告的變數可能用到之前宣告的變數當作constructor的參數 先destruct後宣告的變數比較安全
 
-所以在multi-thread的世界裡也是一樣 C++為了支援RAII 建議用這兩個寶貝
+所以在multi-thread的世界裡也是一樣 C++為了支援RAII 建議用以下兩個寶貝
 
 ### lock_guard, unique_lock
 

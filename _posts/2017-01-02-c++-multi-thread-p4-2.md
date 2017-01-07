@@ -161,7 +161,9 @@ wait(lk, f)
 雖然比較難理解但第二個寫法漂亮一些 
 就可以把判斷要不要做事的logic寫在另一個function而不是全部塞進while的condition
 
-至於bind和this之後的篇章再回來提他 先把它看成
+至於bind和this是什麼意思 有興趣可以詳讀這篇文章
+[淺談C++ bind function](/2017/01/05/bind/)
+在這裏先把它看成
 
 {% highlight cpp %}
 readerQ.wait(lk, no_one_writing);

@@ -2,7 +2,7 @@
 layout: post
 title: 用什麼樣的密碼比較安全呢
 comments: True 
-subtitle: Why we need salt
+subtitle: Password security
 tags: security
 author: jyt0532
 ---

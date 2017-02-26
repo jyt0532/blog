@@ -42,7 +42,7 @@ author: jyt0532
 
 那為什麼這解決了對稱性加密的問題呢 因為第一次的傳輸也只互傳公鑰 所以即使公鑰被攔截 之後中間人拿到加密過的訊息也不能怎麼樣 因為那個要對方的私鑰才能解 所以一切都非常的美好... 
 
-![Alt text]({{ site.url }}/public/bikini.gif)
+![Alt text]({{ site.url }}/public/car_accident-iloveimg-cropped.gif)
 
 這裡是個伏筆 等等會回來 第一次有伏筆會先自己說自己是伏筆 看到這理你就知道這個部落格絕不簡單 非比尋常
 

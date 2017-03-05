@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+
+  <head>
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta property="og:image" content="/public/photo.jpg" />
+
+    <title>
+        
+        jyt0532's Blog &middot; Site Tagline
+        
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/poole.css">
+    <link rel="stylesheet" href="/public/css/syntax.css">
+    <link rel="stylesheet" href="/public/css/hyde.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/public/favicon.ico">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+    <!-- Google Analytics -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-89295041-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+
+
+  <body class="theme-base-0f">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          jyt0532's Blog
+        </a>
+      </h1>
+      <p class="lead">learning never ends</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item active" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tag_cloud/">Tag Cloud</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <!--      <a class="sidebar-nav-item" href="https://github.com/jyt0532/archive/v2.1.0.zip">Download</a> -->
+      <a class="sidebar-nav-item" href="https://github.com/jyt0532">GitHub project</a>
+      <span class="sidebar-nav-item">Currently v2.1.0</span>
+    </nav>
+
+    <p>&copy; 2017. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+        <a href="/2017/02/25/simple-cryptography/">
+            網路安全(1) - 基礎密碼學
+        </a>
+    </h1>
+    
+    <p class="post-subtitle">
+    基礎密碼學
+    </p>
+    
+
+
+    <span class="post-date">25 Feb 2017</span>
+
+    <!--<p>最近設置了很多環境的問題 又再次複習到了ssh(secure shell) 雖然每次複習都覺得是很基本的東西 
+但為了讓下次複習能更快瞭解 還是決定寫下來</p>
+
+<p>本篇不會有太多的數學細節 只講大概念 就當作看故事一樣 看著看著就懂了</p>
+
+<h3 id="基礎密碼學">基礎密碼學</h3>
+
+<p>密碼學裡面有兩種加解密方式 一種是對稱性加密 一種是非對稱性加密 差別很簡單 對稱性加密呢 意思就是我加密跟解密用的是同一個鑰匙 
+所以只要A跟B都知道這把鑰匙 A要傳給B的時候 就用這個鑰匙加密 B拿到了之後再用同一個鑰匙解密 你們兩就可以互通有無 暗通款曲 即使有中間人攔截了你們的傳輸 只要他沒有你們的鑰匙 他就不知道你們在幹麻</p>
+
+<p>那bug是什麼呢 阿哈 那你們要偷來暗去之前 總是需要傳第一次告訴對方你們的鑰匙吧 要是第一次就被中間人攔截 你們不就沒戲了嗎 他攔截到偷偷記下來後再原封不動傳給接受方 那之後的所有攔截到的加密後的訊息 他都有你們共有的鑰匙可以解密了 那該怎麼辦呢</p>
+
+<h3 id="非對稱式加密">非對稱式加密</h3>
+
+<p>英雄登場</p>
+
+<p>非對稱式加密 就是每個鑰匙pair有兩個鑰匙 一個公鑰一個私鑰</p>
+
+<p>可以公鑰加密私鑰解密 也可以私鑰加密公鑰解密</p>
+
+<p>可以公鑰加密私鑰解密 也可以私鑰加密公鑰解密</p>
+
+<p>可以公鑰加密私鑰解密 也可以私鑰加密公鑰解密</p>
+
+<p>很重要所以說三次</p>
+
+<p>傳訊之前呢 A跟B都先生成一組公私鑰的pair A把A的公鑰傳給B B把B的公鑰傳給A
+好現在A有他自己的私鑰跟B的公鑰 B有他自己的私鑰跟A的公鑰 
+<strong>A要傳東西給B就用B的公鑰加密 然後B拿到之後用B自己的私鑰解密</strong>
+一切搞定 即使在中途被攔截 只要B的私鑰沒有流出就完全不會有事 反之亦然</p>
+
+<p>中心思想就是利用公鑰可以用來加密的特性 而如果你是用公鑰加密你<strong>必須</strong>要用私鑰解密 所以我根本不怕公鑰流出(公開給所有人也沒差) 只要我私鑰保存好就好 我私鑰根本就沒傳過 也不可能被攔截</p>
+
+<p>那為什麼這解決了對稱性加密的問題呢 因為第一次的傳輸也只互傳公鑰 所以即使公鑰被攔截 之後中間人拿到加密過的訊息也不能怎麼樣 因為那個要對方的私鑰才能解 所以一切都非常的美好…</p>
+
+<p><img src="http://localhost:4000/public/car_accident-iloveimg-cropped.gif" alt="Alt text" /></p>
+
+<p>這裡是個伏筆 等等會回來 第一次有伏筆會先自己說自己是伏筆 看到這裡你就知道這個部落格絕不簡單 非比尋常</p>
+
+<h3 id="數位簽章">數位簽章</h3>
+
+<p>故事繼續 那既然大家都有B的public key, 那任何人都可以用B的公鑰加密傳訊息給B 那B怎麼知道哪個是A寫的哪個是別人偽造的呢 這裡就要引進數位簽章的概念</p>
+
+<p>但說破哪值幾文錢 數位簽章就是A在傳送訊息前 用A的私鑰加密 傳給B B再用A的公鑰來看是不是真的是A簽名的(事實上是對內容的Hash簽名 不過為了講解方便 就先當直接對內容簽)</p>
+
+<p>這裡運用的是<strong>可以公鑰加密私鑰解密 也可以私鑰加密公鑰解密</strong> 的第二個特性</p>
+
+<p>你說公鑰所有人都有怎麼辦？ 反正全世界都知道這訊息是A的訊息也沒關係 只要沒有B的私鑰就沒有其他人可以看到內容</p>
+
+<h3 id="融會貫通">融會貫通</h3>
+
+<p>驗收成果的時間來了 所以今天A要傳訊息給B要怎麼樣讓這訊息<strong>只有B看得到 而且B也確定是A寫的</strong>不是別人寫的呢</p>
+
+<p>==================================================================</p>
+
+<p>一開始A先把A的公鑰傳給B B先把B的公鑰傳給A</p>
+
+<p>A要傳給B之前 把要傳的內容 先用B的公鑰加密再用A的私鑰簽 然後B用A的公鑰確認簽章再用B的私鑰解密內容</p>
+
+<p>==================================================================</p>
+
+<p>簡單吧 恭喜你已經比大多數人基礎都好了 下一篇會講最常見的應用 也就是ssh</p>
+
+<h3 id="說好的伏筆呢">說好的伏筆呢</h3>
+
+<p>如果今天出現了一個神級的中間人 還是有辦法破解 怎麼破呢？</p>
+
+<ol>
+  <li>在一開始A要傳送A的公鑰給B的時候 要是被C攔截 C就可以爽拿A的公鑰 然後呢 自己再生個公私鑰pair 把C的公鑰1給B 跟他說這是A的公鑰</li>
+  <li>在一開始B要傳送B的公鑰給A的時候 要是被C攔截 C就可以爽拿B的公鑰 然後呢 自己再生另一個公私鑰pair 把C的公鑰2給A 跟他說這是B的公鑰</li>
+  <li>A和B以為拿著對方的公鑰</li>
+  <li>今天A要傳給B 他以為他用B的公鑰加密(事實上他用了公鑰C2) 再用A的私鑰簽 想傳送給B但被C攔截</li>
+  <li>C用A的公鑰驗證 用私鑰C2解密之後 爽看內容 然後她想怎麼改寫就怎麼改寫</li>
+  <li>改寫完後 用B的公鑰加密後再用私鑰C1簽章</li>
+  <li>B拿到後 他用A的公鑰確認(事實上這是公鑰C1)然後再用他自己的私鑰解密</li>
+  <li>一切神不知鬼不覺</li>
+</ol>
+
+<p><img src="http://localhost:4000/public/change_face.gif" alt="Alt text" /></p>
+
+<p>至於怎麼破解這神級的中間人攻擊 我發現這篇的資訊量有點爆表了 我們下回再見!</p>
+
+-->
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+        <a href="/2017/02/22/password-security-en/">
+            Is your password secure?
+        </a>
+    </h1>
+    
+    <p class="post-subtitle">
+    Password security
+    </p>
+    
+
+
+    <span class="post-date">22 Feb 2017</span>
+
+    <!--<p>This article is about how good website store user’s password. If you are not major in Computer Science, you can scroll down to conclustion section, I will show you how secure you password is.</p>
+
+<p>Let’s begin.</p>
+
+<h3 id="hash-your-password">Hash your password</h3>
+
+<p>If you are a backend developer, you need a hash function to hash the plain-text password user provide and stored in database. Whenever user login, you use the same hash function and checked whether the hashed string is the same to the string in database. Since hash function is not revertible, so even if hacker hacked your database and get the hashed value, no other user information will be leaked. (Please aware that hacker cannot login by your hashed string)</p>
+
+<p>HASH(plain_text) == saved_string</p>
+
+<h3 id="sounds-pretty-good-right">Sounds pretty good, right?</h3>
+
+<p>It is pretty good at beginning, so most website does not limit your password complexity ten years ago. 
+As the memory getting cheaper over time, <strong>hacker can pre-store all the result of possible plain text.</strong> When hacker hacked the database and get the hashed string, he can just check with his pre-stored table and know your plain text password. The hash function become useless if the input space is too small.</p>
+
+<h3 id="give-me-some-math">Give me some math</h3>
+
+<p>At beginning, no website limit your password. People used simple lowercase english letter and digit. 
+If the length is 7, which means all the possible combination is (26+10)^7. 
+Assume we use md5 hash(128 bits for hashed string)</p>
+
+<p>(1*7 + 128 / 8)*(26+10)^7 bytes = 1.8TB</p>
+
+<p>This is the space needed to store all the mapping of possible plained text. 
+(1*7 is the size of plain text, 128/8 is size of hashed string)</p>
+
+<p>1.8TB storage is toooooo easy in 2017, what can we do?</p>
+
+<h3 id="adding-salt">Adding Salt</h3>
+
+<p>It is time for add some randomness into our picture.</p>
+
+<p>When we create/update user’s password, we randomly generate a string and concatenate/interleave with plaintext. Same process apply to verification, as long as the server can achieve the same random string when verifying.</p>
+
+<p>HASH(plain_text + salt) == saved_string</p>
+
+<p>An easier way is to use username/email as our saly string. The main idea of adding salt is to add difficulty in original plain text. Since the output space of md5 is 2^128, it is not possible to pre-store all the possible output. And of course the simplest way to add complexity is to make plain text longer. It is 36 times more combination if we add one more letter or digit in our plain text.</p>
+
+<p>Another way to add complexity is to use more characters like uppercase, special characters(<a href="https://www.owasp.org/index.php/Password_special_characters">Password special character</a>). Base will change from 36 to 94, so of course it will be harder to guess.</p>
+
+<p>That is the reason why good website require your minimum length to be 12 and have to contain at least one lowercase letter, one uppercase letter, one digit and one special character. In case a hacker got your hacked string, he still cannot know your plain text. If you do add salt before hash, basically there is no easy brute-force way to guess your password.</p>
+
+<h3 id="questions">Questions</h3>
+
+<p>Q: Since we store salt in database, so the hacker will have salt as well as your hashed string. If some day we are able to pre-store all combination of length 10, hacker can achieve your plain text by deduct your salt, right?</p>
+
+<p>A: So we use salt for two purposes, first is to lengthen the string before hash. Even if user provide a short password, we can still increase the difficulty.</p>
+
+<p>For exmaple, if the user provide a password of length 10, length of salt is 5, it is hard to pre-store all the combination of 94^15 strings</p>
+
+<p>Q: String with length 15 is hard but string with length 10 is a lot easy. Hacker can build all combination of length 10 with salt added, so the combination is 94^10, right?</p>
+
+<p>A: Exactly, that is the reason why salt needs to be random string for differend user.</p>
+
+<p>The second purpose of salt is to minimize the lost of data leakage. <strong>Which means hacker have to build his whole mapping for every salt.</strong> Hacker can only hack one single user at a time. It will buy security team some time to recover their system.</p>
+
+<p>That is the reason why you should always add salt when you hash your password. As Buckets effect reveals, the capacity of a bucket depends on the shortest board. <em>Security of your password depends on the worst website among those you use the same password</em></p>
+
+<h3 id="is-your-password-secure">Is your password secure?</h3>
+
+<p>Longer is better! That is the most important factor. Don’t forget to interleave with uppercase letter and digit and special characters.</p>
+
+<p>How secure is your password? I can provide an easy formula</p>
+
+<p>(1*n + 128 / 8)*(26 or 36 or 62 or 94)^n</p>
+
+<p>n is the length of your plain text</p>
+
+<p>26 if you only have lower case letter</p>
+
+<p>36 if you have lower case letter and digit</p>
+
+<p>62 if you have lower and upper case letter and digit</p>
+
+<p>94 if you have lower and upper case letter and digit and special character</p>
+
+<p>Rule of thumb is that if your number is smaller than 10^24, then you are just like Jon Snow</p>
+
+<p><img src="http://localhost:4000/public/hugearmy.gif" alt="Alt text" /></p>
+
+<p>You should change your password!</p>
+-->
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+        <a href="/2017/02/19/password-security/">
+            用什麼樣的密碼比較安全呢
+        </a>
+    </h1>
+    
+    <p class="post-subtitle">
+    Password security
+    </p>
+    
+
+
+    <span class="post-date">19 Feb 2017</span>
+
+    <!--<p>今天來講一下各大網站保存密碼的方式 
+如果你是engineer的話而且知道hash+salt是什麼意思可以直接跳過這篇文章
+如果非CS的只是來湊湊熱鬧 那可以直接往下拉到結論 
+我告訴你你的密碼安不安全</p>
+
+<h3 id="hash-your-password">Hash your password</h3>
+
+<p>如果你在做一個網站後端開發 一個使用者創帳號的時候 
+你要用一個固定的hash function在database裏存hash過後的密碼
+每次使用者登入的時候 
+把使用者給你的密碼hash之後
+看看跟你database的那個一不一樣 因為hash是不能reverse的 
+所以即使哪天資料外洩 hacker也無法知道你的明碼</p>
+
+<p>HASH(plain_text) == saved_string</p>
+
+<h3 id="聽起來挺ok的啊">聽起來挺ok的啊</h3>
+
+<p>一開始的確是沒什麼問題 所以一開始網站沒有給太多密碼複雜度的限制
+但隨著記憶體空間越來越便宜 <strong>hacker可以先把所有可能的hash結果存起來</strong>
+再一一比對他從database拿到的hashed_value跟他先算好的表有沒有match 
+match到你的密碼就被破解</p>
+
+<p>光說不練假把戲 來點數學吧 
+十年前安全性沒人要求的時候 一般人的密碼都挺短的而且都是英文+數字 
+假設長度是7的話
+那所有的可能明碼也才(26+10)^7種 假設現在是用md5 hash(hash完的長度是128bits)</p>
+
+<p>(1*7 + 128 / 8)*(26+10)^7 bytes = 1.8TB</p>
+
+<p>意思是我存下所有的mapping 1*7是明碼 128/8是hash過的密碼byte大小</p>
+
+<p>在2017年這個容量簡直輕鬆愉快啊 那麼該怎麼辦呢</p>
+
+<h3 id="salt">Salt</h3>
+
+<p>這個時候就需要加點隨機的東西增加亂度了 解法就是在每個人創帳號密碼的時候 隨機生成一個字串 加在明碼後面或是穿插明碼其中
+Verify的時候也一樣 只要server記得每個人的隨機字串就可以</p>
+
+<p>HASH(plain_text + salt) == saved_string</p>
+
+<p><strong>最好連salt的長度也是random</strong>(當然要越長越好) 這樣的話hacker就必須所有的長度都有個表
+那其實更快的方式是直接把username或是email加進來hash
+基本上就是增加原本字串的難度 畢竟所有md5的output是2^128 沒有一個machine可以記得了所有的input
+而增加難度最簡單的方式 就是增加長度 長度每加一 難度變36倍</p>
+
+<p>另一種就是增加可能的字母 加上大寫(26)加上特殊符號(32)(<a href="https://www.owasp.org/index.php/Password_special_characters">Password special character</a>)底數直接從36 -&gt; 94 那自然就更難了</p>
+
+<p>所以為什麼大網站都會要求你用長度最少12 最少要有一個大寫 一個小寫 一個特殊字母 一個數字
+這樣如果hacker萬一哪天破解了這個網站的database拿到了hash過的密碼 大概未來一兩年內都還不會有事
+但如果再加上random長度的salt 基本上就不太可能用這種暴力法破解</p>
+
+<h3 id="問題">問題</h3>
+
+<p>Q:既然salt是存在database的明碼 那遲早有一天記憶體大到可以cover長度10的密碼 
+那再把它減去salt不就得到user的密碼了嗎</p>
+
+<p>A:所以salt有兩個目的 第一個是讓hash前的字串總長度拉長 這樣即使使用者給的長度不夠 還是可以增加暴力破解難度</p>
+
+<p>舉個例子 如果user密碼長度是10 salt長度是5 那總長度是15的密碼就不太可能用建表暴力解再減salt的方式</p>
+
+<p>Q:總長度15的不好建 10的總可以了吧 他不就可以把所有排列組合+salt建表嗎</p>
+
+<p>A:答對了！這就是為什麼salt要random</p>
+
+<p>salt的第二個目的是可以把損失降到最低 那個hacker一次還是只能破解一個人的密碼
+因為他必須對每個新的salt 重新建表 這樣可以幫security部門爭取時間叫人家改密碼</p>
+
+<h3 id="如果我是hacker">如果我是hacker</h3>
+
+<p>當然不是說什麼順便hack生日這種資訊 排列組合猜一猜 這是要猜到什麼時候 
+這個blog怎麼可能講出這麼沒格調的話
+基本概念很簡單 因為大家懶 十年前大家需要辦帳號時都有過密碼 而當時對於密碼的要求不高
+所以很有可能大多數的密碼都只有小寫英文(因為大腦不喜歡英文單字中參雜數字這種不協調感)
+然後呢 之後安全意識抬頭 大家要求要有大寫字母和特殊字元 可是大家又不想改原本的密碼太多
+所以就很簡單的加在原本的密碼後面
+考慮這些歷史因素的話
+我就會先創建所有的可能密碼的hash 大概長這樣</p>
+
+<p>abcdefgH0!(前七～九個是小寫英文 後面一個大寫英文 後面一個數字 後面一個特殊符號)</p>
+
+<p>我相信這樣應該會中一些XD 但如果網站有加salt那就什麼都不管用了
+這就是為什麼你身為develoer要加salt的原因 就像短版效應一樣</p>
+
+<p><em>你密碼的安全度取決於所有你用同一個密碼的網站裡 security做最差的網站的安全度</em></p>
+
+<h3 id="講這麼多-所以我的密碼到底夠不夠強呢">講這麼多 所以我的密碼到底夠不夠強呢</h3>
+
+<p>大概念就是越長越好 這是最重要的因素 
+其中穿插大小寫互換跟數字 然後特殊符號穿插其中(不要擺最前也不要擺最後)
+雖然很麻煩 但打一下就習慣</p>
+
+<p>所以你的密碼到底有多安全呢 長度10都是英文小寫跟長度8但可以有特殊符號 哪個比較安全呢</p>
+
+<p>簡單的計算方式就是</p>
+
+<p>(1*n + 128 / 8)*(26 or 36 or 62 or 94)^n</p>
+
+<p>n是密碼長度</p>
+
+<p>26就是只有小寫英文</p>
+
+<p>36就是只有小寫英文+數字</p>
+
+<p>62就是只有大小寫英文+數字</p>
+
+<p>94就是只有大小寫英文+數字+特殊符號</p>
+
+<p>我的經驗法則是如果你的數字小於10^24 那大概就跟jon snow一樣</p>
+
+<p><img src="http://localhost:4000/public/hugearmy.gif" alt="Alt text" /></p>
+
+<p>建議你換個密碼囉!</p>
+-->
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+        <a href="/2017/02/18/how-to-quit/">
+            如何辭職
+        </a>
+    </h1>
+    
+    <p class="post-subtitle">
+    how to quit your job
+    </p>
+    
+
+
+    <span class="post-date">18 Feb 2017</span>
+
+    <!--<p>最近開始覺得除了寫程式之外 還有很多重要的課題是需要SE終身學習的
+特別是課本不會教的東西 俗稱軟技能 soft skill</p>
+
+<p>依照時間順序寫 當你決定要提離職之後(通常加州簽的約是at will. 所以你什麼時候講都行 但一般傳統通常是兩個禮拜的notice, 如果是senior engineer以上那也可能會需要一個月的notice)</p>
+
+<p>Note: 最近天瓏很紅的一本書 “軟技能 代碼之外的生存指南” 也有提到關於離職前要做的事 但那主要是說如果你要辭職去創業的話需要顧慮更多事情 不在這裡的討論範圍</p>
+
+<p><img src="https://img5.doubanio.com/lpic/s28889106.jpg" alt="Alt text" /></p>
+
+<p>這篇文章主要討論你拿到了別的公司的offer</p>
+
+<p>1.整理你的公司電腦</p>
+
+<p>私人檔案全部移除整理 因為公司是有可能在你提離職後要你立即走人的 
+所以提離職前先整理好公司電腦 
+比如說很多工作筆記寫在note裏 (像我就是個Notes app的重度使用者) 推薦一個<a href="http://writeapp.net/notesexporter/">Note exporter</a> 
+當然公司的東西你不要把它export出來 
+把自己的筆記存下來就好(我的筆記很多都是工作上的心得或是git command的筆記等等)</p>
+
+<p>2.跟老闆約1-1 <strong>第一個告訴老闆</strong></p>
+
+<p>千萬別想說先跟其他好朋友講沒關係 <strong>先跟老闆說！</strong>要是有千分之一的機會消息在你跟老闆講之前傳到他耳朵 這是對manager的一種insultant 跟他講完之後你可以跟別組的朋友講 或是同組的要好朋友講 基本上公開announce這件事要讓老闆來做 老闆會有老闆的安排</p>
+
+<p>3.寫正式辭職信</p>
+
+<p>即使已經口頭講了 還是要有一封正式的書面信 信中要有工作的最後一天跟交接計劃</p>
+
+<p>4.寫recommendation</p>
+
+<p><strong>別忘了上全世界最好的社交網路求職網站Linkedin</strong> 寫下你對你同事的recommendation 
+運氣好的話他們還會幫你寫回來=D</p>
+
+<p>5.Save transferable knowledge.</p>
+
+<p>當然不要把公司的機密帶出來 而是你可能當初玩tmux的時候config tune了老半天 
+或是你的git alias 是你經年累月用的最熟悉的版本 記得把它存下來</p>
+
+<p>6.認真寫交接document</p>
+
+<p>有很多的書教你怎麼找工作怎麼面試怎麼談offer 但卻很少人教你怎麼辭職 
+矽谷又是個流動率高的地方
+我認為這是個很重要的soft skill 
+如何離職也是身為SE的重要課題
+離職前最後一個禮拜你做的事很大程度決定了你走之後同事對你的想法
+希望大家都能好好的跟曾經說再見</p>
+-->
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+        <a href="/2017/01/08/bind/">
+            淺談C++ bind function
+        </a>
+    </h1>
+    
+    <p class="post-subtitle">
+    why, when, how to use bind
+    </p>
+    
+
+
+    <span class="post-date">08 Jan 2017</span>
+
+    <!--<p>我們之前在implement<a href="/2017/01/02/c++-multi-thread-p4-2">Read/Write Lock</a>的時候 wait function裡面我們用了bind 我當時輕描淡寫的帶過了 但其實裡面是有些學問的 今天就來把它一探究竟</p>
+
+<p>其實這在很多語言都有 不要因為你不是main c++的就跳過</p>
+
+<p>正文開始 遙想年少輕狂時 曾有這麼一段過去</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RWLock</span><span class="o">::</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span></code></pre></figure>
+
+<p>哇賽 這是什麼東西？</p>
+
+<h3 id="bind">bind</h3>
+
+<p>先從bind開始講起 其實bind只是一個function wrapper</p>
+
+<p>一個例子勝過千言萬語 今天我們有一個很簡單的func 把兩個數加起來</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">){</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>    
+<span class="p">}</span></code></pre></figure>
+
+<p>如果我們今天想寫一個function always return 1 + 2</p>
+
+<p>我們就不用重複寫一個很像的function然後把裡面的變數寫死</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">add12</span><span class="p">(){</span> 
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>    
+<span class="p">}</span></code></pre></figure>
+
+<p>我們直接用一個wrapper把它包起來</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">add12</span> <span class="o">=</span> <span class="n">bind</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">add12</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="o">//</span> <span class="n">print</span> <span class="mi">3</span></code></pre></figure>
+
+<p>第一個參數給function pointer, 之後的參數給那個function的參數
+看你要怎麼wrap</p>
+
+<p>好處有2</p>
+
+<ol>
+  <li>
+    <p>Code reusable, 你現在看了沒感覺是因為他只是一個plus 
+如果裡面的logic再複雜一點 
+你就會發現bind的好處 
+你不用把add裡面的東西全copy出來然後寫死你的變數 
+事實上很多bug都是這麼來的</p>
+  </li>
+  <li>
+    <p>Easier to maintain, 如果今天變成x+y+1 
+你不用去每個function去改 只要改add就好了</p>
+  </li>
+</ol>
+
+<p>寫了老半天 上面兩點講的好像是同一件事</p>
+
+<p><img src="http://localhost:4000/public/hitme.gif" alt="Alt text" /></p>
+
+<p>總之 bind return一個新的function 
+這個新function也可以給參數</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">add2</span> <span class="o">=</span> <span class="n">bind</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="n">placeholders</span><span class="o">::</span><span class="n">_1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">add2</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="o">//</span> <span class="n">print</span> <span class="mi">8</span></code></pre></figure>
+
+<p>意思就是add2的第一個參數 當成add的第一個參數
+參數數量跟順序也不用一定</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">add_second_third_arg</span> <span class="o">=</span> <span class="n">bind</span><span class="p">(</span> <span class="n">add</span><span class="p">,</span> <span class="n">placeholders</span><span class="o">::</span><span class="n">_3</span><span class="p">,</span> <span class="n">placeholders</span><span class="o">::</span><span class="n">_2</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">add_second_third_arg</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="o">//</span> <span class="n">print</span> <span class="mi">7</span></code></pre></figure>
+
+<p><strong>所以訣竅就是 那個要被拿來包的(add) 要寫的通用一點(雖然大多情況是你從外面import的function)
+那你bind完包一層之後 就可以customize成適合你application的function</strong></p>
+
+<h3 id="懂了-那回到rw-lock">懂了 那回到RW lock</h3>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="n">no_one_writing</span><span class="p">(</span><span class="kt">int</span> <span class="n">active_readers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">active_writers</span><span class="p">){</span>
+    <span class="k">return</span> <span class="n">active_writers</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">active_readers</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">class</span> <span class="nc">RWLock</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">void</span> <span class="n">ReadLock</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span> <span class="n">lk</span><span class="p">(</span><span class="n">shared</span><span class="p">);</span>
+            <span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="n">active_readers</span><span class="p">,</span> <span class="n">active_writers</span><span class="p">));</span>
+            <span class="o">++</span><span class="n">active_readers</span><span class="p">;</span>
+            <span class="n">lk</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+        <span class="p">}</span>
+<span class="p">};</span></code></pre></figure>
+
+<p>看完bind教學 我必須把no_one_writing需要的東西用wrapper包給他 看起來挺完美
+但這樣不對 因為你active_readers和active_writers都是pass by value
+他之後被叫醒 去確認condition的時候會看跟第一次去睡的同一個值 所以你會永遠起來後就睡覺</p>
+
+<p>簡單的修改 改成傳reference就可以</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="n">ref</span><span class="p">(</span><span class="n">active_readers</span><span class="p">),</span> <span class="n">ref</span><span class="p">(</span><span class="n">active_writers</span><span class="p">)));</span></code></pre></figure>
+
+<p>搞定 可是缺點有2</p>
+
+<p>1.在實際的應用上 很有可能你的RW Lock會包成一個library給別人用 所以no_one_writing()應該要屬於我們data structure的一個member function</p>
+
+<p>2.這樣不酷</p>
+
+<p>再回來看一下我們最後的implementation</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RWLock</span><span class="o">::</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span></code></pre></figure>
+
+<p>RWLock::no_one_writing 好懂 就是丟member function給bind的第一個參數 
+可是RWLock::no_one_writing 又沒有input參數 你bind的時候給其他參數幹嘛？
+這個this又是什麼?</p>
+
+<h3 id="消失的this">消失的this</h3>
+
+<p><a href="http://www.learncpp.com/cpp-tutorial/8-8-the-hidden-this-pointer/">The hidden “this” pointer</a></p>
+
+<p>在一個class的member function裡面 事實上都會比原本的參數再多一個隱藏變數this, this是一個constant pointer指向call這個function的object</p>
+
+<p>learncpp的例子</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Simple</span>
+<span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">m_id</span><span class="p">;</span>
+
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">Simple</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">setID</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="kt">void</span> <span class="n">setID</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span> <span class="n">m_id</span> <span class="o">=</span> <span class="n">id</span><span class="p">;</span> <span class="p">}</span>
+        <span class="kt">int</span> <span class="n">getID</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">m_id</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span></code></pre></figure>
+
+<p>compiler會把一個class的member function多一個變數 實際上的setID()的signature變成這樣</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">setID</span><span class="p">(</span><span class="n">Simple</span><span class="o">*</span> <span class="k">const</span> <span class="k">this</span><span class="p">,</span> <span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_id</span> <span class="o">=</span> <span class="n">id</span><span class="p">;</span> <span class="p">}</span></code></pre></figure>
+
+<p>別人call setID的時候原本是這樣call</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">simple</span><span class="p">.</span><span class="n">setID</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span></code></pre></figure>
+
+<p>compiler會解讀成這樣</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">setID</span><span class="p">(</span><span class="o">&amp;</span><span class="n">simple</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span></code></pre></figure>
+
+<p>事實上這樣的程式會電腦來說比較簡單 
+你就直接把你需要被改變的object address一起當function參數給我
+我直接改this的變數的值</p>
+
+<p>Q1: Simple* const this?? const不是不可以變的意思嗎?</p>
+
+<p>A1: const擺在這裡代表this是一個const pointer <strong>代表說這個pointer只能指到一個固定的address 指的地方不能改</strong>
+那如果const擺前面 const Simple* this 那就是this的值不能改
+再具體一點 如果this是一個房子的地址 前者是地址不能變 後者是房子裡面住的人不能變</p>
+
+<p>Q2: 任何member funciton都有hidden this嗎</p>
+
+<p>A2: 除了static member function之外 static member function就是你不需要有object也可以call的function 既然是這麼定義的 那當然就不會有this pointer</p>
+
+<p>讀到這裡 再回來看一下我們最後的implementation</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RWLock</span><span class="o">::</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span></code></pre></figure>
+
+<p>有沒有比第一次看<a href="/2017/01/02/c++-multi-thread-p4-2">Part4-2</a>的時候有感覺了呢</p>
+
+<p>事實上 no_one_writing還是有吃一個變數this, 所以我們在用wrapper包的時候 
+他會預期你要給他一個變數 那是給什麼變數呢 就是給相同的this 也就是這個RW lock本身</p>
+
+<h3 id="c-wait-document">C++ wait document</h3>
+
+<p>通透了之後 大家一起來看一下現在網路上關於wait的doc</p>
+
+<p><a href="http://www.cplusplus.com/reference/condition_variable/condition_variable/wait/">cplusplus.com conditional variable/wait</a></p>
+
+<p><a href="http://en.cppreference.com/w/cpp/thread/condition_variable/wait">cppreference conditional variable/wait</a></p>
+
+<p>恩…看起來作者的要求只有</p>
+
+<p>這個範例code要跑得起來</p>
+
+<p>沒了
+看完之後 知道有wait這麼個function 好謝謝再聯絡</p>
+
+<p>當我真的要用wait去實作個read write lock根本不知道該怎麼寫啊
+他的mutex跟condition variable居然就用global variable唬攏過去
+這你敢信？</p>
+
+<p><img src="http://localhost:4000/public/soft.gif" alt="Alt text" /></p>
+
+<p>沒關係 別怕 有我在 我先幫你把前方未知的路走通了 不只教你wait怎麼用/為什麼用 還教你怎麼在wait的時候 
+丟進其他的member function 這麼好的部落格哪裡找</p>
+
+<p>謝謝收看</p>
+-->
+  </div>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/page2">Older</a>
+  
+  
+    <span class="pagination-item newer">Newer</span>
+  
+</div>
+
+      
+
+    </div>
+  </body>
+</html>

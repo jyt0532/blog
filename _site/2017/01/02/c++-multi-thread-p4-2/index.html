@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+
+  <head>
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta property="og:image" content="/public/photo.jpg" />
+
+    <title>
+        
+        Introduction to C++ multithread Part 4-2 &middot; jyt0532's Blog
+        
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/poole.css">
+    <link rel="stylesheet" href="/public/css/syntax.css">
+    <link rel="stylesheet" href="/public/css/hyde.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/public/favicon.ico">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+    <!-- Google Analytics -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-89295041-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+
+
+  <body class="theme-base-0f">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          jyt0532's Blog
+        </a>
+      </h1>
+      <p class="lead">learning never ends</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tag_cloud/">Tag Cloud</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <!--      <a class="sidebar-nav-item" href="https://github.com/jyt0532/archive/v2.1.0.zip">Download</a> -->
+      <a class="sidebar-nav-item" href="https://github.com/jyt0532">GitHub project</a>
+      <span class="sidebar-nav-item">Currently v2.1.0</span>
+    </nav>
+
+    <p>&copy; 2017. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Introduction to C++ multithread Part 4-2</h1>
+  <span class="post-date">02 Jan 2017</span>
+  <p>打鐵要趁熱 來看multithread第二常見的example</p>
+
+<h3 id="readwrite-lock">Read/Write Lock</h3>
+
+<p><a href="http://stackoverflow.com/questions/27860685/how-to-make-a-multiple-read-single-write-lock-from-more-basic-synchronization-pr">How to make a multiple-read/single-write lock</a></p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp">#include &lt;iostream&gt; 
+#include &lt;cstdlib&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+#include &lt;vector&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">RWLock</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">RWLock</span><span class="p">()</span>
+            <span class="o">:</span> <span class="n">shared</span><span class="p">()</span>
+              <span class="p">,</span> <span class="n">readerQ</span><span class="p">(),</span> <span class="n">writerQ</span><span class="p">()</span>
+              <span class="p">,</span> <span class="n">active_readers</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">waiting_writers</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">active_writers</span><span class="p">(</span><span class="mi">0</span><span class="p">){}</span>
+
+        <span class="kt">bool</span> <span class="n">no_one_writing</span><span class="p">(){</span>
+            <span class="k">return</span> <span class="n">active_readers</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">active_writers</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">bool</span> <span class="n">no_one_read_and_no_one_write</span><span class="p">(){</span>
+            <span class="k">return</span> <span class="n">active_readers</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">active_writers</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">void</span> <span class="n">ReadLock</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span> <span class="n">lk</span><span class="p">(</span><span class="n">shared</span><span class="p">);</span>
+            <span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RWLock</span><span class="o">::</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+            <span class="o">++</span><span class="n">active_readers</span><span class="p">;</span>
+            <span class="n">lk</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="kt">void</span> <span class="n">ReadUnlock</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span> <span class="n">lk</span><span class="p">(</span><span class="n">shared</span><span class="p">);</span>
+            <span class="o">--</span><span class="n">active_readers</span><span class="p">;</span>
+            <span class="n">lk</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+            <span class="n">writerQ</span><span class="p">.</span><span class="n">notify_one</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="kt">void</span> <span class="n">WriteLock</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span> <span class="n">lk</span><span class="p">(</span><span class="n">shared</span><span class="p">);</span>
+            <span class="o">++</span><span class="n">waiting_writers</span><span class="p">;</span>
+            <span class="n">writerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RWLock</span><span class="o">::</span><span class="n">no_one_read_and_no_one_write</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+            <span class="o">--</span><span class="n">waiting_writers</span><span class="p">;</span>
+            <span class="o">++</span><span class="n">active_writers</span><span class="p">;</span>
+            <span class="n">lk</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="kt">void</span> <span class="n">WriteUnlock</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span> <span class="n">lk</span><span class="p">(</span><span class="n">shared</span><span class="p">);</span>
+            <span class="o">--</span><span class="n">active_writers</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">waiting_writers</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">writerQ</span><span class="p">.</span><span class="n">notify_one</span><span class="p">();</span>
+            <span class="k">else</span>
+                <span class="n">readerQ</span><span class="p">.</span><span class="n">notify_all</span><span class="p">();</span>
+            <span class="n">lk</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+        <span class="p">}</span>
+
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">mutex</span>              <span class="n">shared</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">condition_variable</span> <span class="n">readerQ</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">condition_variable</span> <span class="n">writerQ</span><span class="p">;</span>
+        <span class="kt">int</span>                     <span class="n">active_readers</span><span class="p">;</span>
+        <span class="kt">int</span>                     <span class="n">waiting_writers</span><span class="p">;</span>
+        <span class="kt">int</span>                     <span class="n">active_writers</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">void</span> <span class="n">func</span><span class="p">(</span><span class="n">RWLock</span> <span class="o">&amp;</span><span class="n">rw</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="n">rw</span><span class="p">.</span><span class="n">WriteLock</span><span class="p">();</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">rw</span><span class="p">.</span><span class="n">WriteUnlock</span><span class="p">();</span>
+        <span class="n">rw</span><span class="p">.</span><span class="n">ReadLock</span><span class="p">();</span>
+        <span class="n">rw</span><span class="p">.</span><span class="n">ReadUnlock</span><span class="p">();</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="n">rw</span><span class="p">.</span><span class="n">ReadLock</span><span class="p">();</span>
+        <span class="n">rw</span><span class="p">.</span><span class="n">ReadUnlock</span><span class="p">();</span>
+        <span class="n">rw</span><span class="p">.</span><span class="n">WriteLock</span><span class="p">();</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="n">rw</span><span class="p">.</span><span class="n">WriteUnlock</span><span class="p">();</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">not_safe</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="n">RWLock</span> <span class="n">rw</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">&gt;</span> <span class="n">threads</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">threads</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">ref</span><span class="p">(</span><span class="n">rw</span><span class="p">),</span> <span class="n">i</span><span class="p">));</span>
+        <span class="c1">//threads.push_back(std::thread(not_safe, i));
+</span>    <span class="p">}</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">threads</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">threads</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">join</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>老話一句 跑起來加速理解</p>
+
+<p><img src="http://localhost:4000/public/imp.gif" alt="Alt text" /></p>
+
+<p>main裡面initiliza一個rw lock
+把他丟給所有的thread
+注意這裡要用reference丟 這樣所有thread才會用到同一個rw lock</p>
+
+<p>func也簡單 就是要改動result前call WriteLock 改完後call WriteUnlock</p>
+
+<h3 id="readwrite-lock-deep-dive">Read/Write Lock Deep dive</h3>
+
+<p>RWLock這個data structure裡面有一個共用的mutex
+跟兩個condition variable readerQ跟writerQ</p>
+
+<p>active_readers, waiting_writers, active_writers 
+是紀錄現在的state的變數</p>
+
+<p>基本上就是4個function</p>
+<ul>
+  <li>ReadLock</li>
+  <li>ReadUnlock</li>
+  <li>WriteLock</li>
+  <li>WriteUnlock</li>
+</ul>
+
+<p><strong><em>ReadLock:</em></strong></p>
+
+<p>1.Acquire lock</p>
+
+<p>2.確認condition 不該做事的話就進CV wait 該做事就往下走 
+這裏的寫法只是比較fancy一點 但下列這兩個寫法是等價的</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">f</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></code></pre></figure>
+
+<p>第一個寫法是我Part4-1的寫法 對初學者比較好懂 
+但要用第二個寫法的話 就把那個function解讀成wait until f
+雖然比較難理解但第二個寫法漂亮一些 
+就可以把判斷要不要做事的logic寫在另一個function而不是全部塞進while的condition</p>
+
+<p>至於bind和this是什麼意思 有興趣可以詳讀這篇文章
+<a href="/2017/01/05/bind/">淺談C++ bind function</a>
+在這裏先把它看成</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">no_one_writing</span><span class="p">);</span></code></pre></figure>
+
+<p>3.所以ReadLock要做事的condition 就是沒人在寫或是有人在讀 這個情況下就可以安心進去讀</p>
+
+<p>4.把active_reader++</p>
+
+<p>5.解鎖(optional)</p>
+
+<p><strong><em>ReadUnLock:</em></strong></p>
+
+<p>1.Acquire lock</p>
+
+<p>2.改變shared data</p>
+
+<p>3.解鎖(optional)</p>
+
+<p>4.去叫writer thread queue的<strong>一個</strong>writer thread起床</p>
+
+<p><strong><em>WriteLock:</em></strong></p>
+
+<p>1.Acquire lock</p>
+
+<p>2.讓自己先去等waiting_writer++;</p>
+
+<p>3.確認condition 不該做事的話就進CV wait 該做事就往下走
+這裏的condition是沒有人讀而且沒有人寫 那我就可以安心write</p>
+
+<p>4.--waiting_writers, ++active_writers, 讓所有人知道有人在寫</p>
+
+<p>5.解鎖(optional)</p>
+
+<p><strong><em>WriteUnLock:</em></strong></p>
+
+<p>1.Acquire lock</p>
+
+<p>2.改變shared data</p>
+
+<p>3.確認現在的state 如果有writer再等 叫一個writer起床
+如果沒有人在等 去叫reader thread queue的<strong>所有</strong>reader thread起床
+因為我們默許 多個reader可以同時read 所以就是個部隊起床的概念</p>
+
+<p>4.解鎖(optional)</p>
+
+<p>講解到這邊 我還寫了個不安全的版本 只要把main裡面的第一個for loop改一下thread call的function就可以</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="n">threads</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">not_safe</span><span class="p">,</span> <span class="n">i</span><span class="p">));</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><img src="http://localhost:4000/public/areyoureallywithme.gif" alt="Alt text" /></p>
+
+<p>打完收工 問問題時間 如果你夠認真的話 你應該會有兩個問題</p>
+
+<p>Q1. 為什麼ReadUnlock的時候是先解鎖再notify 但WriteUnlock是先notify在解鎖呢</p>
+
+<p>A1. 好問題 因為WriterUnLock在判斷要notify誰的時候 需要access shared data, 所以不能把鎖放掉</p>
+
+<p>Q2. 既然你reader拿鎖的條件 其中一個是active_reader &gt; 0, 那如果reader thread很多的話 很有可能active_reader會一直不為0 writer可能永遠拿不到鎖怎麼辦</p>
+
+<p>A2. Perfect question! 如果你沒念過read/write lock但卻能自己想到這問題 那代表說你極為聰明</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock#Priority_policies">RW Lock Priority_policies</a></p>
+
+<p>本篇文章的實作是Read-preferring的RW Lock 每當有新的reader進來 他發現有人在read 那他也跟著read 都不管writer受得了受不了</p>
+
+<p><img src="http://localhost:4000/public/dondondon.gif" alt="Alt text" /></p>
+
+<p><strong>所以可能writer會starve</strong></p>
+
+<p>那Write-preferring的RW Lock怎麼改呢 很簡單 就改變reader做事的condition即可</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="n">no_one_writing</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="n">waiting_writers</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">active_writers</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>這樣reader就會等到沒有人寫也沒有人等著寫的時候 才會read 只要有writer來 writer之後的reader都要等</p>
+
+<p>當然你可以定義自己的application想怎麼玩 你也可以在WriterUnlock的時候先判斷有沒有waiting_readers 
+有的話先notify_readerQ 或是你可以限定最多同時有多少個reader在read 
+隨便你愛怎麼玩就怎麼玩 只是可能需要更多variable記錄現在的state 然後記得要更動這些state variable的時候鎖要拿著就好了</p>
+
+<p>恭喜你已經通透了multi-thread最難的部分 相信之後不論是任何語言的multi-thread問題你都能快速上手</p>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2017/02/25/simple-cryptography/">
+            網路安全(1) - 基礎密碼學
+            <small>25 Feb 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2017/02/22/password-security-en/">
+            Is your password secure?
+            <small>22 Feb 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2017/02/19/password-security/">
+            用什麼樣的密碼比較安全呢
+            <small>19 Feb 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      
+<div id="disqus_thread"></div>
+<script>
+
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    
+    var disqus_config = function () {
+        this.page.url = 'https://jyt0532.github.io/2017/01/02/c++-multi-thread-p4-2/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/2017/01/02/c++-multi-thread-p4-2'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//https-jyt0532-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </body>
+</html>

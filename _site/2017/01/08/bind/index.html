@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+
+  <head>
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta property="og:image" content="/public/photo.jpg" />
+
+    <title>
+        
+        淺談C++ bind function &middot; jyt0532's Blog
+        
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/poole.css">
+    <link rel="stylesheet" href="/public/css/syntax.css">
+    <link rel="stylesheet" href="/public/css/hyde.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/public/favicon.ico">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+    <!-- Google Analytics -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-89295041-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+
+
+  <body class="theme-base-0f">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          jyt0532's Blog
+        </a>
+      </h1>
+      <p class="lead">learning never ends</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tag_cloud/">Tag Cloud</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <!--      <a class="sidebar-nav-item" href="https://github.com/jyt0532/archive/v2.1.0.zip">Download</a> -->
+      <a class="sidebar-nav-item" href="https://github.com/jyt0532">GitHub project</a>
+      <span class="sidebar-nav-item">Currently v2.1.0</span>
+    </nav>
+
+    <p>&copy; 2017. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">淺談C++ bind function</h1>
+  <span class="post-date">08 Jan 2017</span>
+  <p>我們之前在implement<a href="/2017/01/02/c++-multi-thread-p4-2">Read/Write Lock</a>的時候 wait function裡面我們用了bind 我當時輕描淡寫的帶過了 但其實裡面是有些學問的 今天就來把它一探究竟</p>
+
+<p>其實這在很多語言都有 不要因為你不是main c++的就跳過</p>
+
+<p>正文開始 遙想年少輕狂時 曾有這麼一段過去</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RWLock</span><span class="o">::</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span></code></pre></figure>
+
+<p>哇賽 這是什麼東西？</p>
+
+<h3 id="bind">bind</h3>
+
+<p>先從bind開始講起 其實bind只是一個function wrapper</p>
+
+<p>一個例子勝過千言萬語 今天我們有一個很簡單的func 把兩個數加起來</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">){</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>    
+<span class="p">}</span></code></pre></figure>
+
+<p>如果我們今天想寫一個function always return 1 + 2</p>
+
+<p>我們就不用重複寫一個很像的function然後把裡面的變數寫死</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">add12</span><span class="p">(){</span> 
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>    
+<span class="p">}</span></code></pre></figure>
+
+<p>我們直接用一個wrapper把它包起來</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">add12</span> <span class="o">=</span> <span class="n">bind</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">add12</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="o">//</span> <span class="n">print</span> <span class="mi">3</span></code></pre></figure>
+
+<p>第一個參數給function pointer, 之後的參數給那個function的參數
+看你要怎麼wrap</p>
+
+<p>好處有2</p>
+
+<ol>
+  <li>
+    <p>Code reusable, 你現在看了沒感覺是因為他只是一個plus 
+如果裡面的logic再複雜一點 
+你就會發現bind的好處 
+你不用把add裡面的東西全copy出來然後寫死你的變數 
+事實上很多bug都是這麼來的</p>
+  </li>
+  <li>
+    <p>Easier to maintain, 如果今天變成x+y+1 
+你不用去每個function去改 只要改add就好了</p>
+  </li>
+</ol>
+
+<p>寫了老半天 上面兩點講的好像是同一件事</p>
+
+<p><img src="http://localhost:4000/public/hitme.gif" alt="Alt text" /></p>
+
+<p>總之 bind return一個新的function 
+這個新function也可以給參數</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">add2</span> <span class="o">=</span> <span class="n">bind</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="n">placeholders</span><span class="o">::</span><span class="n">_1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">add2</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="o">//</span> <span class="n">print</span> <span class="mi">8</span></code></pre></figure>
+
+<p>意思就是add2的第一個參數 當成add的第一個參數
+參數數量跟順序也不用一定</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">add_second_third_arg</span> <span class="o">=</span> <span class="n">bind</span><span class="p">(</span> <span class="n">add</span><span class="p">,</span> <span class="n">placeholders</span><span class="o">::</span><span class="n">_3</span><span class="p">,</span> <span class="n">placeholders</span><span class="o">::</span><span class="n">_2</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">add_second_third_arg</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="o">//</span> <span class="n">print</span> <span class="mi">7</span></code></pre></figure>
+
+<p><strong>所以訣竅就是 那個要被拿來包的(add) 要寫的通用一點(雖然大多情況是你從外面import的function)
+那你bind完包一層之後 就可以customize成適合你application的function</strong></p>
+
+<h3 id="懂了-那回到rw-lock">懂了 那回到RW lock</h3>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="n">no_one_writing</span><span class="p">(</span><span class="kt">int</span> <span class="n">active_readers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">active_writers</span><span class="p">){</span>
+    <span class="k">return</span> <span class="n">active_writers</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">active_readers</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">class</span> <span class="nc">RWLock</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">void</span> <span class="n">ReadLock</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span> <span class="n">lk</span><span class="p">(</span><span class="n">shared</span><span class="p">);</span>
+            <span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="n">active_readers</span><span class="p">,</span> <span class="n">active_writers</span><span class="p">));</span>
+            <span class="o">++</span><span class="n">active_readers</span><span class="p">;</span>
+            <span class="n">lk</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+        <span class="p">}</span>
+<span class="p">};</span></code></pre></figure>
+
+<p>看完bind教學 我必須把no_one_writing需要的東西用wrapper包給他 看起來挺完美
+但這樣不對 因為你active_readers和active_writers都是pass by value
+他之後被叫醒 去確認condition的時候會看跟第一次去睡的同一個值 所以你會永遠起來後就睡覺</p>
+
+<p>簡單的修改 改成傳reference就可以</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="n">ref</span><span class="p">(</span><span class="n">active_readers</span><span class="p">),</span> <span class="n">ref</span><span class="p">(</span><span class="n">active_writers</span><span class="p">)));</span></code></pre></figure>
+
+<p>搞定 可是缺點有2</p>
+
+<p>1.在實際的應用上 很有可能你的RW Lock會包成一個library給別人用 所以no_one_writing()應該要屬於我們data structure的一個member function</p>
+
+<p>2.這樣不酷</p>
+
+<p>再回來看一下我們最後的implementation</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RWLock</span><span class="o">::</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span></code></pre></figure>
+
+<p>RWLock::no_one_writing 好懂 就是丟member function給bind的第一個參數 
+可是RWLock::no_one_writing 又沒有input參數 你bind的時候給其他參數幹嘛？
+這個this又是什麼?</p>
+
+<h3 id="消失的this">消失的this</h3>
+
+<p><a href="http://www.learncpp.com/cpp-tutorial/8-8-the-hidden-this-pointer/">The hidden “this” pointer</a></p>
+
+<p>在一個class的member function裡面 事實上都會比原本的參數再多一個隱藏變數this, this是一個constant pointer指向call這個function的object</p>
+
+<p>learncpp的例子</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Simple</span>
+<span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">m_id</span><span class="p">;</span>
+
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">Simple</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">setID</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="kt">void</span> <span class="n">setID</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span> <span class="n">m_id</span> <span class="o">=</span> <span class="n">id</span><span class="p">;</span> <span class="p">}</span>
+        <span class="kt">int</span> <span class="n">getID</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">m_id</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span></code></pre></figure>
+
+<p>compiler會把一個class的member function多一個變數 實際上的setID()的signature變成這樣</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">setID</span><span class="p">(</span><span class="n">Simple</span><span class="o">*</span> <span class="k">const</span> <span class="k">this</span><span class="p">,</span> <span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_id</span> <span class="o">=</span> <span class="n">id</span><span class="p">;</span> <span class="p">}</span></code></pre></figure>
+
+<p>別人call setID的時候原本是這樣call</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">simple</span><span class="p">.</span><span class="n">setID</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span></code></pre></figure>
+
+<p>compiler會解讀成這樣</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">setID</span><span class="p">(</span><span class="o">&amp;</span><span class="n">simple</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span></code></pre></figure>
+
+<p>事實上這樣的程式會電腦來說比較簡單 
+你就直接把你需要被改變的object address一起當function參數給我
+我直接改this的變數的值</p>
+
+<p>Q1: Simple* const this?? const不是不可以變的意思嗎?</p>
+
+<p>A1: const擺在這裡代表this是一個const pointer <strong>代表說這個pointer只能指到一個固定的address 指的地方不能改</strong>
+那如果const擺前面 const Simple* this 那就是this的值不能改
+再具體一點 如果this是一個房子的地址 前者是地址不能變 後者是房子裡面住的人不能變</p>
+
+<p>Q2: 任何member funciton都有hidden this嗎</p>
+
+<p>A2: 除了static member function之外 static member function就是你不需要有object也可以call的function 既然是這麼定義的 那當然就不會有this pointer</p>
+
+<p>讀到這裡 再回來看一下我們最後的implementation</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RWLock</span><span class="o">::</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span></code></pre></figure>
+
+<p>有沒有比第一次看<a href="/2017/01/02/c++-multi-thread-p4-2">Part4-2</a>的時候有感覺了呢</p>
+
+<p>事實上 no_one_writing還是有吃一個變數this, 所以我們在用wrapper包的時候 
+他會預期你要給他一個變數 那是給什麼變數呢 就是給相同的this 也就是這個RW lock本身</p>
+
+<h3 id="c-wait-document">C++ wait document</h3>
+
+<p>通透了之後 大家一起來看一下現在網路上關於wait的doc</p>
+
+<p><a href="http://www.cplusplus.com/reference/condition_variable/condition_variable/wait/">cplusplus.com conditional variable/wait</a></p>
+
+<p><a href="http://en.cppreference.com/w/cpp/thread/condition_variable/wait">cppreference conditional variable/wait</a></p>
+
+<p>恩…看起來作者的要求只有</p>
+
+<p>這個範例code要跑得起來</p>
+
+<p>沒了
+看完之後 知道有wait這麼個function 好謝謝再聯絡</p>
+
+<p>當我真的要用wait去實作個read write lock根本不知道該怎麼寫啊
+他的mutex跟condition variable居然就用global variable唬攏過去
+這你敢信？</p>
+
+<p><img src="http://localhost:4000/public/soft.gif" alt="Alt text" /></p>
+
+<p>沒關係 別怕 有我在 我先幫你把前方未知的路走通了 不只教你wait怎麼用/為什麼用 還教你怎麼在wait的時候 
+丟進其他的member function 這麼好的部落格哪裡找</p>
+
+<p>謝謝收看</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2017/02/25/simple-cryptography/">
+            網路安全(1) - 基礎密碼學
+            <small>25 Feb 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2017/02/22/password-security-en/">
+            Is your password secure?
+            <small>22 Feb 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2017/02/19/password-security/">
+            用什麼樣的密碼比較安全呢
+            <small>19 Feb 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      
+<div id="disqus_thread"></div>
+<script>
+
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    
+    var disqus_config = function () {
+        this.page.url = 'https://jyt0532.github.io/2017/01/08/bind/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/2017/01/08/bind'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//https-jyt0532-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </body>
+</html>

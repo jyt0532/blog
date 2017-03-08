@@ -106,6 +106,14 @@
           
         
       
+        
+          
+        
+      
+        
+          
+        
+      
 
       <!--      <a class="sidebar-nav-item" href="https://github.com/jyt0532/archive/v2.1.0.zip">Download</a> -->
       <a class="sidebar-nav-item" href="https://github.com/jyt0532">GitHub project</a>
@@ -119,6 +127,115 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+        <a href="/2017/03/06/https/">
+            網路安全(2) - HTTPS
+        </a>
+    </h1>
+    
+    <p class="post-subtitle">
+    HTTPS
+    </p>
+    
+
+
+    <span class="post-date">06 Mar 2017</span>
+
+    <!--<h3 id="先慶祝一下搬家">先慶祝一下搬家</h3>
+
+<p>千呼萬喚 blog終於搬到自己的domain</p>
+
+<p>其實搬家也不是很麻煩 就開個ec2把東西放進去 
+apache裝一下就有網頁了 
+至於Domain則是跟route53買 
+一切準備就緒後 
+發現網址上居然沒有https!!</p>
+
+<p><img src="http://localhost:4000/public/http.png" alt="Alt text" /></p>
+
+<p>事實上能出現這個畫面 代表我的Web Server已經有開port 443(For https) 如果你什麼都沒做 你只是硬在網址上加上個s 是什麼都不會發生的</p>
+
+<p>雖然這個只是個放static file的blog 但這根本不能忍啊</p>
+
+<p><img src="http://localhost:4000/public/boom.gif" alt="Alt text" /></p>
+
+<p>總之是我太單純太天真 我以為只要開port 443 aws就已經全部cover好了</p>
+
+<p>上網找了許久 很多https認證的service(CA)都要錢 這裡要推薦一個好用的免錢認證網站 Let’s encrypt 他裡面用certbot可以讓你一鍵搞定 只要在你的ec2上wget certbot 之後run一下一切輕鬆愉快 如果你的個人網站是用AWS架的 非常推薦這個https的認證網站</p>
+
+<h3 id="破解中間人攻擊">破解中間人攻擊</h3>
+
+<p>延續上一篇 
+<a href="http://localhost:4000/2017/02/25/simple-cryptography/">網路安全(1) - 基礎密碼學</a>的問題 
+要怎麼避免神級中間人的攻擊 
+其實非對稱式協議唯一的bug就是一開始公鑰交換的時候可以動手腳 
+所以解法就是只要在互傳公鑰的時候 有一個可信的第三方可以證明說一開始你拿到的公鑰是真的就可以</p>
+
+<p>就是A跟B要傳訊息之前互傳公鑰的這個步驟 A拿到B的公鑰之後 去一個有公信力的人那邊問一下 嘿 這個真的是B的公鑰嗎 他說是你就可以信 他說不是那就可能被中間人攻擊 就這麼簡單</p>
+
+<h3 id="楔子">楔子</h3>
+
+<p>從上一篇到這篇 花那麼多篇幅講了滿口仁義道德 
+這到底跟我有什麼關係 我什麼時候會需要跟別人加密傳輸講悄悄話呢？？</p>
+
+<p>這就是寫技術文章的最高境界 學以致用於無形之中 往上看你browser網址旁邊的精美綠色小鎖 
+你現在能看到這篇文章 中間發生的所有傳輸 我已經幫你加密過了</p>
+
+<p>所以密碼學跟我們根本息息相關 上網就是一個最常見的應用 可是並不是每個網站都支援加密傳輸</p>
+
+<h3 id="https">HTTPS</h3>
+
+<p>要了解HTTPS就要先了解HTTP HTTP是我們要瀏覽html檔案時用的協議 傳輸都沒經過加密</p>
+
+<p>(事實上http網頁剛開始發明時 只是為了某個lab內部單純share html 根本沒有人想這麼多
+但現在世代已經不一樣了  以後在任何網站輸入信用卡號前 看一下你那個網站之前是http還是https 如果是http就打死不要輸入機密資訊 這是現代最基本的網路安全知識)</p>
+
+<p>隨著http普及 開始有機密的隱私資訊需要被傳輸了 就有公司提議我們來用SSL(Secure Sockets Layer)來加密原本的http協議吧 這就是https(HTTP Over SSL)的由來</p>
+
+<h3 id="原理">原理</h3>
+
+<p>一樣用我們熟悉的A跟B說明 你的browser是A www.jyt0532.com這個server是B A發訊息跟B說我要看你的內容之前</p>
+
+<ol>
+  <li>
+    <p>A把A所有支援的加密方式告訴B 再給B一個隨機數R1</p>
+  </li>
+  <li>
+    <p>B從所有的加密方式中選一種 然後把B的身份訊息<strong>以證書的形式</strong>告訴A(證書裡面包含了是哪個機構給B發證書的 還有B的公鑰) 自己保留私鑰 然後給A另一個隨機數R2</p>
+  </li>
+  <li>
+    <p>A拿到證書之後 就去問那個機構 嘿 這個B真的是B嗎 <strong>如果A信任這個機構 而且這個機構信任B 那A就信任B</strong> 而每個browser有每個browser信任的機構 所以也是要慎選browser啊</p>
+  </li>
+  <li>
+    <p>如果這個認證機構不可信任 或是這個機構對B的信任過期了 你的browser就會叫 誒這傢伙不是很ok 要不要連線自己負責</p>
+  </li>
+  <li>
+    <p>如果可以信任的話 A會再生成一個隨機數R3 用剛剛B給的公鑰加密變成C 把C丟給B</p>
+  </li>
+  <li>
+    <p>B用私鑰對C解密得到R3</p>
+  </li>
+  <li>
+    <p>A和B都有R1 R2 R3了 生成秘鑰 K = R1+R2+R3 可喜可賀 之後就可以兩邊用對稱式加密來說悄悄話了</p>
+  </li>
+</ol>
+
+<p>至於為什麼不直接非對稱式用到底就好 因為對稱式的效率比非對稱式的高很多 
+所以只要在一開始確認身份跟確認秘鑰的時候用非對稱式就可以了</p>
+
+<h3 id="打完收工">打完收工</h3>
+
+<p>現在這個部落格同時支援https跟http 你現在把網址的s拿掉也是可以上 看一下你browser對於https跟http顯示的差別 
+以後上任何網站都要小心警覺</p>
+
+<p>註:</p>
+
+<p>事實上要破解中間人攻擊還有其他方式 我只提最常見的一種 是因為這種比較好接到https 有興趣可以自己去維基看一下</p>
+
+-->
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -510,215 +627,6 @@ Verify的時候也一樣 只要server記得每個人的隨機字串就可以</p>
 如何離職也是身為SE的重要課題
 離職前最後一個禮拜你做的事很大程度決定了你走之後同事對你的想法
 希望大家都能好好的跟曾經說再見</p>
--->
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-        <a href="/2017/01/08/bind/">
-            淺談C++ bind function
-        </a>
-    </h1>
-    
-    <p class="post-subtitle">
-    why, when, how to use bind
-    </p>
-    
-
-
-    <span class="post-date">08 Jan 2017</span>
-
-    <!--<p>我們之前在implement<a href="/2017/01/02/c++-multi-thread-p4-2">Read/Write Lock</a>的時候 wait function裡面我們用了bind 我當時輕描淡寫的帶過了 但其實裡面是有些學問的 今天就來把它一探究竟</p>
-
-<p>其實這在很多語言都有 不要因為你不是main c++的就跳過</p>
-
-<p>正文開始 遙想年少輕狂時 曾有這麼一段過去</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RWLock</span><span class="o">::</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span></code></pre></figure>
-
-<p>哇賽 這是什麼東西？</p>
-
-<h3 id="bind">bind</h3>
-
-<p>先從bind開始講起 其實bind只是一個function wrapper</p>
-
-<p>一個例子勝過千言萬語 今天我們有一個很簡單的func 把兩個數加起來</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">){</span>
-    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>    
-<span class="p">}</span></code></pre></figure>
-
-<p>如果我們今天想寫一個function always return 1 + 2</p>
-
-<p>我們就不用重複寫一個很像的function然後把裡面的變數寫死</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">add12</span><span class="p">(){</span> 
-        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>    
-<span class="p">}</span></code></pre></figure>
-
-<p>我們直接用一個wrapper把它包起來</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">add12</span> <span class="o">=</span> <span class="n">bind</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">add12</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="o">//</span> <span class="n">print</span> <span class="mi">3</span></code></pre></figure>
-
-<p>第一個參數給function pointer, 之後的參數給那個function的參數
-看你要怎麼wrap</p>
-
-<p>好處有2</p>
-
-<ol>
-  <li>
-    <p>Code reusable, 你現在看了沒感覺是因為他只是一個plus 
-如果裡面的logic再複雜一點 
-你就會發現bind的好處 
-你不用把add裡面的東西全copy出來然後寫死你的變數 
-事實上很多bug都是這麼來的</p>
-  </li>
-  <li>
-    <p>Easier to maintain, 如果今天變成x+y+1 
-你不用去每個function去改 只要改add就好了</p>
-  </li>
-</ol>
-
-<p>寫了老半天 上面兩點講的好像是同一件事</p>
-
-<p><img src="http://localhost:4000/public/hitme.gif" alt="Alt text" /></p>
-
-<p>總之 bind return一個新的function 
-這個新function也可以給參數</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">add2</span> <span class="o">=</span> <span class="n">bind</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="n">placeholders</span><span class="o">::</span><span class="n">_1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">add2</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="o">//</span> <span class="n">print</span> <span class="mi">8</span></code></pre></figure>
-
-<p>意思就是add2的第一個參數 當成add的第一個參數
-參數數量跟順序也不用一定</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">add_second_third_arg</span> <span class="o">=</span> <span class="n">bind</span><span class="p">(</span> <span class="n">add</span><span class="p">,</span> <span class="n">placeholders</span><span class="o">::</span><span class="n">_3</span><span class="p">,</span> <span class="n">placeholders</span><span class="o">::</span><span class="n">_2</span><span class="p">);</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">add_second_third_arg</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="o">//</span> <span class="n">print</span> <span class="mi">7</span></code></pre></figure>
-
-<p><strong>所以訣竅就是 那個要被拿來包的(add) 要寫的通用一點(雖然大多情況是你從外面import的function)
-那你bind完包一層之後 就可以customize成適合你application的function</strong></p>
-
-<h3 id="懂了-那回到rw-lock">懂了 那回到RW lock</h3>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="n">no_one_writing</span><span class="p">(</span><span class="kt">int</span> <span class="n">active_readers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">active_writers</span><span class="p">){</span>
-    <span class="k">return</span> <span class="n">active_writers</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">active_readers</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">class</span> <span class="nc">RWLock</span> <span class="p">{</span>
-    <span class="k">public</span><span class="o">:</span>
-        <span class="kt">void</span> <span class="n">ReadLock</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span> <span class="n">lk</span><span class="p">(</span><span class="n">shared</span><span class="p">);</span>
-            <span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="n">active_readers</span><span class="p">,</span> <span class="n">active_writers</span><span class="p">));</span>
-            <span class="o">++</span><span class="n">active_readers</span><span class="p">;</span>
-            <span class="n">lk</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
-        <span class="p">}</span>
-<span class="p">};</span></code></pre></figure>
-
-<p>看完bind教學 我必須把no_one_writing需要的東西用wrapper包給他 看起來挺完美
-但這樣不對 因為你active_readers和active_writers都是pass by value
-他之後被叫醒 去確認condition的時候會看跟第一次去睡的同一個值 所以你會永遠起來後就睡覺</p>
-
-<p>簡單的修改 改成傳reference就可以</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="n">ref</span><span class="p">(</span><span class="n">active_readers</span><span class="p">),</span> <span class="n">ref</span><span class="p">(</span><span class="n">active_writers</span><span class="p">)));</span></code></pre></figure>
-
-<p>搞定 可是缺點有2</p>
-
-<p>1.在實際的應用上 很有可能你的RW Lock會包成一個library給別人用 所以no_one_writing()應該要屬於我們data structure的一個member function</p>
-
-<p>2.這樣不酷</p>
-
-<p>再回來看一下我們最後的implementation</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RWLock</span><span class="o">::</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span></code></pre></figure>
-
-<p>RWLock::no_one_writing 好懂 就是丟member function給bind的第一個參數 
-可是RWLock::no_one_writing 又沒有input參數 你bind的時候給其他參數幹嘛？
-這個this又是什麼?</p>
-
-<h3 id="消失的this">消失的this</h3>
-
-<p><a href="http://www.learncpp.com/cpp-tutorial/8-8-the-hidden-this-pointer/">The hidden “this” pointer</a></p>
-
-<p>在一個class的member function裡面 事實上都會比原本的參數再多一個隱藏變數this, this是一個constant pointer指向call這個function的object</p>
-
-<p>learncpp的例子</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Simple</span>
-<span class="p">{</span>
-    <span class="k">private</span><span class="o">:</span>
-        <span class="kt">int</span> <span class="n">m_id</span><span class="p">;</span>
-
-    <span class="k">public</span><span class="o">:</span>
-        <span class="n">Simple</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">setID</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="kt">void</span> <span class="n">setID</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span> <span class="n">m_id</span> <span class="o">=</span> <span class="n">id</span><span class="p">;</span> <span class="p">}</span>
-        <span class="kt">int</span> <span class="n">getID</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">m_id</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">};</span></code></pre></figure>
-
-<p>compiler會把一個class的member function多一個變數 實際上的setID()的signature變成這樣</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">setID</span><span class="p">(</span><span class="n">Simple</span><span class="o">*</span> <span class="k">const</span> <span class="k">this</span><span class="p">,</span> <span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_id</span> <span class="o">=</span> <span class="n">id</span><span class="p">;</span> <span class="p">}</span></code></pre></figure>
-
-<p>別人call setID的時候原本是這樣call</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">simple</span><span class="p">.</span><span class="n">setID</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span></code></pre></figure>
-
-<p>compiler會解讀成這樣</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">setID</span><span class="p">(</span><span class="o">&amp;</span><span class="n">simple</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span></code></pre></figure>
-
-<p>事實上這樣的程式會電腦來說比較簡單 
-你就直接把你需要被改變的object address一起當function參數給我
-我直接改this的變數的值</p>
-
-<p>Q1: Simple* const this?? const不是不可以變的意思嗎?</p>
-
-<p>A1: const擺在這裡代表this是一個const pointer <strong>代表說這個pointer只能指到一個固定的address 指的地方不能改</strong>
-那如果const擺前面 const Simple* this 那就是this的值不能改
-再具體一點 如果this是一個房子的地址 前者是地址不能變 後者是房子裡面住的人不能變</p>
-
-<p>Q2: 任何member funciton都有hidden this嗎</p>
-
-<p>A2: 除了static member function之外 static member function就是你不需要有object也可以call的function 既然是這麼定義的 那當然就不會有this pointer</p>
-
-<p>讀到這裡 再回來看一下我們最後的implementation</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">readerQ</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lk</span><span class="p">,</span> <span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RWLock</span><span class="o">::</span><span class="n">no_one_writing</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span></code></pre></figure>
-
-<p>有沒有比第一次看<a href="/2017/01/02/c++-multi-thread-p4-2">Part4-2</a>的時候有感覺了呢</p>
-
-<p>事實上 no_one_writing還是有吃一個變數this, 所以我們在用wrapper包的時候 
-他會預期你要給他一個變數 那是給什麼變數呢 就是給相同的this 也就是這個RW lock本身</p>
-
-<h3 id="c-wait-document">C++ wait document</h3>
-
-<p>通透了之後 大家一起來看一下現在網路上關於wait的doc</p>
-
-<p><a href="http://www.cplusplus.com/reference/condition_variable/condition_variable/wait/">cplusplus.com conditional variable/wait</a></p>
-
-<p><a href="http://en.cppreference.com/w/cpp/thread/condition_variable/wait">cppreference conditional variable/wait</a></p>
-
-<p>恩…看起來作者的要求只有</p>
-
-<p>這個範例code要跑得起來</p>
-
-<p>沒了
-看完之後 知道有wait這麼個function 好謝謝再聯絡</p>
-
-<p>當我真的要用wait去實作個read write lock根本不知道該怎麼寫啊
-他的mutex跟condition variable居然就用global variable唬攏過去
-這你敢信？</p>
-
-<p><img src="http://localhost:4000/public/soft.gif" alt="Alt text" /></p>
-
-<p>沒關係 別怕 有我在 我先幫你把前方未知的路走通了 不只教你wait怎麼用/為什麼用 還教你怎麼在wait的時候 
-丟進其他的member function 這麼好的部落格哪裡找</p>
-
-<p>謝謝收看</p>
 -->
   </div>
   

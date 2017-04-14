@@ -66,7 +66,7 @@ That is the reason this article is unusual and outstanding.
 ### Digital Signature
 
 The story continues, since everyone has B's public key, everyone can use B's public key to send secret message to B. 
-How can B knows who sent the messageto him? 
+How can B knows who sent the message to him? 
 If A claimed A sent the message, how can B know it is indeed sent by A not others? Now we introduce digital signature.
 
 Before A send the message to B, A use A's private key to encrypt and send it to B. 
@@ -93,7 +93,7 @@ Perfect! Next article is about a common application - ssh
 
 What if there is a "god in the middle"? The Asymmetric Encryption can break!
 
-1.When A is sendind A's public key to B, if C intercept, 
+1.When A is sending A's public key to B, if C intercept, 
 C can take his public key and create another public/private key pair, give public key(C1) to B and told him it is A's public key.
 ![Alt text]({{ site.url }}/public/cryptography-step1.png)
 2.When B is sendind B's public key to A, if C intercept, 

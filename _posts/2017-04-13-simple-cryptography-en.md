@@ -95,20 +95,23 @@ What if there is a "god in the middle"? The Asymmetric Encryption can break!
 
 1.When A is sendind A's public key to B, if C intercept, 
 C can take his public key and create another public/private key pair, give public key(C1) to B and told him it is A's public key.
-
+![Alt text]({{ site.url }}/public/cryptography-step1.png)
 2.When B is sendind B's public key to A, if C intercept, 
 C can take his public key and create another public/private key pair, give public key(C2) to A and told him it is B's public key.
 
+![Alt text]({{ site.url }}/public/cryptography-step2.png)
 3.A and B thought they hold each other's public key.
 
-
+![Alt text]({{ site.url }}/public/cryptography-step3.png)
 4.Today, say, A wants to send message to B. He used B's public key to encrypt(Actually, it is public key C2) and signed with A's private key.
 He wants to send to B but it is intercepted by C
 
+![Alt text]({{ site.url }}/public/cryptography-step4.png)
 5.C use A's public key to verify and use private C2 to see the content, then modify the content as he want.
 
 6.Then, use B's public key to encrypt and use private C1 to sign(pretend to be A)
 
+![Alt text]({{ site.url }}/public/cryptography-step6.png)
 7.When B got the message, he used A's public key to verify(Actually, it is public C1), then use B's private key to see the content
 
 8.Abracadabra

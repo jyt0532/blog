@@ -75,11 +75,16 @@ A要傳給B之前 把要傳的內容 先用B的公鑰加密再用A的私鑰簽 �
 如果今天出現了一個神級的中間人 還是有辦法破解 怎麼破呢？
 
 1. 在一開始A要傳送A的公鑰給B的時候 要是被C攔截 C就可以爽拿A的公鑰 然後呢 自己再生個公私鑰pair 把C的公鑰1給B 跟他說這是A的公鑰
+![Alt text]({{ site.url }}/public/cryptography-step1.png)
 2. 在一開始B要傳送B的公鑰給A的時候 要是被C攔截 C就可以爽拿B的公鑰 然後呢 自己再生另一個公私鑰pair 把C的公鑰2給A 跟他說這是B的公鑰
+![Alt text]({{ site.url }}/public/cryptography-step2.png)
 3. A和B以為拿著對方的公鑰 
+![Alt text]({{ site.url }}/public/cryptography-step3.png)
 4. 今天A要傳給B 他以為他用B的公鑰加密(事實上他用了公鑰C2) 再用A的私鑰簽 想傳送給B但被C攔截
+![Alt text]({{ site.url }}/public/cryptography-step4.png)
 5. C用A的公鑰驗證 用私鑰C2解密之後 爽看內容 然後她想怎麼改寫就怎麼改寫
 6. 改寫完後 用B的公鑰加密後再用私鑰C1簽章
+![Alt text]({{ site.url }}/public/cryptography-step6.png)
 7. B拿到後 他用A的公鑰確認(事實上這是公鑰C1)然後再用他自己的私鑰解密
 8. 一切神不知鬼不覺 
 

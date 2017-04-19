@@ -2,7 +2,7 @@
 layout: post
 title: Design Pattern(3) - Decorator
 comments: True 
-subtitle: design pattern - Decorator
+subtitle: design pattern - decorator
 tags: designPattern
 author: jyt0532
 ---

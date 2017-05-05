@@ -199,4 +199,3 @@ Pizza pizza = nyStore.orderPizza("cheese");
 
 > 工廠方法所殘缺的部分 是抽象方法裡 不可或缺的內容 --姜柏宇
 
-相信看完這篇你已經融會貫通

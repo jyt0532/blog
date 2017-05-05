@@ -185,7 +185,7 @@ Pizza pizza = nyStore.orderPizza("cheese");
 4.退化成簡單工廠模式
 
 如果你只有一個具體工廠
-![Alt text]({{ site.url }}/public/abstractfactory8.png)
+![Alt text]({{ site.url }}/public/abstractfactory9.png)
 因為每個配料只有一個實作 所以沒有使用interface的必要 你把上圖的各個配料改成各個pizza 就是上一篇的簡單工廠模式的例子
 
 ### 總結

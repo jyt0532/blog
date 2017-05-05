@@ -222,4 +222,4 @@ client的用法都是一樣不需要改 完全符合[開放封閉守則]({{ site
 
 ![Alt text]({{ site.url }}/public/problemFactory.jpg)
 
-下一篇進入Design Pattern重頭戲 抽象工廠
+下一篇進入Design Pattern重頭戲 [抽象工廠]({{ site.url }}/2017/05/03/abstract-factory)

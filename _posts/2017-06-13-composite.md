@@ -86,22 +86,6 @@ public class MenuItem extends MenuComponent{
 
 再來實作菜單 每個菜單都extend這個MenuComponent 菜單不需要實作getPrice和getDescription
 {% highlight java %}
-public class Menu extends MenuComponent{
-    ArrayList menuComponents = new ArrayList();
-    String name
-    
-    public void remove(MenuComponent m){
-	menuComponents.remove(m);
-    }
-    public void add(MenuComponent m){
-        menuComponents.add(m)
-    }
-    public MenuComponent getChild(int i){
-	return (MenuComponent)menuComponents.get(i);
-    }
-    public String getName(){
-	return name;
-    }
     public void print(){
 	System.out.print(getName());
 	System.out.print("------");
@@ -111,12 +95,28 @@ public class Menu extends MenuComponent{
 	    m.print();
 	}
     }
-}
 {% endhighlight %}
+![Alt text]({{ site.url }}/public/composite2.png)
 
-要怎麼print一個菜單呢 叫出菜單的iterator 然後一個一個call print
+要怎麼print一個菜單呢 給你想10秒鐘 
+<br><br><br><br><br><br><br>
+![Alt text]({{ site.url }}/public/swordfish.gif)
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+叫出菜單的iterator 然後一個一個call print
 
 DFS!
+
+{% highlight java %}
+    public void print(){
+	System.out.print(getName());
+	System.out.print("------");
+        Iterator iterator = menuComponent.iterator();
+	while(iterator.hasNext()){
+	    MenuComponent m = (MenuComponent)iterator.next();
+	    m.print();
+	}
+    }
+{% endhighlight %}
 
 那認真的服務生要怎麼列出所有菜呢?
 
@@ -185,7 +185,7 @@ if(menuComponent instanceof Menu){
 ### 合成+反覆器
 
 故事還沒有結束 雖然我們有print function可以讓waiter把所有的菜全部列出來 
-但如果菜列到一半 突然想上廁所 上完回來想繼續列的時候發現 只能從頭開始列
+但如果菜列到一半 這位認真的服務生突然想上廁所 上完回來想繼續列的時候發現 只能從頭開始列
 因為**print的實作是stateless的** 
 
 這時候就需要一個合成的反覆器了 上一篇的反覆器很簡單 因為每個item都是菜 

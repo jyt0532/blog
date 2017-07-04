@@ -10,6 +10,7 @@ author: jyt0532
 這篇是Effective Engineer - Optimize for learning章節的讀書筆記 我讀過不少教engineer如何成長的文章 
 但通常都是老生常談 看沒兩天就忘了 但這篇的建議我覺得都很好 不求全部做到 但求砥礪自己每天進步
 
+
 ### 成長型心態
 
 作者說他剛畢業時是個比較內向的人 

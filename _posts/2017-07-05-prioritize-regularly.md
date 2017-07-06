@@ -37,6 +37,8 @@ author: jyt0532
 
 首先 先把你的tasks分成四大類
 ![Alt text]({{ site.url }}/public/the-effective-engineer-34-638.jpg)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(photo credit: Effective Engineer)
+
 先處理第一象限是當然
 
 處理完第一象限之後 第二象限沒有明確deadline **但是會提供長期的價值** 
@@ -71,11 +73,14 @@ author: jyt0532
 
 > if 我這件事忙完的時候是3點以前 then我就把所有mail回完
 
+> if 四點以前把該做的做完 今天就去重訓
+
+> if 咪挺一小時內開完 我就來review code
 
 判斷重要性的當下 很容易被其他事情影響 而錯估了任務的價值 
 比如說把一些明明不重要的歸類成重要
 
-但如果你早就寫好if-then的規劃 你在規劃的當時就會去想long-term的影響 而不是被當下影響了判斷
+但如果你早就寫好if-then的規劃 你在規劃的當時就會去想long-term的影響 而不是被當下的情緒影響了判斷 我蠻常在臨時接到一個task的時候會想趕快把它完成 完成後才發現其實根本沒有那麼急迫 這一點就是要我們突破自己的心魔
 
 另一個建議 是可以把你的todo list分一些雜事出來 20min的雜事是一個category 10min的雜事是一個category
 
@@ -89,5 +94,5 @@ author: jyt0532
 
 每個Task旁邊標記大概要花多久時間 方便每天規劃
 
-一開始會很花時間 但熟練了之後 你會發現你的效率極高
+Prioritize這件事一開始會很花時間 但熟練了之後 你會發現你的效率極高
 

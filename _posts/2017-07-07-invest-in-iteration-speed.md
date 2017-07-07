@@ -117,6 +117,7 @@ hot reload和continuous integration都是省時間的工具 包括有提供inter
 
 > 過早最佳化是萬惡的根源&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -- Donald Knuth
 
-結論就是 找出你project iteration cycle裡面的最大瓶頸 看是開發者工具, 團隊之間的溝通, decision maker的同意或是公司組織的process
+### 結論
+找出你project iteration cycle裡面的最大瓶頸 看是開發者工具, 團隊之間的溝通, decision maker的同意或是公司組織的process
 
 找到之後再去最佳化

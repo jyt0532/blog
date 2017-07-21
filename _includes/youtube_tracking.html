@@ -1,0 +1,41 @@
+<script>
+var tag = document.createElement('script');
+tag.src = "http://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+function onYouTubeIframeAPIReady(event) {
+	player = new YT.Player('youTubePlayer1', {
+		videoId: 'yH7eRHHVGGA',
+		events: {
+			'onReady': onPlayerReady,
+			'onStateChange': onPlayerStateChange
+		}
+	});
+}
+
+var pauseFlag = false;
+function onPlayerReady(event) {
+	// do nothing, no tracking needed
+}
+function onPlayerStateChange(event) {
+	// track when user clicks to Play
+	if (event.data == YT.PlayerState.PLAYING) {
+		//ga.push(['_trackEvent', 'Videos', 'Play', 'Test Video']);
+		ga('send', 'event', 'Videos', 'Play', 'Test Video');
+		pauseFlag = true;
+	}
+	// track when user clicks to Pause
+	if (event.data == YT.PlayerState.PAUSED && pauseFlag) {
+		//ga.push(['_trackEvent', 'Videos', 'Pause', 'Test Video']);
+		ga('send', 'event', 'Videos', 'Pause', 'Test Video');
+		pauseFlag = false;
+	}
+	// track when video ends
+	if (event.data == YT.PlayerState.ENDED) {
+		//ga.push(['_trackEvent', 'Videos', 'Finished', 'Test Video']);
+		ga('send', 'event', 'Videos', 'Finished', 'Test Video');
+	}
+}
+</script>
+

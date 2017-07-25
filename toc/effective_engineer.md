@@ -19,7 +19,7 @@ Focus on high leverage activities
 
 Validate your Ideas Early and Often
 
-Improve Your Project Estimation Skills
+[Improve Your Project Estimation Skills](/2017/07/24/improve-project-estimation-skill/)
 
 ### Build Long-Term Value
 

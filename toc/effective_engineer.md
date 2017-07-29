@@ -23,7 +23,7 @@ Validate your Ideas Early and Often
 
 ### Build Long-Term Value
 
-[Balance Quality with Pragmatism](/2017/07/24/improve-project-estimation-skill/)
+[Balance Quality with Pragmatism](/2017/07/29/balance-quality-with-pragmatism/)
 
 Minimize Operational Burden
 

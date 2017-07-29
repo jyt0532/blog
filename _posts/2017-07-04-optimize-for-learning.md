@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Effective Engineer - 最佳化學習
+title: Effective Engineer - Optimize for Learning
 comments: True 
-subtitle: optimize for learning
+subtitle: 最佳化學習
 tags: effectiveEngineer
 author: jyt0532
 ---

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Effective Engineer - 投資迭代速率
+title: Effective Engineer - Invest in Iteration Speed
 comments: True 
-subtitle: prioritize regularly
+subtitle: 投資迭代速率
 tags: effectiveEngineer
 author: jyt0532
 ---

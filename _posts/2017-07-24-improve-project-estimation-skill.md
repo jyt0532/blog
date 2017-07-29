@@ -2,7 +2,7 @@
 layout: post
 title: Effective Engineer - Improve your project estimation skills
 comments: True 
-subtitle: prioritize regularly
+subtitle: 提升評估專案的能力
 tags: effectiveEngineer
 author: jyt0532
 ---

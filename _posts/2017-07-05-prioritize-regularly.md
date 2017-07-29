@@ -2,7 +2,7 @@
 layout: post
 title: Effective Engineer - Prioritize Regularly
 comments: True 
-subtitle: prioritize regularly
+subtitle: 定期優先化
 tags: effectiveEngineer
 author: jyt0532
 ---

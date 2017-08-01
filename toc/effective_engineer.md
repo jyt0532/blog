@@ -5,7 +5,7 @@ title: Effective Engineer
 ## Effective Engineer
 ### Adopt the Right Mindset
 
-Focus on high leverage activities
+[Focus on High-Leverage Activities](/2017/07/31/focus-on-high-leverage-activities/)
 
 [Optimize for learning](/2017/07/04/optimize-for-learning/)
 

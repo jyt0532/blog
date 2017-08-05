@@ -23,7 +23,7 @@ Bridge
 
 [Decorator](/2017/04/18/decorator/)
 
-Facade
+[Facade](/2017/08/04/facade/)
 
 Flyweight
 

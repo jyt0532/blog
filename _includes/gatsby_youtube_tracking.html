@@ -17,30 +17,33 @@ function onYouTubeIframeAPIReady(event) {
 var pauseFlag = false;
 var totalTime = 0;
 var startTime = 0;
+var videoName = 'YoungAndBeautiful1';
 function onPlayerReady(event) {
 	// do nothing, no tracking needed
 }
 function onPlayerStateChange(event) {
 	// track when user clicks to Play
 	if (event.data == YT.PlayerState.PLAYING) {
-		ga('send', 'event', 'Videos', 'Play', 'Test Video');
+		ga('send', 'event', videoName, 'Play', 'Test Video');
 		pauseFlag = true;
 		startTime = Date.now()/1000;
 	}
 	// track when user clicks to Pause
 	if (event.data == YT.PlayerState.PAUSED && pauseFlag) {
-		ga('send', 'event', 'Videos', 'Pause', 'Test Video');
+		ga('send', 'event', videoName, 'Pause', 'Test Video');
 		pauseFlag = false;
 		totalTime = totalTime + Date.now()/1000 - startTime;
 	}
 	// track when video ends
 	if (event.data == YT.PlayerState.ENDED) {
-		ga('send', 'event', 'Videos', 'Finished', 'Test Video');
+		ga('send', 'event', videoName, 'Finished', 'Test Video');
 		totalTime = totalTime + Date.now()/1000 - startTime;
 	}
 }
 window.onunload = function(){
-        ga('send', 'event', 'Videos', 'Total', 'Test Video', parseInt(totalTime, 10));
+	if(totalTime > 0){
+        	ga('send', 'event', videoName, 'Total', 'Test Video', parseInt(totalTime, 10));
+	}
 }
 </script>
 

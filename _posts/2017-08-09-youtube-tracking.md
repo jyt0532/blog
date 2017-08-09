@@ -2,7 +2,7 @@
 layout: post
 title: Youtube tracker in google analytics
 comments: True 
-subtitle: youtube tracker in google analytics
+subtitle: 用Google Analytics追蹤使用者的Youtube體驗
 tags: googleAnalytics Youtube
 author: jyt0532
 ---

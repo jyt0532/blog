@@ -42,7 +42,9 @@ function onPlayerStateChange(event) {
 	}
 }
 window.onunload = function(){
-	ga('send', 'event', 'Videos', 'Total', 'Test Video', parseInt(totalTime, 10));
+	if(totalTime > 0){
+		ga('send', 'event', 'Videos', 'Total', 'Test Video', parseInt(totalTime, 10));
+	}
 }
 </script>
 

@@ -9,7 +9,7 @@ author: jyt0532
 {% include youtube_tracking.html %}
 
 如果你的網站有掛Google Analytics 他可以幫你track許多event
-最近在研究如果放了youtube Google Analytic可以track到什麼地步
+最近在研究如果放了youtube影片 Google Analytic可以track到什麼地步
 
 基本的就是有多少人播放 暫停 放完等等 但只要你會寫程式
 你可以track非常多事情 網路上好像還有不少人開課教PM怎麼track這些東西
@@ -19,7 +19,7 @@ Let's Go!
 
 ### Youtube iframe
 
-[Youtuve iframe](https://developers.google.com/youtube/iframe_api_reference)是最好的嵌入影片的方式 他的API非常的健全 可以自動播放 允不允許全螢幕等等[Iframe DEMO](https://developers.google.com/youtube/youtube_player_demo) 裡講得很清楚 有興趣的自行研究
+[Youtuve iframe](https://developers.google.com/youtube/iframe_api_reference)是最好的在網站嵌入影片的方式 他的API非常的健全 可以自動播放 允不允許全螢幕等等[Iframe DEMO](https://developers.google.com/youtube/youtube_player_demo) 裡講得很清楚 有興趣的自行研究
 
 你在你的html裡需要加上的就只有一個div
 {% highlight html %}
@@ -32,10 +32,10 @@ Let's Go!
 
 {% highlight javascript %}
 <script>
-	var tag = document.createElement('script');
-	tag.src = "https://www.youtube.com/iframe_api";
-	var firstScriptTag = document.getElementsByTagName('script')[0];
-	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 </script>
 {% endhighlight %}
 
@@ -45,32 +45,32 @@ Let's Go!
 
 ...
 <br><br><br>
+我看到這段第一印象就是
 ![Alt text]({{ site.url }}/public/chou1.jpg)
 這不就只是這樣嗎
 {% highlight javascript %}
 <script src="http://www.youtube.com/iframe_api"></script>
 {% endhighlight %}
 
-其實還是有差別的 原本的那段會asyncy load script
+認真研究了一下 原來是有差別的 原本的那段會asyncy load script
 
 Asynchronous load代表那些script可以同時下載
 
 Synchronous 也就是通常的版本 一個script tag接著一個script tag下載 會比較慢
 
-但這只是API啊 應該要講求最快上手 performance的事就晚點處理比較恰當
-想必是google用心良苦 給PM一點門檻 讓tracking event交由engineer發揮
+原來google用心良苦 連load一個script都考慮得這麼細節
 
 讓我們繼續看下去
 
 {% highlight javascript %}
 function onYouTubeIframeAPIReady(event) {
-        player = new YT.Player('youTubePlayer_test', {
-                videoId: 'jIDRwcB2SPA',
-                events: {
-                        'onReady': PlayerReady,
-                        'onStateChange': PlayerStateChange
-                }
-        });
+  player = new YT.Player('youTubePlayer_test', {
+    videoId: 'jIDRwcB2SPA',
+    events: {
+      'onReady': PlayerReady,
+      'onStateChange': PlayerStateChange
+    }
+  });
 }
 {% endhighlight %}
 
@@ -83,24 +83,24 @@ function onYouTubeIframeAPIReady(event) {
 
 {% highlight javascript %}
 function PlayerReady(event) {
-        // do nothing
+  // do nothing
 }
 var pauseFlag = false;
 function PlayerStateChange(event) {
-        // when user click Play
-        if (event.data == YT.PlayerState.PLAYING) {
-                ga('send', 'event', 'Videos', 'Play', 'Test Video');
-                pauseFlag = true;
-        }
-        // when click Pause
-        if (event.data == YT.PlayerState.PAUSED && pauseFlag) {
-                ga('send', 'event', 'Videos', 'Pause', 'Test Video');
-                pauseFlag = false;
-        }
-        // when video ends
-        if (event.data == YT.PlayerState.ENDED) {
-                ga('send', 'event', 'Videos', 'Finished', 'Test Video');
-        }
+  // when user click Play
+  if (event.data == YT.PlayerState.PLAYING) {
+    ga('send', 'event', 'Videos', 'Play', 'Test Video');
+    pauseFlag = true;
+  }
+  // when click Pause
+  if (event.data == YT.PlayerState.PAUSED && pauseFlag) {
+    ga('send', 'event', 'Videos', 'Pause', 'Test Video');
+    pauseFlag = false;
+  }
+  // when video ends
+  if (event.data == YT.PlayerState.ENDED) {
+    ga('send', 'event', 'Videos', 'Finished', 'Test Video');
+  }
 }
 {% endhighlight %}
 
@@ -125,6 +125,8 @@ PlayerStateChange 就是當youtube狀態改變的時候要做什麼 User按Play�
 
 這就是每個人的GA都有的pageview event
 
+非常好用
+
 ### 嘿嘿嘿
 
 當你知道你可以在所有event都放callback function之後 
@@ -137,7 +139,7 @@ PlayerStateChange 就是當youtube狀態改變的時候要做什麼 User按Play�
 
 那就精彩了 我就可以tracking每個user到底實際上看了多久的影片 在user把頁面關掉的moment傳回我的GA
 
-![Alt text]({{ site.url }}/public/ga_code.png)
+![Alt text]({{ site.url }}/public/ga_code1.png)
 
 夠邪惡吧 連我用一個GA都可以輕鬆track了 基本上你常用的網站都在做同樣的事 你停在一個feed多久 影片看多長 
 都可以輕鬆紀錄

@@ -25,7 +25,7 @@ Validate your Ideas Early and Often
 
 [Balance Quality with Pragmatism](/2017/07/29/balance-quality-with-pragmatism/)
 
-Minimize Operational Burden
+[Minimize Operational Burden](/2017/08/14/minimize-operational-burden/)
 
 Invest in Your Team's Growth
 

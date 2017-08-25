@@ -27,5 +27,5 @@ Validate your Ideas Early and Often
 
 [Minimize Operational Burden](/2017/08/14/minimize-operational-burden/)
 
-Invest in Your Team's Growth
+[Invest in Your Team's Growth](/2017/08/25/invest-in-your-teams-growth/)
 

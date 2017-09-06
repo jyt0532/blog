@@ -17,7 +17,7 @@ title: Effective Engineer
 
 [Measure What You Want to Improve](/2017/07/09/measure/)
 
-Validate your Ideas Early and Often
+[Validate your Ideas Early and Often](/2017/09/05/validate-your-ideas-early-and-often/)
 
 [Improve Your Project Estimation Skills](/2017/07/24/improve-project-estimation-skill/)
 

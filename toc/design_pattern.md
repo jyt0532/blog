@@ -49,6 +49,6 @@ Memento
 
 [Strategy](/2017/04/07/strategy/)
 
-Template
+[Template](/2017/09/12/template/)
 
 Visitor

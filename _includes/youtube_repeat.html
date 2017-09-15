@@ -28,25 +28,25 @@ function onPlayerReady(event) {
 function onPlayerStateChange(event) {
 	// track when user clicks to Play
 	if (event.data == YT.PlayerState.PLAYING) {
-		ga('send', 'event', 'Videos', 'Play', 'Test Video', 5);
+		ga('send', 'event', 'Video', 'YoutubeRepeater', 'Play', videoId);
 		pauseFlag = true;
 		startTime = Date.now()/1000;
 	}
 	// track when user clicks to Pause
 	if (event.data == YT.PlayerState.PAUSED && pauseFlag) {
-		ga('send', 'event', 'Videos', 'Pause', 'Test Video');
+		ga('send', 'event', 'Video', 'YoutubeRepeater', 'Pause', videoId);
 		pauseFlag = false;
 		totalTime = totalTime + Date.now()/1000 - startTime;
 	}
 	// track when video ends
 	if (event.data == YT.PlayerState.ENDED) {
-		ga('send', 'event', 'Videos', 'Finished', 'Test Video');
+		ga('send', 'event', 'Video', 'YoutubeRepeater', 'Finished', videoId);
 		totalTime = totalTime + Date.now()/1000 - startTime;
 	}
 }
 window.onunload = function(){
 	if(totalTime > 0){
-		ga('send', 'event', 'Videos', 'Total', 'Test Video', parseInt(totalTime, 10));
+		ga('send', 'event', 'Videos', 'Total', videoId, parseInt(totalTime, 10));
 	}
 }
 </script>

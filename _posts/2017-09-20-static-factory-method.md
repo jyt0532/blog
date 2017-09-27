@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java(1) - Consider static factory methods instead of constructors
+title: Effective Java Item1 - Consider static factory methods instead of constructors
 comments: True 
 subtitle: effective java - 靜態工廠方法
 tags: effectiveJava

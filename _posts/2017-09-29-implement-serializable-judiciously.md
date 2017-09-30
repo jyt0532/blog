@@ -8,6 +8,8 @@ author: jyt0532
 ---
 這篇是Effective Java - Implement Serializable judiciously章節的讀書筆記
 
+在看這篇文章之前 強烈建議先看過[序列化基本知識](/2017/09/27/java-serialization-101/)
+
 ## Item74: 實現Serializable介面要謹慎
 
 要讓一個class變成Serializable很簡單 原本是

@@ -49,9 +49,9 @@ public final class StringList implements Serializable {
   private int size = 0;
   private Entry head = null;
   private static class Entry implements Serializable {
-  	String data;
-  	Entry next;
-  	Entry previous;
+    String data;
+    Entry next;
+    Entry previous;
   }
   ... // Remainder omitted
 }
@@ -87,29 +87,28 @@ public final class StringList implements Serializable {
 
   // No longer Serializable!
   private static class Entry {
-  	String data;
-  	Entry next;
-  	Entry previous;
+    String data;
+    Entry next;
+    Entry previous;
   }
 
   // Appends the specified string to the list
   public final void add(String s) {
-  	// Implementation omitted
+    // Implementation omitted
   }
   private void writeObject(ObjectOutputStream s) throws IOException {
-  	s.defaultWriteObject();
-  	s.writeInt(size);
+    s.defaultWriteObject();
+    s.writeInt(size);
 
-  	for (Entry e = head; e != null; e = e.next)
-  		s.writeObject(e.data);
+    for (Entry e = head; e != null; e = e.next)
+    	s.writeObject(e.data);
   }
-  private void readObject(ObjectInputStream s) throws IOException,
-  		ClassNotFoundException {
-  	s.defaultReadObject();
-  	int numElements = s.readInt();
+  private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+    s.defaultReadObject();
+    int numElements = s.readInt();
 
-  	for (int i = 0; i < numElements; i++)
-  		add((String) s.readObject());
+    for (int i = 0; i < numElements; i++)
+    	add((String) s.readObject());
   }
 }
 {% endhighlight %}
@@ -140,8 +139,7 @@ public final class StringList implements Serializable {
 
 
 {% highlight java %}
-private void readObject(ObjectInputStream s) throws IOException,
-  		ClassNotFoundException {
+private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
   s.defaultReadObject();
   //assign initial value for transient variables  
 }

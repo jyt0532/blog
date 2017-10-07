@@ -27,7 +27,7 @@ Bridge
 
 Flyweight
 
-Proxy
+[Proxy](/2017/10/06/proxy/)
 
 ### Behavioral Patterns
 

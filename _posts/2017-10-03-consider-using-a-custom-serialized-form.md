@@ -9,6 +9,8 @@ author: jyt0532
 這篇是Effective Java - Consider using a custom serialized form章節的讀書筆記
 本篇的程式碼來自於原書內容
 
+在看這篇文章之前 強烈建議先看過[序列化基本知識](/2017/09/27/java-serialization-101/)
+
 ## Item75: 考慮使用自己定義的序列化形式
 
 [Item74](/2017/09/29/implement-serializable-judiciously/)講到 當你宣告一個class有實作序列化 他就必須永遠支援序列化

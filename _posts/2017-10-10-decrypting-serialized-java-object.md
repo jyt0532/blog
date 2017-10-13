@@ -8,7 +8,20 @@ author: jyt0532
 ---
 這篇文章是閱讀Effective Java 第11章 - Item76之前需要會的知識 
 
+關於序列化的Protocol詳細文件[在這](https://docs.oracle.com/javase/7/docs/platform/serialization/spec/protocol.html) 不過這篇門檻太高 需要知道什麼是Context Free Grammar 有興趣的各位自動機大神可以來看一下
 ### 深談序列化
+
+序列化的目的是為了傳輸或儲存 所以最重要的事情就是序列化的那端用的protocol跟反序列化的那端用的protocol一樣
+
+既然如此 Java就定義了所有人都要共同遵尋的protocol
+
+1.寫下你當下的class的metadata
+
+2.Recursively寫parent class的metadata 寫到java.lang.Object為止
+
+3.再來 寫下class的instance variable的值 **從最Parent class的instance開始寫**
+
+### 直上例子
 
 序列化的目標當然是我們最可愛的Person Class
 {% highlight java %}
@@ -50,7 +63,7 @@ public class TestDrive{
 }
 {% endhighlight %}
 
-我們來仔細看看這個文件
+我們來仔細看看person.ser這個文件
 
 ![Alt text]({{ site.url }}/public/serializedObject.png)
 
@@ -62,13 +75,13 @@ Are you Ready?
 
 ![Alt text]({{ site.url }}/public/serializedObject2.png)
 
-<span style="color:red">ACED</span>: MAGIC NUMBER
+<span style="color:red">ACED</span>: MAGIC NUMBER 告訴你說這是段被序列化的byte stream
 
 <span style="color:rgb(54, 241, 73)">0005</span>: STREAM_VERSION STREAM的版本
 
-<span style="color:blue">73</span>: 新的對象
+<span style="color:blue">73</span>: 新的Object
 
-<span style="color:orange">72</span> 新的Class descriptor
+<span style="color:orange" id="72">72</span> 新的Class descriptor 接下來的是一個新的class
 
 <span style="color:purple">0006</span> Class name長度 (Person: 6)
 
@@ -93,15 +106,15 @@ Are you Ready?
 
 <span style="color:rgb(57, 88, 38)">02</span> 表示這個object支援序列化
 
-### 殺進物件內部
+### 殺進物件內部 繼續描述這個class
 
-![Alt text]({{ site.url }}/public/serializedObject3.png)
+![Alt text]({{ site.url }}/public/serializedObject9.png)
 
 <span style="color:red">0002</span>: 這個物件有多少個instance (name, age 兩個)
 
-<span style="color:rgb(54, 241, 73)">49</span>: 這個variable型態 "I" 代表integer
+<span style="color:rgb(54, 241, 73)">49</span>: 第一個variable型態 0x49 = "I" 代表integer
 
-<span style="color:blue">0003</span>: 這個variable長度 3
+<span style="color:rgb(147, 73, 152)">0003</span>: 這個variable長度 3
 
 <span style="color:orange">616765</span> 
 
@@ -113,7 +126,7 @@ Are you Ready?
 
 <span style="color:rgb(54, 241, 73)">4C</span>: 這個variable型態 "L" 代表object
 
-<span style="color:blue">0004</span>: 這個variable長度 4
+<span style="color:rgb(147, 73, 152)">0004</span>: 這個variable長度 4
 
 <span style="color:orange">6E616D65</span> 
 
@@ -125,21 +138,40 @@ Are you Ready?
 
 0x65 = 101 = e
 
-![Alt text]({{ site.url }}/public/serializedObject4.png)
-
 <span style="color:red">74</span>: 接下來是個String (TC_STRING = (byte)0x74;)
 
 <span style="color:rgb(59, 247, 247)">0012</span>: 接下來這個String長度是18
 
 <span style="color:rgb(52, 237, 67)">4C6A6176612F6C616E672F537472696E673B</span>: 
 
-師爺給我翻譯翻譯
-
 "Ljava/lang/String;"
 
+因為String並不是java的Primitive type 只能算是一個object 
+
+那在序列化如何描述一個物件呢 來看一下CFG:
+
+objectDesc:
+  
+&nbsp;&nbsp;&nbsp;&nbsp;obj_typecode fieldName className1
+
+原來在byte stream裡面要描述一個物件 需要先說object的type 再說object的name 再說class的name
+
+
+至於為什麼前面有一個L? JVM會用最簡潔的方式儲存class L[class]; 代表一個class
+
+有興趣可以參考[這裡](https://stackoverflow.com/questions/9909228/what-does-v-mean-in-a-class-signature)
+
+![Alt text]({{ site.url }}/public/serializedObject10.png)
 <span style="color:rgb(169, 123, 86)">78</span> 結束對象標誌(TC_ENDBLOCKDATA = (byte)0x78)
 
-<span style="color:rgb(1, 1, 11)">70</span> 這個class沒有服類(TC_NULL = (byte)0x70;)
+這個class描述完了 如果這個class有parent class 那就會從[72(點我)](#72)開始 recursive繼續描述class
+
+<span style="color:rgb(1, 1, 11)">70</span> Recursive完畢 因為Person沒有父類 所以寫完一個class description就結束(TC_NULL = (byte)0x70;)
+
+看到70就知道 所有class都描述完了 再來 開始記錄object裡面的instance的值
+<br>
+<br>
+![Alt text]({{ site.url }}/public/serializedObject8.png)
 
 <span style="color:rgb(167, 93, 172)">00000001</span> 第一個變數的value
 
@@ -150,3 +182,12 @@ Are you Ready?
 <span style="color:rgb(138, 26, 128)">4A6F686E</span>: 
 
 "John"
+
+### 總結
+
+因為這個序列化可能會很長 也會有很多class重複用到很多次 
+java不會每次看到同樣的class還跟第一次看到一樣全部寫上去 
+所以對於每一個已經寫過的**物件**或是已經寫過的**class descriptor** 它會用一個reference serial number記住他 下次再遇到一個一樣的class 我就直接寫那個出現過的class的reference number
+
+
+

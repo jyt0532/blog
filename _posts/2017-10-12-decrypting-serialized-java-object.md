@@ -187,7 +187,11 @@ objectDesc:
 
 因為這個序列化可能會很長 也會有很多class重複用到很多次 
 java不會每次看到同樣的class還跟第一次看到一樣全部寫上去 
-所以對於每一個已經寫過的**物件**或是已經寫過的**class descriptor** 它會用一個reference serial number記住他 下次再遇到一個一樣的class 我就直接寫那個出現過的class的reference number
+所以對於每一個已經寫過的**物件**或是已經寫過的**class descriptor** 它會用一個reference serial number記住他 
+
+下次再遇到一個一樣的class 我就直接寫那個出現過的class的reference number
+
+下次再遇到一個一樣的object 我就直接寫那個以前寫好的那個object的reference number
 
 
 

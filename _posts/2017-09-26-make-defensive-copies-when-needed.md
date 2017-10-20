@@ -102,6 +102,10 @@ public Date end() {
 
 因為除了Period之外 沒有其他人可以碰到這兩個instance variable **真正達到了private的封裝**
 
+為什麼這裡要這麼麻煩用getTime() 直接用start.clone()不就好了？
+
+在這裡可以 但其他時候用clone來做defensive copy會有安全性的漏洞 因為Date有可能會被繼承 我們無法保證clone會真的回傳Date而不是Date的subclass 而subclass的行為難以控制 **所以在實作defensive copy的時候不要用clone**
+
 ### 總結
 每當你要寫一個方法或是constructor 確認以下幾點
 

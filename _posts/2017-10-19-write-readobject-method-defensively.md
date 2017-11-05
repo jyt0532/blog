@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item76 - Write readobject method defensively
+title: Effective Java Item76 - Write readObject method defensively
 comments: True 
 subtitle: effective java - 保護性的編寫readObject方法
 tags: effectiveJava

@@ -16,7 +16,7 @@ author: jyt0532
 
 要怎麼實現呢 首先 我們要先nested class 找一個替身的概念 這個class才是我們要拿來序列化的東西
 
-![Alt text]({{ site.url }}/public/item78.png) 
+![Alt text]({{ site.url }}/public/item78-2.png) 
 
 拿我們最愛的Period舉例
 
@@ -66,7 +66,9 @@ private Object writeReplace() {
 
 意思就是 嘿嘿 不要序列化我 序列化SerializationProxy 這個物件
 
-這麼一來我就保證JVM不會序列化Period這個Class 但是還是可能有壞人從byte stream竄改 產生一個可以反序列化成Period的byte stream 所以我們需要在外圍類裡面加上
+這麼一來我就保證JVM不會序列化Period這個Class 
+
+但是還是可能有壞人從byte stream竄改 產生一個可以反序列化成Period的byte stream 所以我們需要在外圍類裡面加上
 
 {% highlight java %}
 private void readObject(ObjectInputStream stream)
@@ -75,6 +77,9 @@ private void readObject(ObjectInputStream stream)
 }
 {% endhighlight %}
 
+這樣要是有人想把一個byte stream反序列化成Period就會直接噴錯
+
+![Alt text]({{ site.url }}/public/item78-3.jpg) 
 
 好 我同意現在你只會序列化SerializationProxy 而且中途有人亂改 我們也不准JVM隨便反序列化成外部class(Period) 
 

@@ -3,7 +3,7 @@ layout: post
 title: Effective Java Item78 - Consider serialization proxies instead of serialized instances
 comments: True 
 subtitle: effective java - 考慮用序列化代理代替序列化實例
-tags: effectiveJava enum
+tags: effectiveJava proxy
 author: jyt0532
 ---
 這篇是Effective Java - Consider serialization proxies instead of serialized instances章節的讀書筆記 本篇的程式碼來自於原書內容

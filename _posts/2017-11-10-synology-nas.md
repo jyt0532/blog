@@ -41,7 +41,9 @@ Redundant Array of Independent Disks
 
 ### Glacier
 
-這是後就要考慮AWS的Glacier服務 這是Amazon的一個成本非常低的雲端存儲 可以自己設定每個禮拜替自己的硬碟做snapshot 做長期的備份 不像s3要求高速的存儲 glacier上傳下載都非常花時間 所以非常便宜 每個月每GB 0.004USD 算是備案中的備案 但可以保證你的照片不會從這世上消失 
+![Alt text]({{ site.url }}/public/glacier.jpg)
+
+這時候就要考慮AWS的Glacier服務 這是Amazon的一個成本非常低的雲端存儲 可以自己設定每個禮拜替自己的硬碟做snapshot 做長期的備份 不像s3要求高速的存儲 glacier上傳下載都非常花時間 所以非常便宜 每個月每GB 0.004USD 算是備案中的備案 但可以保證你的照片不會從這世上消失 
 
 [Amazon Glacier](https://aws.amazon.com/tw/glacier/)
 

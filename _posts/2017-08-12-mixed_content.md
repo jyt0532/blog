@@ -14,7 +14,7 @@ author: jyt0532
 
 實在詭異 不能容忍
 
-打開console 一看
+打開console一看
 
 ![Alt text]({{ site.url }}/public/console_error.png)
 

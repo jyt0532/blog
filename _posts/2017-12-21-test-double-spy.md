@@ -49,7 +49,7 @@ public class WebServer {
 
 有時需要的是mock卻用成spy 有時需要的是spy但卻不知道怎麼從mock做到
 
-接下來會說明我歸納出來的總結和工作上遇到的使用時機 可以的話可以開出[MockNEEDLINK(XX)來比較一下
+接下來會說明我歸納出來的總結和工作上遇到的使用時機 可以的話可以開出[Mock](/2017/12/23/test-double-mock/)來比較一下
 
 ## 該怎麼用spy
 

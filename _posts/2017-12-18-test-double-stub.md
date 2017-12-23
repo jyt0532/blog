@@ -53,7 +53,7 @@ public class TestWithStub{
   @Test
   public void testGetSecretNumber(){
     WebServer webserver = new WebServer(new DatabaseStub());
-    assertEquals(42, webserver.getSecretNumber());
+    assertEquals(42, webserver.getSecretNumber("BoYu", "jyt"));
   }
 {% endhighlight %}
 

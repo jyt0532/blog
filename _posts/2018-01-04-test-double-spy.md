@@ -124,7 +124,7 @@ public class SpyAndMock {
 
 所以你可以說spy是partial mock 
 
-我比較喜歡把spy想成是 真的生了一個要測試的類別的物件 然後把這個物件包在一個wrapper裡面 監視一舉一動 除非必要不打草驚蛇(stubing a spy)
+我比較喜歡把spy想成是 真的生了一個要測試的類別的物件 然後把這個物件包在一個wrapper裡面 監視一舉一動 除非必要不打草驚蛇(stubbing a spy)
 
 mock就是生了一個跟要測試的類別長得很像的物件 只是所有函式回傳預設值 再把會用到的函式輸入輸出定義一下
 
@@ -134,7 +134,7 @@ spy就是偽君子岳不群 mock就是真小人左冷禪
 
 其實大多數的情況 你都應該用mock 應該是說你能用mock解決的就用mock 可是萬一下面幾點有一點符合 那就要考慮用spy
 
-1.SUT中間跟DOC的互動 參數無法確定 
+1.SUT中間跟DOC的互動時 需要的參數無法確定 
 
 2.mock的asseretion在mock物件裡 有些assertion不明顯 你覺得測試跑完錯誤訊息不夠清楚(別忘了spy是在測試的最後 我們去檢查spy物件的狀態)
 
@@ -143,7 +143,7 @@ spy就是偽君子岳不群 mock就是真小人左冷禪
 
 ## 為什麼我會用到spy
 
-說來也離奇 我用到spy的地方並不是用來取代DOC 我用spy來stubbing SUT
+說來也離奇 我用到spy的地方並不是用來取代DOC
 
 且聽我娓娓道來
 

@@ -6,15 +6,17 @@ subtitle: test doubles - fake
 tags: unitTest
 author: jyt0532
 ---
-Fake就是一個真實DOC的簡單版 一個常見的例子是DOC是真正的database 但是用一個簡單的in memory map來取代真正的database
+Fake就是一個真實DOC的簡單版 
+
+一個常見的例子是DOC是真正的database 但是用一個簡單的in memory map來取代真正的database
 
 
 ## 實用性
 
-不太實用 基本上很少人為了測試 
+不太實用 基本上很少人為了測試DOC 
 去寫一個簡單版的DOC去取代真正的DOC 
 
-因為你可能要另外為了這個簡單版的DOC寫測試 得不償失
+因為你可能要另外為了這個簡單版的DOC在另外寫一個測試 得不償失
 
 基本上之前提到的已經很夠用了
 
@@ -26,9 +28,9 @@ Fake就是一個真實DOC的簡單版 一個常見的例子是DOC是真正的dat
 
 這是不好的現象
 
-大家應該知道什麼是Refactor code 就是改變一個東西的實作 但不改變一個東西的行為
+對我來說Refactor code 就是改變一個東西的實作 但不改變一個東西的行為
 
-寫測試有一個很大的好處 就是你在refactoring你的程式碼的時候 你確信自己是對的 不會影響到外顯的結果
+寫測試有一個很大的好處 就是你在refactoring你的程式碼的時候(讓你的程式更易懂好讀) 你確信自己是對的 不會影響到外顯的結果
 
 如果隨著refactor的進行 我們的unit test要跟著變 那就代表我們當初寫測試的時候 測試跟你的程式綁在一起
 

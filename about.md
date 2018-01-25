@@ -18,3 +18,7 @@ Contact me:
 [Linkedin](https://www.linkedin.com/in/boyuchiang/)
 
 [jyt0532@gmail.com](mailto:jyt0532@gmail.com)
+
+
+
+若分享內容或圖片有侵害您的著作權 請來信或留言告知 將儘速移除相關內容

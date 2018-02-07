@@ -19,10 +19,10 @@ author: jyt0532
 public class People {
   private List<Person> persons;
   public void addPerson(Person p){
-    persons.add(p)
+    persons.add(p);
   }
   public int getNumberOfPerson(){
-    persons.size();
+    return persons.size();
   }
 }
 {% endhighlight %}
@@ -36,7 +36,7 @@ public class PeopleTest{
     Person person2 = new Person("Jane Doe", 23, address2, phoneNumber2);
     people.addPerson(person1);
     people.addPerson(person2);
-    assertEquals(2, people.addPerson.getNumberOfPerson)
+    assertEquals(2, people.getNumberOfPerson())
   }
 }
 {% endhighlight %}
@@ -45,30 +45,30 @@ public class PeopleTest{
 
 這時候就要來個簡單的Dummy
 {% highlight java %}
-public class DummyCustomer extends Customer {
-   public DummyCustomer() {}
+public class DummyPerson extends Person {
+   public DummyPerson() {}
 }
 {% endhighlight %}
 這個class的目的就是要通過addPerson的型別限制
-所以只要extends Customer就可以
+所以只要extends Person就可以
 
 {% highlight java %}
 public class PeopleTestWithDummy{
   @Test
   public void testGetNumberOfPerson(){
     People people = new People();
-    people.addPerson(new DummyCustomer());
-    people.addPerson(new DummyCustomer());
-    assertEquals(2, people.addPerson.getNumberOfPerson)
+    people.addPerson(new DummyPerson());
+    people.addPerson(new DummyPerson());
+    assertEquals(2, people.getNumberOfPerson())
   }
 }
 {% endhighlight %}
 就是這麼簡單
 
-## Customer的其他method呢
-那Customer的其他method 我們都全部不管 那如果getNumberOfPerson 呼叫了Customer的method 我們無法知道 但這也不是這個unit test在乎的重點 
+## Person的其他method呢
+那Person的其他method 我們都全部不管 那如果getNumberOfPerson 呼叫了Person的method 我們無法知道 但這也不是這個unit test在乎的重點 
 
-但如果你真的想確保其他method不會被call 那就在DummyCustomer裡面覆寫Customer的其他method 然後都throw Exception就可以
+但如果你真的想確保其他method不會被call 那就在DummyPerson裡面覆寫Person的其他method 然後都throw Exception就可以
 
 ## Null
 
@@ -83,9 +83,9 @@ public class PeopleTestWithDummy{
   @Test 
   public void testGetNumberOfPerson(){
     People people = new People();
-    people.addPerson(mock(Customer.class));
-    people.addPerson(mock(Customer.class));
-    assertEquals(2, people.addPerson.getNumberOfPerson)
+    people.addPerson(mock(Person.class));
+    people.addPerson(mock(Person.class));
+    assertEquals(2, people.getNumberOfPerson())
   }
 }
 {% endhighlight %}

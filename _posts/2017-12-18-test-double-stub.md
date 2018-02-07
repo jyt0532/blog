@@ -55,6 +55,7 @@ public class TestWithStub{
     WebServer webserver = new WebServer(new DatabaseStub());
     assertEquals(42, webserver.getSecretNumber("BoYu", "jyt"));
   }
+}
 {% endhighlight %}
 
 搞定 這樣就不用真的去query database
@@ -68,7 +69,7 @@ Database databaseStub = mock(Database.class);
 when(databaseStub.authorize(anyString(), anyString()))
     .thenReturn(true);
 WebServer webserver = new WebServer(databaseStub);
-assertEquals(42, webserver.getSecretNumber());
+assertEquals(42, webserver.getSecretNumber("BoYu", "jyt"));
 {% endhighlight %}
 
 你把一個class Mock了之後 他的每一個function都只會回傳null
@@ -85,7 +86,7 @@ Database databaseStub = mock(Database.class);
 when(databaseStub.authorize(anyString(), anyString()))
     .thenReturn(false);
 WebServer webserver = new WebServer(databaseStub);
-assertEquals(-1, webserver.getSecretNumber());
+assertEquals(-1, webserver.getSecretNumber("BoYu", "jyt"));
 {% endhighlight %}
 
 還可以讓你的Stub throw exception

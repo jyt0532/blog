@@ -83,7 +83,7 @@ public class WebServerTest{
     TestDatabase testDatabase = new TestDatabase();
     WebServer webserver = WebServer(testDatabase);
     webserver.create();
-    assertTrue(testDatabase.isInserted)
+    assertTrue(testDatabase.isInsert())
   }
 }
 public class TestDatabase extends Database{
@@ -91,7 +91,7 @@ public class TestDatabase extends Database{
         public void insert(){
                 isInserted = true;
          }
-        public void isInsert(){
+        public boolean isInsert(){
                 return isInserted;
          }
 }

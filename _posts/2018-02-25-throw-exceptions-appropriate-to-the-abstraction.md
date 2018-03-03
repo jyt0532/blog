@@ -148,7 +148,7 @@ Output如下
 Output如下
 ![Alt text]({{ site.url }}/public/exceptiondemo3.png)
 
-這就是effective java想表達的是什麼了呢
+這就是effective java想表達的概念
 
 ### 總結
 

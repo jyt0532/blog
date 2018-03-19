@@ -32,14 +32,15 @@ title: Poker Tournament 心得
 
 這是今天坐下來後的第二手牌 大小盲100/50
 
-(建議不要按中間的start replay 按右邊的show next action)
-<object width="600" height="400"><param name="movie" value="http://www.pelopoker.com/flashs/pelopoker_replayer_ptad.swf?id=9884604800&hostid=1000"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.pelopoker.com/flashs/pelopoker_replayer_ptad.swf?id=9884604800&hostid=1000" type="application/x-shockwave-flash" allowscriptaccess="always" width="600" height="400"></embed></object>
+(很不幸的 這個replay網站是http 所以不能embed到我這個https的部落格 有興趣的話請點擊下列連結)
+
+[第二手](http://www.pelopoker.com/flashs/pelopoker_replayer_ptad.swf?id=9884604800&hostid=1000)
 
 運氣極好 一開始就double up 之後就籌碼就很順利的成長
 
 但這是我在Round 16時 遇到的一個艱難的Play 大小盲8000/4000
 
-<object width="600" height="400"><param name="movie" value="http://www.pelopoker.com/flashs/pelopoker_replayer_ptad.swf?id=4603583572&hostid=1000"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.pelopoker.com/flashs/pelopoker_replayer_ptad.swf?id=4603583572&hostid=1000" type="application/x-shockwave-flash" allowscriptaccess="always" width="600" height="400"></embed></object>
+[Tough Play](http://www.pelopoker.com/flashs/pelopoker_replayer_ptad.swf?id=3586061645&hostid=1000)
 
 最後那個fold想了一分鐘吧 對手是個tight passive的玩家 之後休息前他換桌了 我覺得他大概是拿AQ 他如果拿QJ或QT flop應該會下注 QK的話Turn會下 AQ完全就是他合理的範圍 這把之後籌碼量崩潰 在下一round就AT suited all in遇到AK淘汰
 

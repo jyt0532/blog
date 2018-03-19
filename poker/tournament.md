@@ -40,7 +40,7 @@ title: Poker Tournament 心得
 
 但這是我在Round 16時 遇到的一個艱難的Play 大小盲8000/4000
 
-[Tough Play](http://www.pelopoker.com/show_replayer.php??id=3586061645&hostid=1000)
+[Tough Play](http://www.pelopoker.com/show_replayer.php?id=3586061645&hostid=1000)
 
 最後那個fold想了一分鐘吧 對手是個tight passive的玩家 之後休息前他換桌了 我覺得他大概是拿AQ 他如果拿QJ或QT flop應該會下注 QK的話Turn會下 AQ完全就是他合理的範圍 這把之後籌碼量崩潰 在下一round就AT suited all in遇到AK淘汰
 

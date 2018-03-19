@@ -25,7 +25,7 @@ title: Poker Tournament 心得
 9: 460
 
 最後淘汰前的畫面
-![Alt text]({{ site.url }}/public/tournament_final.jpg)
+![Alt text]({{ site.url }}/public/tournament_final.JPG)
 今天開場運氣不錯 整體而言 對於每個move都算滿意 該贏的局都沒有被bad beat 所以運氣也不算太差 看到不少打得不錯的人被bad beat淘汰 
 
 記錄一下比較特別的兩手牌

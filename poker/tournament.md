@@ -1,0 +1,85 @@
+---
+layout: default
+title: Poker Tournament 心得
+---
+
+# Poker Tournament 心得
+今天去了Bay101玩Poker Tournament Buy-in 200鎂 給12000籌碼 最後結算是在91人的第11名 前9名就有獎金
+
+1: 5070
+
+2: 2900
+
+3: 1350
+
+4: 1240
+
+5: 1080
+
+6: 930
+
+7: 770
+
+8: 620
+
+9: 460
+
+最後淘汰前的畫面
+![Alt text]({{ site.url }}/public/tournament_final.jpg)
+今天開場運氣不錯 整體而言 對於每個move都算滿意 該贏的局都沒有被bad beat 所以運氣也不算太差 看到不少打得不錯的人被bad beat淘汰 
+
+記錄一下比較特別的兩手牌
+
+這是今天坐下來後的第二手牌 大小盲100/50
+
+(建議不要按中間的start replay 按右邊的show next action)
+<object width="600" height="400"><param name="movie" value="http://www.pelopoker.com/flashs/pelopoker_replayer_ptad.swf?id=9884604800&hostid=1000"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.pelopoker.com/flashs/pelopoker_replayer_ptad.swf?id=9884604800&hostid=1000" type="application/x-shockwave-flash" allowscriptaccess="always" width="600" height="400"></embed></object>
+
+運氣極好 一開始就double up 之後就籌碼就很順利的成長
+
+但這是我在Round 16時 遇到的一個艱難的Play 大小盲8000/4000
+
+<object width="600" height="400"><param name="movie" value="http://www.pelopoker.com/flashs/pelopoker_replayer_ptad.swf?id=4603583572&hostid=1000"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.pelopoker.com/flashs/pelopoker_replayer_ptad.swf?id=4603583572&hostid=1000" type="application/x-shockwave-flash" allowscriptaccess="always" width="600" height="400"></embed></object>
+
+最後那個fold想了一分鐘吧 對手是個tight passive的玩家 之後休息前他換桌了 我覺得他大概是拿AQ 他如果拿QJ或QT flop應該會下注 QK的話Turn會下 AQ完全就是他合理的範圍 這把之後籌碼量崩潰 在下一round就AT suited all in遇到AK淘汰
+
+## 心得
+
+這是我第二次的tournament 結算結果是差點進final table 但有不少心得可以分享
+
+### 遊戲前期(91 - 50人的時候)
+
+1.一開始沒有Ante 打的像cash game就可以 tight aggressive 讓自己籌碼量衝高
+
+2.剛休息回來的時候 不要隨意limp 因為大小盲加倍後很多人從中等籌碼量變成短碼 所以很容易你limp之後有人all in被迫丟牌
+
+### 遊戲中期(49-25人 有ante)
+
+1.有ante之後 遊戲就換了個長相 所有ante加起來大概是跟大小盲相加一樣 **所以偷底池的期望值增加**
+
+2.這個時候會很頻繁的換桌子 因為一直有人被淘汰 他希望每張桌子人數都是9-10人 
+比如是某張桌子人多了要挑一個 就會挑下一個大盲 因為他走的比較甘願 閃掉一個大盲 
+
+3.這一區大小盲增加的飛快 一個打太緊就會突然從長籌碼變中籌碼 
+
+4.心得是要很注意短籌碼的位置跟動作 因為他們正在等個可以all in的牌 所以他們看完牌後要丟還是要全下通常看得出來 比如說拿在手上晃 那就很可能是要丟 拿個籌碼蓋在牌上 可能就是要玩 在數籌碼可能就是要all in 通常在cash game不會那麼明顯 但已經打了兩小時之後又是短碼就是all in or go home 所以這時比一般cash game容易觀察
+
+### Final table前(25-11)
+
+這一區非常有意思 大小盲還是增加的飛快 但是淘汰的速度變慢
+
+1.因為快要進入通通有獎的階段 所以短碼的會特別謹慎 他們會希望不要太容易入池 等其他人被淘汰他們就一定前9 
+
+2.意思就是 如果你是中等籌碼量 你應該多偷底池 
+
+3.這一區我認為 raise的size不需要像之前那麼高 因為對於短碼的人 面對你的raise不會再call 要就丟要就all in 所以下得比min-raise高一點就夠達到效果 不需要冒太大風險
+
+4.大概剩20的人左右的時候 我就在等其他人慢慢淘汰 那時其實還是中等籌碼 但大小盲增加太快 人淘汰的越來越慢 很容易突然就變短碼 然後又遇到剛剛分享的第二手牌 就基本沒救了
+
+## 總結
+
+打到final table前 不同時期長得像三個不同的遊戲 每個時期的心態都要建立正確
+
+中間只有大概5或10分鐘休息 根本沒空吃飯 如果是認真一點的要帶東西可以快速吃得去吃
+
+有機會到final table再來分享

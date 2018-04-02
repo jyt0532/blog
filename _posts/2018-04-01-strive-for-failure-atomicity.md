@@ -19,7 +19,7 @@ author: jyt0532
 處理的準則是***我們希望能讓物件的狀態回復到呼叫這個方法之前*** 對於有達成這個要求的方法 我們稱之為具有失敗原子性 
 意思就是你要碼成功 如果失敗的話你就當作沒發生過 不能把我的東西弄壞
 
-![Alt text]({{ site.url }}/public/item64-1.png)
+![Alt text](/public/item64-1.png)
 
 
 #### 情況一 物件不可變
@@ -46,7 +46,7 @@ author: jyt0532
 
 方法四: 要做事情前 先把物件拷貝一份 在複製品上操作 操作錯了就算了 本尊沒事 如果做完成功了 那就讓複製品取代本尊
 
-![Alt text]({{ site.url }}/public/item64-2.png)
+![Alt text](/public/item64-2.png)
 
 
 ### 例外

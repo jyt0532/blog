@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item75 - Consider using a custom serialized form
+title: Effective Java Item75 - 考慮使用自己定義的序列化
 comments: True 
 subtitle: effective java - 考慮使用自己定義的序列化
 tags: effectiveJava

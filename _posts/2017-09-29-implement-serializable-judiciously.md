@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item74 - Implement Serializable judiciously
+title: Effective Java Item74 - 謹慎實現Serializable介面
 comments: True 
 subtitle: effective java - 謹慎實現Serializable介面
 tags: effectiveJava

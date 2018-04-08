@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java - Serialization
+title: Effective Java - 序列化
 comments: True 
 subtitle: effective java - 序列化基本知識
 tags: effectiveJava

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item77 - For instance control, prefer enum over readResolve
+title: Effective Java Item77 - 用Enum實現物件控制
 comments: True 
 subtitle: effective java - 用Enum實現物件控制
 tags: effectiveJava enum

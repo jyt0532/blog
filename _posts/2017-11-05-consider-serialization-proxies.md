@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item78 - Consider serialization proxies instead of serialized instances
+title: Effective Java Item78 - 考慮用序列化代理代替序列化實例
 comments: True 
 subtitle: effective java - 考慮用序列化代理代替序列化實例
 tags: effectiveJava proxy

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item39 - Make defensive copies when needed
+title: Effective Java Item39 - 必要時進行保護型拷貝
 comments: True 
 subtitle: effective java - 必要時進行保護型拷貝
 tags: effectiveJava

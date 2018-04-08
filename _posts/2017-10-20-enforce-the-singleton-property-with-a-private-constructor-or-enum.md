@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item3 - Enforce the singleton property with an enum type
+title: Effective Java Item3 - 用Enum實作Singleton
 comments: True 
 subtitle: effective java - 用Enum實作Singleton
 tags: effectiveJava enum

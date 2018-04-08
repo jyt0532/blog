@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item43 - Return empty Arrays or Collections, not nulls
+title: Effective Java Item43 - 返回零長度的數組或集合 而不是null
 comments: True 
 subtitle: effective java - 返回零長度的數組或集合 而不是null
 tags: effectiveJava 

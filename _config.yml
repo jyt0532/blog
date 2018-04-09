@@ -29,5 +29,5 @@ github:
 
 algolia:
   application_id: CBY2UML8Z2
-  index_name: jyt0532
+  index_name: jyt0532_prod
   search_only_api_key: 66f08de38e8558a80afd764c6d59f028

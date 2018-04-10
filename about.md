@@ -19,6 +19,6 @@ Contact me:
 
 [jyt0532@gmail.com](mailto:jyt0532@gmail.com)
 
-
+[臉書粉絲專頁](https://www.facebook.com/接歪踢-252939558582948/)
 
 若分享內容或圖片有侵害您的著作權 請來信或留言告知 將儘速移除相關內容

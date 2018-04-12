@@ -5,6 +5,7 @@ comments: True
 subtitle: search engine
 tags: search
 author: jyt0532
+excerpt: 本篇介紹建造一個搜尋引擎需要的所有步驟 包括Index, Query 和Ranking 一步一步講解 深入淺出 看完你也可以自己架一個搜尋引擎囉
 ---
 
 這篇來講一下關於搜尋引擎最基本的知識 看完這篇文章後 

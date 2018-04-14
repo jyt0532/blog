@@ -24,11 +24,14 @@ title: Effective Engineer
 [Item38 - 檢查參數的有效性](/2018/02/23/check-parameters-for-validity/)
 
 [Item39 - 必要時進行保護型拷貝](/2017/09/26/make-defensive-copies-when-needed/)
-## 第八章 通用程序設計
 
 [Item43 - 返回零長度的數組或集合 而不是null](/2017/12/14/return-empty-arrays-not-nulls/)
 
+## 第八章 通用程序設計
+
 [Item45 - 將局部變量的作用域最小化](/2018/04/05/minimize-scope-of-local-variable/)
+
+[Item46 - For-each 優先於傳統的for或while](/2018/04/14/prefer-for-each-loops-to-traditional-for-loops/)
 
 [Item56 - 遵守普遍接受的命名慣例](/2018/01/28/adhere-to-generally-accepted-naming-conventions/)
 ## 第九章 異常

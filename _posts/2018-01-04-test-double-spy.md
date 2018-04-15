@@ -97,7 +97,7 @@ public class SpyAndMock {
 
 這點沒問題 從這點來看 這兩個替身長得一樣
 
-現在來對這兩個Stubbing一下
+現在來看一下沒有Stubbing的話 這兩個替身的behavior
 {% highlight java %}
 public class SpyAndMock {
     @Test

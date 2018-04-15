@@ -5,6 +5,7 @@ comments: True
 subtitle: effective java - 透過私有構造器來禁止實例化
 tags: effectiveJava
 author: jyt0532
+excerpt: 當你要編寫工具類別的時候 使用私有構造器是防止使用者實例化的最好方式
 ---
 
 這篇是Effective Java - Enforce noninstantiability with a private constructor章節的讀書筆記 本篇的程式碼來自於原書內容

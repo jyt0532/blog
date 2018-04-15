@@ -5,6 +5,7 @@ comments: True
 subtitle: effective java - for-each 優先於傳統的for或while
 tags: effectiveJava
 author: jyt0532
+exerpt: 本篇解釋為何應該多用for-each而不是for或while 還有使用for-each的先決條件
 ---
 
 這篇是Effective Java - Prefer for-each loops to traditional for loops章節的讀書筆記 本篇的程式碼來自於原書內容

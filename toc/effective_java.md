@@ -12,6 +12,8 @@ title: Effective Engineer
 
 [Item3 - 用Enum實作Singleton](/2017/10/20/enforce-the-singleton-property-with-a-private-constructor-or-enum/)
 
+[Item4 - 透過私有構造器來禁止實例化](/2018/04/15/enforce-noninstantiability-with-a-private-constructor/)
+
 ## 第三章 對於所有對象都通用的方法
 
 ## 第四章 類和接口

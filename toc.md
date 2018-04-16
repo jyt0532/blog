@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Table Of Contents
+title: Table of Contents
 ---
 
 [每個程序員都該了解的JVM](/toc/jvm/)

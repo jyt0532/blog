@@ -1,0 +1,32 @@
+
+#social-links {
+	padding-top: 25px;
+}
+
+#social-links a {
+	line-height: 40px;
+	width: 40px;
+    height: 40px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	background: none;
+	text-align: center;
+	display: block;
+	float:left;
+	border: 1px white solid;
+	margin-right: 5px;
+
+}
+#social-links a:hover {
+ 	color: #8f5536;
+ 	background-color: white;
+}
+
+#copy-right {
+	font-size: 14px;
+}
+
+.sidebar-nav {
+	margin-bottom: 0px
+}

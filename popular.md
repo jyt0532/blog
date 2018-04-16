@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Popular articles
+title: Popular Articles
 ---
 
 1. [系統設計 - Design cache](/2017/03/27/system-design/)

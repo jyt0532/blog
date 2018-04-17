@@ -15,7 +15,7 @@ author: jyt0532
 
 Note: 最近天瓏很紅的一本書 “軟技能 代碼之外的生存指南” 也有提到關於離職前要做的事 但那主要是說如果你要辭職去創業的話需要顧慮更多事情 不在這裡的討論範圍 
 
-![Alt text](https://img5.doubanio.com/lpic/s28889106.jpg)
+![Alt text](/public/soft_skill.jpg)
 
 這篇文章主要討論你拿到了別的公司的offer
 

@@ -1,4 +1,20 @@
+/* ----- About ----- */
+.image-circle {
+	width: 300px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
 
+.image-circle img {
+    display: inline;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+}
+
+/* ----- Side Bar ----- */
 #social-links {
 	padding-top: 25px;
 }
@@ -29,4 +45,21 @@
 
 .sidebar-nav {
 	margin-bottom: 0px
+}
+
+/* ----- Post ----- */
+div.tag-list {
+	display: inline-block;
+	margin-bottom: 2px;
+}
+div.tag {
+	float: left;
+    background-color: green;
+    padding: 0px 9px;
+    border-radius: 7px;
+    color: white;
+    margin-right: 5px
+}
+.post-title {
+	clear: both;
 }

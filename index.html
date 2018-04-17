@@ -10,15 +10,12 @@ title: Home
             {{ post.title }}
         </a>
     </h1>
+    <span class="post-date">{{ post.date | date: '%B %d, %Y' }}</span>
     {% if post.subtitle %}
     <p class="post-subtitle">
     {{ post.subtitle }}
     </p>
     {% endif %}
-
-
-    <span class="post-date">{{ post.date | date_to_string }}</span>
-
     <!--{{ post.content }}-->
   </div>
   {% endfor %}

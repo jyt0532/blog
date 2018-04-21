@@ -18,6 +18,8 @@ title: Effective Engineer
 
 ## 第四章 類和接口
 
+[Item13 - 使類和成員的可訪問性最小化](/2018/04/21/minimize-the-accessibility-of-classes-and-members/)
+
 ## 第五章 泛型
 
 ## 第六章 枚舉和註解

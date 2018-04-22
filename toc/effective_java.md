@@ -20,6 +20,8 @@ title: Effective Engineer
 
 [Item13 - 使類和成員的可訪問性最小化](/2018/04/21/minimize-the-accessibility-of-classes-and-members/)
 
+[Item14 - 在公有類中使用訪問方法而非公有域](/2018/04/22/in-public-classes-use-accessor-methods-not-public-fields/)
+
 ## 第五章 泛型
 
 ## 第六章 枚舉和註解

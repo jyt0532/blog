@@ -22,6 +22,8 @@ title: Effective Engineer
 
 [Item14 - 在公有類中使用訪問方法而非公有域](/2018/04/22/in-public-classes-use-accessor-methods-not-public-fields/)
 
+[Item15 - 使可變性最小化](/2018/04/28/minimize-mutability/)
+
 ## 第五章 泛型
 
 ## 第六章 枚舉和註解

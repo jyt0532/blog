@@ -5,7 +5,7 @@ comments: True
 subtitle: effective java - 使可變性最小化
 tags: effectiveJava
 author: jyt0532
-excerpt: 本篇講解Java裡面 ＸＸＸＸＸＸＸＸＸ
+excerpt: 本篇講解不可變類的好處與如何實作不可變類
 ---
 
 這篇是Effective Java - Minimize mutability章節的讀書筆記 本篇的程式碼來自於原書內容

@@ -109,7 +109,7 @@ depends on design的use case(這就是為什麼use case很重要) 你要看read�
 
 [從小公司到上億用戶公司的架構演進](http://highscalability.com/blog/2016/1/11/a-beginners-guide-to-scaling-to-11-million-users-on-amazons.html)
 
-[InterviewBit]((https://www.interviewbit.com/courses/system-design/))這是個非常好的互動式網站 他是一步一步漸進式的問你每個你在面試中該問的問題 帶你走過一遍system design interview的process 非常建議這裡面的[八題](https://www.interviewbit.com/courses/system-design/)都要寫過
+[InterviewBit](https://www.interviewbit.com/courses/system-design/)這是個非常好的互動式網站 他是一步一步漸進式的問你每個你在面試中該問的問題 帶你走過一遍system design interview的process 非常建議這裡面的[八題](https://www.interviewbit.com/courses/system-design/)都要寫過
 
 [Scalable Web Architecture and Distributed Systems](http://www.aosabook.org/en/distsys.html)
 

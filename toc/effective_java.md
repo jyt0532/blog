@@ -24,6 +24,7 @@ title: Effective Engineer
 
 [Item15 - 使可變性最小化](/2018/04/28/minimize-mutability/)
 
+[Item16 - 復合優先於繼承](/2018/05/05/favor-composition-over-inheritance/)
 ## 第五章 泛型
 
 ## 第六章 枚舉和註解

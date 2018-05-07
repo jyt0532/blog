@@ -34,6 +34,8 @@ title: Effective Engineer
 
 [Item39 - 必要時進行保護型拷貝](/2017/09/26/make-defensive-copies-when-needed/)
 
+[Item40 - 謹慎的設計方法簽名](/2018/05/06/design-method-signatures-carefully/)
+
 [Item43 - 返回零長度的數組或集合 而不是null](/2017/12/14/return-empty-arrays-not-nulls/)
 
 ## 第八章 通用程序設計

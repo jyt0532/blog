@@ -38,6 +38,8 @@ title: Effective Engineer
 
 [Item43 - 返回零長度的數組或集合 而不是null](/2017/12/14/return-empty-arrays-not-nulls/)
 
+[Item44 - 為所有導出的API元素編寫文檔註釋](/2018/05/12/write-doc-comments-for-all-exposed-API-elements/)
+
 ## 第八章 通用程序設計
 
 [Item45 - 將局部變量的作用域最小化](/2018/04/05/minimize-scope-of-local-variable/)

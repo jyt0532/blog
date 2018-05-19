@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item60 - 優先使用標準的異常
+title: Effective Java Item72 - 優先使用標準的異常
 comments: True 
 subtitle: effective java - 優先使用標準的異常
 tags: effectiveJava
@@ -9,7 +9,7 @@ author: jyt0532
 
 這篇是Effective Java - Favor the use of standard exceptions章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item60: 優先使用標準的異常
+### Item72: 優先使用標準的異常
 
 好的程序員跟初階的程序員一個很大的差別在於 好的程序員追求代碼的重複利用性 這包含了異常的重複利用性 
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item46 - For-each 優先於傳統的for或while
+title: Effective Java Item58 - For-each 優先於傳統的for或while
 comments: True 
 subtitle: effective java - for-each 優先於傳統的for或while
 tags: effectiveJava
@@ -10,7 +10,7 @@ exerpt: 本篇解釋為何應該多用for-each而不是for或while 還有使用f
 
 這篇是Effective Java - Prefer for-each loops to traditional for loops章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item46: For-each 優先於傳統的for或while
+### Item58: For-each 優先於傳統的for或while
 
 Java 1.5版本之前 要loop一個collection 大家這樣做
 

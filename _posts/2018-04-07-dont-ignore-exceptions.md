@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item65 - 不要忽略異常
+title: Effective Java Item77 - 不要忽略異常
 comments: True 
 subtitle: effective java - 不要忽略異常
 tags: effectiveJava
@@ -9,7 +9,7 @@ author: jyt0532
 
 這篇是Effective Java - Don’t ignore exceptions章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item65: 不要忽略異常
+### Item77: 不要忽略異常
 
 雖然這一條看起來非常直覺 但卻驚人的常常被違反 而需要另外獨立一條Item
 

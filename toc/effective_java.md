@@ -18,69 +18,72 @@ title: Effective Engineer
 
 ## 第四章 類和接口
 
-[Item13 - 使類和成員的可訪問性最小化](/2018/04/21/minimize-the-accessibility-of-classes-and-members/)
+[Item15 - 使類和成員的可訪問性最小化](/2018/04/21/minimize-the-accessibility-of-classes-and-members/)
 
-[Item14 - 在公有類中使用訪問方法而非公有域](/2018/04/22/in-public-classes-use-accessor-methods-not-public-fields/)
+[Item16 - 在公有類中使用訪問方法而非公有域](/2018/04/22/in-public-classes-use-accessor-methods-not-public-fields/)
 
-[Item15 - 使可變性最小化](/2018/04/28/minimize-mutability/)
+[Item17 - 使可變性最小化](/2018/04/28/minimize-mutability/)
 
-[Item16 - 復合優先於繼承](/2018/05/05/favor-composition-over-inheritance/)
+[Item18 - 復合優先於繼承](/2018/05/05/favor-composition-over-inheritance/)
 ## 第五章 泛型
 
 ## 第六章 枚舉和註解
 
-## 第七章 方法
-[Item38 - 檢查參數的有效性](/2018/02/23/check-parameters-for-validity/)
+## 第七章 Lambda和Stream
 
-[Item39 - 必要時進行保護型拷貝](/2017/09/26/make-defensive-copies-when-needed/)
+## 第八章 方法
+[Item49 - 檢查參數的有效性](/2018/02/23/check-parameters-for-validity/)
 
-[Item40 - 謹慎的設計方法簽名](/2018/05/06/design-method-signatures-carefully/)
+[Item50 - 必要時進行保護型拷貝](/2017/09/26/make-defensive-copies-when-needed/)
 
-[Item43 - 返回零長度的數組或集合 而不是null](/2017/12/14/return-empty-arrays-not-nulls/)
+[Item51 - 謹慎的設計方法簽名](/2018/05/06/design-method-signatures-carefully/)
 
-[Item44 - 為所有導出的API元素編寫文檔註釋](/2018/05/12/write-doc-comments-for-all-exposed-API-elements/)
+[Item54 - 返回零長度的數組或集合 而不是null](/2017/12/14/return-empty-arrays-not-nulls/)
 
-## 第八章 通用程序設計
+[Item56 - 為所有導出的API元素編寫文檔註釋](/2018/05/12/write-doc-comments-for-all-exposed-API-elements/)
 
-[Item45 - 將局部變量的作用域最小化](/2018/04/05/minimize-scope-of-local-variable/)
+## 第九章 通用程序設計
 
-[Item46 - For-each 優先於傳統的for或while](/2018/04/14/prefer-for-each-loops-to-traditional-for-loops/)
+[Item57 - 將局部變量的作用域最小化](/2018/04/05/minimize-scope-of-local-variable/)
 
-[Item56 - 遵守普遍接受的命名慣例](/2018/01/28/adhere-to-generally-accepted-naming-conventions/)
-## 第九章 異常
+[Item58 - For-each 優先於傳統的for或while](/2018/04/14/prefer-for-each-loops-to-traditional-for-loops/)
 
-[Item57 - 只針對異常的情況才使用異常](/2017/11/16/use-exceptions-only-for-exceptional-conditions/)
+[Item68 - 遵守普遍接受的命名慣例](/2018/01/28/adhere-to-generally-accepted-naming-conventions/)
 
-[Item58 - 對可恢復的情況使用受檢異常 對編程錯誤使用運行時異常](/2018/03/03/use-checked-exceptions-for-recoverable-conditions-and-runtime-exceptions-for-programming-errors/)
+## 第十章 異常
 
-[Item59 - 避免不必要的使用受檢異常](/2018/03/11/avoid-unnecessary-use-of-checked-exceptions/)
+[Item69 - 只針對異常的情況才使用異常](/2017/11/16/use-exceptions-only-for-exceptional-conditions/)
 
-[Item60 - 優先使用標準的異常](/2018/03/16/favor-the-use-of-standard-excepions/)
+[Item70 - 對可恢復的情況使用受檢異常 對編程錯誤使用運行時異常](/2018/03/03/use-checked-exceptions-for-recoverable-conditions-and-runtime-exceptions-for-programming-errors/)
 
-[Item61 - 拋出與抽象相對應的異常](/2018/02/25/throw-exceptions-appropriate-to-the-abstraction/)
+[Item71 - 避免不必要的使用受檢異常](/2018/03/11/avoid-unnecessary-use-of-checked-exceptions/)
 
-[Item62 - 每個拋出來的異常都要有文檔](/2018/03/24/document-all-exceptions-thrown-by-each-method/)
+[Item72 - 優先使用標準的異常](/2018/03/16/favor-the-use-of-standard-excepions/)
 
-[Item63 - 在細節消息中包含能捕獲失敗的訊息](/2018/03/31/include-failure-capture-information-in-detail-messages/)
+[Item73 - 拋出與抽象相對應的異常](/2018/02/25/throw-exceptions-appropriate-to-the-abstraction/)
 
-[Item64 - 使失敗保持原子性](/2018/04/01/strive-for-failure-atomicity/)
+[Item74 - 每個拋出來的異常都要有文檔](/2018/03/24/document-all-exceptions-thrown-by-each-method/)
 
-[Item65 - 不要忽略異常](/2018/04/07/dont-ignore-exceptions/)
+[Item75 - 在細節消息中包含能捕獲失敗的訊息](/2018/03/31/include-failure-capture-information-in-detail-messages/)
 
-## 第十章 併發
+[Item76 - 使失敗保持原子性](/2018/04/01/strive-for-failure-atomicity/)
 
-## 第十一章 序列化
+[Item77 - 不要忽略異常](/2018/04/07/dont-ignore-exceptions/)
+
+## 第十一章 併發
+
+## 第十二章 序列化
 
 [Effective Java - 序列化](/2017/09/27/java-serialization-101/)
 
-[Item74 - 謹慎實現Serializable介面](/2017/09/29/implement-serializable-judiciously/)
+[Item86 - 謹慎實現Serializable介面](/2017/09/29/implement-serializable-judiciously/)
 
-[Item75 - 考慮使用自己定義的序列化](/2017/10/03/consider-using-a-custom-serialized-form/)
+[Item87 - 考慮使用自己定義的序列化](/2017/10/03/consider-using-a-custom-serialized-form/)
 
 [深入解析序列化byte stream](/2017/10/12/decrypting-serialized-java-object/)
 
-[Item76 - 保護性的編寫readObject方法](/2017/10/19/write-readobject-method-defensively/)
+[Item88 - 保護性的編寫readObject方法](/2017/10/19/write-readobject-method-defensively/)
 
-[Item77 - 用Enum實現物件控制](/2017/10/22/prefer-enum-for-instance-control/)
+[Item89 - 用Enum實現物件控制](/2017/10/22/prefer-enum-for-instance-control/)
 
-[Item78 - 考慮用序列化代理代替序列化實例](/2017/11/05/consider-serialization-proxies/)
+[Item90 - 考慮用序列化代理代替序列化實例](/2017/11/05/consider-serialization-proxies/)

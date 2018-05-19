@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item44 - 為所有導出的API元素編寫文檔註釋
+title: Effective Java Item56 - 為所有導出的API元素編寫文檔註釋
 comments: True 
 subtitle: effective java - 為所有導出的API元素編寫文檔註釋
 tags: effectiveJava
@@ -11,7 +11,7 @@ excerpt: 本篇文章說明幾個為什麼要寫文檔以及如何寫文檔
 這篇是Effective Java - Write doc comments for all exposed API elements章節的讀書筆記 本篇的程式碼來自於原書內容
 
 
-### Item44: 為所有導出的API元素編寫文檔註釋
+### Item56: 為所有導出的API元素編寫文檔註釋
 
 如果你想讓一個API可以用 你就必須要寫文檔
 

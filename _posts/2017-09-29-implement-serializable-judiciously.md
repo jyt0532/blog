@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item74 - 謹慎實現Serializable介面
+title: Effective Java Item86 - 謹慎實現Serializable介面
 comments: True 
 subtitle: effective java - 謹慎實現Serializable介面
 tags: effectiveJava
@@ -10,7 +10,7 @@ author: jyt0532
 
 在看這篇文章之前 強烈建議先看過[序列化基本知識](/2017/09/27/java-serialization-101/)
 
-## Item74: 實現Serializable介面要謹慎
+## Item86: 實現Serializable介面要謹慎
 
 要讓一個class變成Serializable很簡單 原本是
 

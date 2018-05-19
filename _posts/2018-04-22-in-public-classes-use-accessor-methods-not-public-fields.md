@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item14 - 在公有類中使用訪問方法而非公有域
+title: Effective Java Item16 - 在公有類中使用訪問方法而非公有域
 comments: True 
 subtitle: effective java - 在公有類中使用訪問方法而非公有域
 tags: effectiveJava
@@ -10,7 +10,7 @@ excerpt: 本篇講解Java裡面 為何要在公有類中使用訪問方法來存
 
 這篇是Effective Java - In public classes, use accessor methods, not public fields章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item14: 在公有類中使用訪問方法而非公有域
+### Item16: 在公有類中使用訪問方法而非公有域
 
 在Java裡面 有個東西叫做退化類(degenerated class)
 

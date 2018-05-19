@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item63 - 在細節消息中包含能捕獲失敗的訊息
+title: Effective Java Item75 - 在細節消息中包含能捕獲失敗的訊息
 comments: True 
 subtitle: effective java - 在細節消息中包含能捕獲失敗的訊息
 tags: effectiveJava
@@ -9,7 +9,7 @@ author: jyt0532
 
 這篇是Effective Java - Include failure-capture information in detail messages章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item63: 在細節消息中包含能捕獲失敗的訊息
+### Item75: 在細節消息中包含能捕獲失敗的訊息
 
 當一段程式因為一個沒被捕捉到的異常而失敗時 
 系統會印出有關這個異常的stacktrace 包含這個異常的字符串表示法(string represenation) 

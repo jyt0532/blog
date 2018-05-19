@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item58 - 對可恢復的情況使用受檢異常 對編程錯誤使用運行時異常 
+title: Effective Java Item70 - 對可恢復的情況使用受檢異常 對編程錯誤使用運行時異常 
 comments: True 
 subtitle: effective java - 對可恢復的情況使用受檢異常 對編程錯誤使用運行時異常
 tags: effectiveJava
@@ -9,7 +9,7 @@ author: jyt0532
 
 這篇是Effective Java - Use checked exceptions for recoverable conditions and runtime exceptions for programming errors章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item58: 對可恢復的情況使用受檢異常 對編程錯誤使用運行時異常
+### Item70: 對可恢復的情況使用受檢異常 對編程錯誤使用運行時異常
 
 標題有點長 但重點是分得出什麼是unchecked exception跟checked exception
 

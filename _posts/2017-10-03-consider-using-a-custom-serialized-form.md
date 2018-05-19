@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item75 - 考慮使用自己定義的序列化
+title: Effective Java Item87 - 考慮使用自己定義的序列化
 comments: True 
 subtitle: effective java - 考慮使用自己定義的序列化
 tags: effectiveJava
@@ -11,9 +11,9 @@ author: jyt0532
 
 在看這篇文章之前 強烈建議先看過[序列化基本知識](/2017/09/27/java-serialization-101/)
 
-## Item75: 考慮使用自己定義的序列化形式
+## Item87: 考慮使用自己定義的序列化形式
 
-[Item74](/2017/09/29/implement-serializable-judiciously/)講到 當你宣告一個class有實作序列化 他就必須永遠支援序列化
+[Item86](/2017/09/29/implement-serializable-judiciously/)講到 當你宣告一個class有實作序列化 他就必須永遠支援序列化
 所以非經過謹慎地思考之前 不要輕易地使用預設的序列化方式 你需要從靈活性 性能 正確性下手比較
 
 且當你自己寫出來的跟default的一樣 你才可以用default的序列化

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item43 - 返回零長度的數組或集合 而不是null
+title: Effective Java Item54 - 返回零長度的數組或集合 而不是null
 comments: True 
 subtitle: effective java - 返回零長度的數組或集合 而不是null
 tags: effectiveJava 
@@ -9,7 +9,7 @@ author: jyt0532
 這篇是Effective Java - Return empty Arrays or Collections, not nulls章節的讀書筆記 
 本篇的程式碼來自於原書內容
 
-## Item43: 返回零長度的數組或集合 而不是null
+## Item54: 返回零長度的數組或集合 而不是null
 
 蠻常有人用null來處理empty的case
 {% highlight java %}

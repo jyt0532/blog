@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item77 - 用Enum實現物件控制
+title: Effective Java Item89 - 用Enum實現物件控制
 comments: True 
 subtitle: effective java - 用Enum實現物件控制
 tags: effectiveJava enum
@@ -10,7 +10,7 @@ author: jyt0532
 
 在看這篇文章之前 強烈建議先看過[Item3](/2017/10/20/enforce-the-singleton-property-with-a-private-constructor-or-enum/)
 
-## Item77: 對於實例控制 枚舉優先於readResolve
+## Item89: 對於實例控制 枚舉優先於readResolve
 
 在[Singleton](/2017/05/19/singleton/)中說明了很多實現單例的方法 大多數都是利用private constructor來實現
 

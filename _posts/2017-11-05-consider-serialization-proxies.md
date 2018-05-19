@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item78 - 考慮用序列化代理代替序列化實例
+title: Effective Java Item90 - 考慮用序列化代理代替序列化實例
 comments: True 
 subtitle: effective java - 考慮用序列化代理代替序列化實例
 tags: effectiveJava proxy
@@ -10,9 +10,9 @@ author: jyt0532
 
 在看這篇文章之前 建議先看過[Proxy](/2017/10/06/proxy/)
 
-## Item78: 考慮用序列化代理代替序列化實例
+## Item90: 考慮用序列化代理代替序列化實例
 
-[Item74](/2017/09/29/implement-serializable-judiciously/)說到 當你決定要實現Serializable接口的時候 就很容易出錯或是有安全性的問題 有一個方法可以減少出錯的風險 就是序列化Proxy
+[Item86](/2017/09/29/implement-serializable-judiciously/)說到 當你決定要實現Serializable接口的時候 就很容易出錯或是有安全性的問題 有一個方法可以減少出錯的風險 就是序列化Proxy
 
 要怎麼實現呢 首先 我們要先nested class 找一個替身的概念 這個class才是我們要拿來序列化的東西
 

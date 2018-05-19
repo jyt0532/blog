@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item38 - 檢查參數的有效性
+title: Effective Java Item49 - 檢查參數的有效性
 comments: True 
 subtitle: effective java - 檢查參數的有效性
 tags: effectiveJava
@@ -9,7 +9,7 @@ author: jyt0532
 
 這篇是Effective Java - Check parameter for validity章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item38: 檢查參數的有效性
+### Item49: 檢查參數的有效性
 
 當你在寫一個方法或是constructor 要在做任何事之前檢查參數的有效性 比如說 index不能是負數 reference不能是null等等 
 

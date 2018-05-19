@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item56 - 遵守普遍接受的命名慣例
+title: Effective Java Item68 - 遵守普遍接受的命名慣例
 comments: True 
 subtitle: effective java - 遵守普遍接受的命名慣例
 tags: effectiveJava
@@ -9,7 +9,7 @@ author: jyt0532
 
 這篇是Effective Java - Adhere to generally accepted naming conventions章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item56: 遵守普遍接受的命名慣例
+### Item68: 遵守普遍接受的命名慣例
 
 Java平台有許多命名的慣例 其中分為兩大類 字面的(typographical)和語法的(grammatical)
 

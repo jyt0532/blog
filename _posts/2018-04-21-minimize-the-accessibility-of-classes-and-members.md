@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item13 - 使類和成員的可訪問性最小化
+title: Effective Java Item15 - 使類和成員的可訪問性最小化
 comments: True 
 subtitle: effective java - 使類和成員的可訪問性最小化
 tags: effectiveJava
@@ -10,7 +10,7 @@ excerpt: 本篇講解Java裡面 各個訪問級別的使用時機 以及設計�
 
 這篇是Effective Java - Minimize the accessibility of classes and members章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item13: 使類和成員的可訪問性最小化
+### Item15: 使類和成員的可訪問性最小化
 
 要區分寫得很好的module跟不好的module最好的方法 在於這塊module對外部而言 是否隱藏了所有實現的細節
 

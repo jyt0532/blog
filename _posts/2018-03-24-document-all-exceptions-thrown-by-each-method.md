@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item62 - 每個拋出來的異常都要有文檔
+title: Effective Java Item74 - 每個拋出來的異常都要有文檔
 comments: True 
 subtitle: effective java - 每個拋出來的異常都要有文檔
 tags: effectiveJava
@@ -9,7 +9,7 @@ author: jyt0532
 
 這篇是Effective Java - Document all exceptions thrown by each method章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item62: 每個拋出來的異常都要有文檔
+### Item74: 每個拋出來的異常都要有文檔
 
 如同標題所說 對於每個你的方法拋出的受檢異常 都要用Javadoc的@throws標註 
 且寫下會拋出這些異常的條件

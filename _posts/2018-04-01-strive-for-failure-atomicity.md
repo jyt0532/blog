@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item64 - 使失敗保持原子性
+title: Effective Java Item76 - 使失敗保持原子性
 comments: True 
 subtitle: effective java - 使失敗保持原子性
 tags: effectiveJava
@@ -9,7 +9,7 @@ author: jyt0532
 
 這篇是Effective Java - Strive for failure atomicity章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item64: 使失敗保持原子性
+### Item76: 使失敗保持原子性
 
 在一個異常拋出之後 我們希望我們的物件還仍然維持在一個定義良好且可以被使用的狀態 
 即使你是在一個很長的方法的**中途**拋出異常也是一樣

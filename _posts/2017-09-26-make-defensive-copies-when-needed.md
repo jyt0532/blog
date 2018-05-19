@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item39 - 必要時進行保護型拷貝
+title: Effective Java Item50 - 必要時進行保護型拷貝
 comments: True 
 subtitle: effective java - 必要時進行保護型拷貝
 tags: effectiveJava
@@ -8,7 +8,7 @@ author: jyt0532
 ---
 這篇是Effective Java - Make defensive copies when needed章節的讀書筆記
 
-## Item39: 必要時進行保護型拷貝
+## Item50: 必要時進行保護型拷貝
 
 JAVA相對於C/C++來說 已經是個很**安全**的語言 
 你可以說C基本上就是把所有memory當作一個巨型Array 要非常小心處理memory的問題 但在java你要處理的問題已經少很多了 比如說buffer overflow, array overflow, wild pointer等等 但我們還是得永遠把client想成無惡不赦的壞蛋

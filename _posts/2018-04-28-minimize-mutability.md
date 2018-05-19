@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item15 - 使可變性最小化
+title: Effective Java Item17 - 使可變性最小化
 comments: True 
 subtitle: effective java - 使可變性最小化
 tags: effectiveJava
@@ -10,7 +10,7 @@ excerpt: 本篇講解不可變類的好處與如何實作不可變類
 
 這篇是Effective Java - Minimize mutability章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item15: 使可變性最小化
+### Item17: 使可變性最小化
 
 不可變類 指的是實例不可以被修改 每個實例中包含的所有訊息必須在創建的時候就提供 直到生命週期結束前都不能變化
 
@@ -154,7 +154,7 @@ public static Complex valueOfPolar(double r, double theta) {
 ### 不可變類的序列化
 
 如果你想讓自己的不可變類實現實現Serializable接口 並且包含一個或多個指向可變對象的引用 你就必須提供一個顯式的readResolve或是readObject 即使預設的序列化可以接受也是一樣
-否則攻擊者可以從不可變的類中創建可變的物件 更多細節請見[Item76](/2017/10/19/write-readobject-method-defensively/)
+否則攻擊者可以從不可變的類中創建可變的物件 更多細節請見[Item88](/2017/10/19/write-readobject-method-defensively/)
 
 
 ### 總結

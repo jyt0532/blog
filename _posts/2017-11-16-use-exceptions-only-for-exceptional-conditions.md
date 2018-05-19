@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item57 - 只針對異常的情況才使用異常
+title: Effective Java Item69 - 只針對異常的情況才使用異常
 comments: True 
 subtitle: effective java - 只針對異常的情況才使用異常
 tags: effectiveJava
@@ -9,7 +9,7 @@ author: jyt0532
 
 這篇是Effective Java - Use exceptionas only for exceptional condiiton章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item57: 只針對異常的時候才使用異常
+### Item69: 只針對異常的時候才使用異常
 
 上面那句話乍看是廢話 但你可以看看以下的例子
 

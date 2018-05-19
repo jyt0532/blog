@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item59 - 避免不必要的使用受檢異常
+title: Effective Java Item71 - 避免不必要的使用受檢異常
 comments: True 
 subtitle: effective java - 避免不必要的使用受檢異常
 tags: effectiveJava
@@ -9,7 +9,7 @@ author: jyt0532
 
 這篇是Effective Java - Avoid unnecessary use of checked exceptions章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item59: 避免不必要的使用受檢異常
+### Item71: 避免不必要的使用受檢異常
 
 受檢異常是java語言一個很好的特性 也許你會想說發生異常的話 我也可以丟出一個特殊的回傳值 這樣客戶也會知道發生異常了不是嗎？
 

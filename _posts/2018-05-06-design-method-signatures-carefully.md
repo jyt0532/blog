@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item40 - 謹慎的設計方法簽名
+title: Effective Java Item51 - 謹慎的設計方法簽名
 comments: True 
 subtitle: effective java - 謹慎的設計方法簽名
 tags: effectiveJava
@@ -10,10 +10,10 @@ excerpt: 本篇文章說明幾個設計方法簽名的注意事項
 
 這篇是Effective Java - Design method signatures carefully章節的讀書筆記 本篇的程式碼來自於原書內容
 
-這個項目列出了許多設計API時的概念 每個都重要但又小到不值得開一個新的項目 所以集中在item40
+這個項目列出了許多設計API時的概念 每個都重要但又小到不值得開一個新的項目 所以集中在item51
 
 
-### Item40: 謹慎的設計方法簽名
+### Item51: 謹慎的設計方法簽名
 
 ### 謹慎的選擇方法的名稱
 

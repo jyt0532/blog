@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item45 - 將局部變量的作用域最小化
+title: Effective Java Item57 - 將局部變量的作用域最小化
 comments: True 
 subtitle: effective java - 將局部變量的作用域最小化
 tags: effectiveJava
@@ -9,7 +9,7 @@ author: jyt0532
 
 這篇是Effective Java - Minimize the scope of local variables章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item45: 將局部變量的作用域最小化
+### Item57: 將局部變量的作用域最小化
 
 比較早期的語言(比如C) 他要求局部變量要在每個方法的一開始聲明宣告 但這個習慣應該要改掉
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item76 - 保護性的編寫readObject方法
+title: Effective Java Item88 - 保護性的編寫readObject方法
 comments: True 
 subtitle: effective java - 保護性的編寫readObject方法
 tags: effectiveJava
@@ -10,9 +10,9 @@ author: jyt0532
 
 在看這篇文章之前 強烈建議先看過[序列化基本知識](/2017/09/27/java-serialization-101/)和[必要時進行保護型拷貝](/2017/09/26/make-defensive-copies-when-needed/)和[深入解析序列化byte stream](/2017/10/12/decrypting-serialized-java-object/)
 
-## Item76: 保護性的編寫readObject方法
+## Item88: 保護性的編寫readObject方法
 
-在[Item39](/2017/09/26/make-defensive-copies-when-needed/)中介紹了一個不可變的Period Class 因為我們有做Defensive copy 所以我們給了保證 end的時間一定在start之後
+在[Item50](/2017/09/26/make-defensive-copies-when-needed/)中介紹了一個不可變的Period Class 因為我們有做Defensive copy 所以我們給了保證 end的時間一定在start之後
 
 以下就是不可變的Period Class
 
@@ -118,7 +118,7 @@ MutablePeriod mp = new MutablePeriod();
 請讀者試著人工deserialize一下 我把bytestream貼在這
 
 ![Alt text]({{ site.url }}/public/java76.png)
-ref serial #0: **org.effectivejava.examples.chapter11.item76.Period**: Class
+ref serial #0: **org.effectivejava.examples.chapter11.item88.Period**: Class
 
 ref serial #1: **Ljava/util/Date**: String
 
@@ -148,7 +148,7 @@ private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundEx
 }
 {% endhighlight %}
 
-再次提醒 我們是先拷貝 再檢查是否有效 而且用clone不安全 詳細理由請看[Item39](/2017/09/26/make-defensive-copies-when-needed/)
+再次提醒 我們是先拷貝 再檢查是否有效 而且用clone不安全 詳細理由請看[Item50](/2017/09/26/make-defensive-copies-when-needed/)
 
 但如果你想要做defensive copy的話 start跟end就不能是final 是final的話在反序列化之後就不能再改了
 
@@ -178,7 +178,7 @@ public interface ObjectInputValidation
 
 把validateObject實作一下 這個function會在你全部反序列化完之後call
 
-4.如果你的Class不是final(代表說可以被繼承)的話 那你的readObject裡面不可以去call可以被overwrite的方法 不論是直接還是間接都不行 理由很簡單 因為parent的constructor會先跑 才跑subclass的constructor 如果在parent的constructor裡去call了subclass的函式 那可能會fail(細節請參考[Item17](/501.html))  因為根本還沒deserialize到subclass
+4.如果你的Class不是final(代表說可以被繼承)的話 那你的readObject裡面不可以去call可以被overwrite的方法 不論是直接還是間接都不行 理由很簡單 因為parent的constructor會先跑 才跑subclass的constructor 如果在parent的constructor裡去call了subclass的函式 那可能會fail(細節請參考[Item19](/501.html))  因為根本還沒deserialize到subclass
 
 ## 後記
 

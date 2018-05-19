@@ -6,7 +6,7 @@ subtitle: effective java - 序列化深入了解
 tags: effectiveJava
 author: jyt0532
 ---
-這篇文章是閱讀Effective Java 第11章 - Item76之前需要會的知識 
+這篇文章是閱讀Effective Java 第12章 - Item88之前需要會的知識 
 
 關於序列化的Protocol詳細文件[在這](https://docs.oracle.com/javase/7/docs/platform/serialization/spec/protocol.html) 不過這篇門檻太高 需要知道什麼是Context Free Grammar 有興趣的各位自動機大神可以來看一下
 ### 深談序列化

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective Java Item61 - 拋出與抽象相對應的異常
+title: Effective Java Item73 - 拋出與抽象相對應的異常
 comments: True 
 subtitle: effective java - 拋出與抽象相對應的異常
 tags: effectiveJava
@@ -9,7 +9,7 @@ author: jyt0532
 
 這篇是Effective Java - Throw exceptions appropriate to the abstraction章節的讀書筆記 本篇的程式碼來自於原書內容
 
-### Item61: 拋出與抽象相對應的異常
+### Item73: 拋出與抽象相對應的異常
 
 如果方法拋出的異常 和這個方法執行的任務沒有太大的關係  這種情形會讓人困惑 這很容易發生在 當異常是由好幾層之後的方法丟出來的情況下 最上層的可能根本看不懂 
 

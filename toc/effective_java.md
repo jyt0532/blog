@@ -38,6 +38,8 @@ title: Effective Engineer
 
 [Item51 - 謹慎的設計方法簽名](/2018/05/06/design-method-signatures-carefully/)
 
+[Item53 - 慎用可變參數](/2018/05/20/use-varargs-judiciously/)
+
 [Item54 - 返回零長度的數組或集合 而不是null](/2017/12/14/return-empty-arrays-not-nulls/)
 
 [Item56 - 為所有導出的API元素編寫文檔註釋](/2018/05/12/write-doc-comments-for-all-exposed-API-elements/)

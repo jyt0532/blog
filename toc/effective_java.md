@@ -38,7 +38,7 @@ title: Effective Engineer
 
 [Item51 - 謹慎的設計方法簽名](/2018/05/06/design-method-signatures-carefully/)
 
-[Item52 - 慎用重載](/2018/05/06/design-method-signatures-carefully/)
+[Item52 - 慎用重載](/2018/06/02/use-overloading-judiciously/)
 
 [Item53 - 慎用可變參數](/2018/05/20/use-varargs-judiciously/)
 

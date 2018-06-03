@@ -5,7 +5,7 @@ comments: True
 subtitle: effective java - 慎用重載
 tags: effectiveJava
 author: jyt0532
-excerpt: 本篇文章介紹如何XXXXXXXXXXXXXXXXXXXXXXXX
+excerpt: 本篇文章介紹為何要慎用重載 以及如果必須用重載的注意事項
 ---
 
 這篇是Effective Java - Use overloading Judiciously章節的讀書筆記 本篇的程式碼來自於原書內容
@@ -158,4 +158,4 @@ writeBoolean(boolean), writeInt(int), writeLong(long)等等 這種方式對於�
 
 如果以上無法避免 起碼讓這兩個重載方法做到一樣的結果(這樣程序員就不需要了解到底哪個方法被呼叫了 只要結果對就好)
 
-如果以上無法避免 那之後別人在maintain你的程式時遇到困難 <s>就不要怪我囉</s> 是非常合理的
+如果以上無法避免 那之後別人在maintain你的程式時遇到困難 <s>怪我囉</s> 是非常合理的

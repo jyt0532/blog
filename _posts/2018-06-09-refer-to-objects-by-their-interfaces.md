@@ -11,7 +11,7 @@ excerpt: 本篇文章介紹為何要夠過接口引用對象的好處
 這篇是Effective Java - Refer to objects by their interfaces章節的讀書筆記 本篇的程式碼來自於原書內容
 
 
-## Item52: 通過接口引用對象
+## Item64: 通過接口引用對象
 
 如果有合適的接口類型存在 那麼對於參數 返回值 變量和域來說 就應該使用接口來**進行聲明** 當你真正使用constructor來**構建某對象**的時候 才真正需要引用這個對象的類
 

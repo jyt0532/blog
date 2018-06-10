@@ -52,6 +52,10 @@ title: Effective Engineer
 
 [Item58 - For-each 優先於傳統的for或while](/2018/04/14/prefer-for-each-loops-to-traditional-for-loops/)
 
+[Item64 - 通過接口引用對象](/2018/06/09/refer-to-objects-by-their-interfaces/)
+
+[Item67 - 謹慎地進行優化](/2018/06/09/optimize-judiciously/)
+
 [Item68 - 遵守普遍接受的命名慣例](/2018/01/28/adhere-to-generally-accepted-naming-conventions/)
 
 ## 第十章 異常

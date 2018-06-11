@@ -54,6 +54,8 @@ title: Effective Engineer
 
 [Item64 - 通過接口引用對象](/2018/06/09/refer-to-objects-by-their-interfaces/)
 
+[Item66 - 謹慎的使用本地方法](/2018/06/10/use-native-methods-judiciously/)
+
 [Item67 - 謹慎地進行優化](/2018/06/09/optimize-judiciously/)
 
 [Item68 - 遵守普遍接受的命名慣例](/2018/01/28/adhere-to-generally-accepted-naming-conventions/)

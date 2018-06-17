@@ -5,14 +5,14 @@ comments: True
 subtitle: effective java - 覆蓋equals請遵守通用規範
 tags: effectiveJava
 author: jyt0532
-excerpt: 本篇文章介紹何XXXX
+excerpt: 本篇文章介紹編寫新的類別的 覆蓋equals的時機以及如何覆蓋equals
 ---
 
 這篇是Effective Java - Obey the general contract when overriding equals章節的讀書筆記 本篇的程式碼來自於原書內容
 
 ## Item10: 覆蓋equals請遵守通用規定
 
-覆蓋equals方法看似簡單 但有許多覆蓋方式會導致錯誤 最簡單的避免方式 就是不要覆蓋equals 那就代表說每個實例只會和他自己一樣 不會和別人一樣(即使所有內部變量的值都一樣)
+覆蓋equals方法看似簡單 但有許多覆蓋方式會導致錯誤 最簡單的避免方式 就是不要覆蓋equals 那就代表說每個實例只會和自己一樣 不會和別人一樣(即使所有內部變量的值都一樣)
 
 ## 什麼時候不應該覆蓋equals
 
@@ -28,8 +28,8 @@ excerpt: 本篇文章介紹何XXXX
 
 3.超類已經覆蓋了equals 以超類繼承過來的行為對於子類也是合適的
 
-比如說 Set從AbstractSet繼承了equals
-List從AbstractList繼承了equals
+比如說 Set從AbstractSet繼承了equals,
+List從AbstractList繼承了equals,
 Map從AbstractMap繼承了equals
 
 以上任一條件滿足 你就不應該要覆蓋equals
@@ -228,10 +228,8 @@ p1.equals(p3)//false 違反傳遞性
 因為這種情況下
 p.equals(cp) return true
 
-這是什麼道理 為什麼同樣寫法 前一個例子
-s.equals(cis) return false
-
-這裡卻不一樣呢????
+這是什麼道理 為什麼同樣寫法(父類.equals(子類)) 前一個例子
+卻s.equals(cis) return false呢?
 
 在effective java的這個章節中 前後的段落很不連貫 一下子把所有的觀念一次丟出來 可是前因後果卻沒有解釋清楚 看了這篇文章你才會知道為什麼
 
@@ -351,7 +349,7 @@ public boolean equals(Object o) {
 
 ## 其他注意事項
 
-1.覆蓋equals時 總要覆蓋hashCode(REFERENCE)
+1.[覆蓋equals時 總要覆蓋hashCode](/2018/06/17/always-override-hashcode-when-you-override-equals/)
 
 2.不要企圖讓equals方法太過複雜
 
@@ -371,10 +369,10 @@ public boolean equals(MyClass o) {
 
 4.用Override annotation
 
-這樣第三點就不會犯
+這樣第三點就不會犯 因為方法簽名不一樣
 
 ## 總結
 
 如果不需要就不要覆寫equals 大多數情況 從Object繼承而來的equals就做得到你想做的事
 
-當你真的要覆寫 保證你有比較每個significant fields 並且保證五個約束都有遵守
+當你真的要覆寫 保證你有比較每個significant fields 並且保證每個約束都有被遵守

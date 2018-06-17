@@ -5,7 +5,7 @@ comments: True
 subtitle: effective java - 覆蓋equals請遵守通用規範
 tags: effectiveJava
 author: jyt0532
-excerpt: 本篇文章介紹編寫新的類別的 覆蓋equals的時機以及如何覆蓋equals
+excerpt: 本篇文章介紹當你編寫新的類別的時候 需要覆蓋equals的時機以及如何覆蓋equals
 ---
 
 這篇是Effective Java - Obey the general contract when overriding equals章節的讀書筆記 本篇的程式碼來自於原書內容

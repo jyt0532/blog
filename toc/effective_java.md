@@ -16,6 +16,10 @@ title: Effective Engineer
 
 ## 第三章 對於所有對象都通用的方法
 
+[Item11 - 覆蓋equals時總要覆蓋hashCode](/2018/06/23/always-override-hashcode-when-you-override-equals/)
+
+[Item12 - 始終要覆蓋toString](/2018/06/24/always-override-tostring/)
+
 ## 第四章 類和接口
 
 [Item15 - 使類和成員的可訪問性最小化](/2018/04/21/minimize-the-accessibility-of-classes-and-members/)

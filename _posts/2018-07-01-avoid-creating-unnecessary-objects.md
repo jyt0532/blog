@@ -5,7 +5,7 @@ comments: True
 subtitle: effective java - 避免創建不必要的對象
 tags: effectiveJava
 author: jyt0532
-excerpt: 本篇文章介紹###
+excerpt: 本篇文章介紹為何要避免創建不必要的對象
 ---
 
 這篇是Effective Java - Avoid creating unnecessary objects章節的讀書筆記 本篇的程式碼來自於原書內容
@@ -54,7 +54,7 @@ static boolean isRomanNumeral(String s){
 }
 {% endhighlight %}
 
-String.matches是最簡單直觀的確認方式沒錯 但如果這段程式是出現在一個要求性能的地方 那可能就不適合這樣寫
+String.matches是最簡單直觀的方式沒錯 但如果這段程式是出現在一個要求性能的地方 那可能就不適合這樣寫
 
 因為每次確認的時候 這個方法都會創建了一個Pattern的物件(非常昂貴) 而且只用一次 用完就等著垃圾收集器回收
 
@@ -73,13 +73,17 @@ public class RomanNumerals {
 
 ### 思考你的程式的使用情況
 
-之前討論的例子 因為物件在初始化之後就不會也不能再改變了 所以你可以很輕易地感覺到 你應該可以重用物件 但某些情況就不是這麼明顯
+之前討論的例子 因為物件在初始化之後就不會也不能再改變了 
+所以你可以很輕易地感覺到 你應該可以重用物件 
 
-比如說你想實作一個Map.keySet 功能是把所有的key丟進Set裡面回傳
+但某些情況就不是這麼明顯
+
+比如說你想實作一個Map.keySet() 功能是把所有的key丟進Set裡面回傳
 
 每次呼叫 keySet()都去重新生一個Set然後一個一個把key丟進去是很花時間的 因為只要Map沒有變化的話 keySet()回傳的set就不會有變化
 
 所以你可以觀察你的函式的使用狀況 如果get/set比例>100 你可以每次set的時候更新keySet 然後把keySet給cache起來
+如果get/set比例<1/100 你就是每次get的時候重算
 
 ### 總結
 

@@ -14,6 +14,10 @@ title: Effective Engineer
 
 [Item4 - 透過私有構造器來禁止實例化](/2018/04/15/enforce-noninstantiability-with-a-private-constructor/)
 
+[Item6 - 避免創建不必要的對象](/2018/07/01/avoid-creating-unnecessary-objects/)
+
+[Item7 - 消除過期的對象引用](/2018/07/22/eliminate-obsolete-object-references/)
+
 ## 第三章 對於所有對象都通用的方法
 
 [Item11 - 覆蓋equals時總要覆蓋hashCode](/2018/06/23/always-override-hashcode-when-you-override-equals/)

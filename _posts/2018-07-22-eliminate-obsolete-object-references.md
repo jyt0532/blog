@@ -5,7 +5,7 @@ comments: True
 subtitle: effective java - 消除過期的對象引用
 tags: effectiveJava
 author: jyt0532
-excerpt: 本篇文章介紹為何要消除過期的對象引用來防止內存就漏
+excerpt: 本篇文章介紹為何要消除過期的對象引用來防止內存洩漏
 ---
 
 這篇是Effective Java - Eliminate obsolete object references章節的讀書筆記 本篇的程式碼來自於原書內容

@@ -5,7 +5,7 @@ comments: True
 subtitle: effective java - 優先考慮靜態成員類
 tags: effectiveJava
 author: jyt0532
-excerpt: 本篇文章介紹XX
+excerpt: 本篇文章介紹嵌套類的用法和使用時機
 ---
 
 這篇是Effective Java - Favor static member classes over nonstatic章節的讀書筆記 本篇的程式碼來自於原書內容

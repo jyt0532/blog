@@ -33,6 +33,8 @@ title: Effective Engineer
 [Item17 - 使可變性最小化](/2018/04/28/minimize-mutability/)
 
 [Item18 - 復合優先於繼承](/2018/05/05/favor-composition-over-inheritance/)
+
+[Item24 - 優先考慮靜態成員類](/2018/07/31/favor-static-member-class-over-nonstatic/)
 ## 第五章 泛型
 
 ## 第六章 枚舉和註解

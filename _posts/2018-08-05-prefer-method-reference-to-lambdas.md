@@ -5,7 +5,7 @@ comments: True
 subtitle: effective java - 方法引用優於lambda表達式
 tags: effectiveJava
 author: jyt0532
-excerpt: 本篇文章介XX
+excerpt: 本篇文章介何謂方法引用 以及方法引用的使用時機
 ---
 
 這篇是Effective Java - Prefer method reference over lambdas章節的讀書筆記 本篇的程式碼來自於原書內容

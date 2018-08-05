@@ -43,6 +43,8 @@ title: Effective Engineer
 
 [Item42 - lambda表達式優於匿名類](/2018/08/05/prefer-lambdas-to-anonymous-classes/)
 
+[Item43 - 方法引用優於lambda表達式](/2018/08/05/prefer-method-reference-to-lambdas/)
+
 ## 第八章 方法
 [Item49 - 檢查參數的有效性](/2018/02/23/check-parameters-for-validity/)
 

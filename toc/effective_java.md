@@ -41,6 +41,8 @@ title: Effective Engineer
 
 ## 第七章 Lambda和Stream
 
+[Item42 - lambda表達式優於匿名類](/2018/08/05/prefer-lambdas-to-anonymous-classes/)
+
 ## 第八章 方法
 [Item49 - 檢查參數的有效性](/2018/02/23/check-parameters-for-validity/)
 

@@ -5,7 +5,7 @@ comments: True
 subtitle: effective java - lambda表達式優於匿名類
 tags: effectiveJava
 author: jyt0532
-excerpt: 本篇文章介紹XX
+excerpt: 本篇文章介紹何謂lambda 以及lambda跟匿名類的使用時機
 ---
 
 這篇是Effective Java - Prefer lambdas to anonymous classes章節的讀書筆記 本篇的程式碼來自於原書內容

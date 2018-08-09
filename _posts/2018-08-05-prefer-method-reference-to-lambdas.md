@@ -80,7 +80,7 @@ lambda又短又簡單易懂
 
 ### 方法引用的種類
 
-#### 靜態方法引用(static)
+#### 靜態方法引用(Static)
 
 lambda: str -> Integer.parseInt(str)
 

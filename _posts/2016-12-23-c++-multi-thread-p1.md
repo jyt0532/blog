@@ -17,7 +17,7 @@ Thread 基本應用以及語法
 ### 環境
 本篇的範例只要你有C++11的compiler就可以跑 筆者用4.2.1版本 基本上你用mac 有install Xcode之後應該都可以跑
 ```
-> g++ -std=c++ filename.cpp
+> g++ -std=c++11 filename.cpp
 ```
 
 ### New 一個thread

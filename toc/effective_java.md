@@ -20,6 +20,8 @@ title: Effective Engineer
 
 ## 第三章 對於所有對象都通用的方法
 
+[Item10 - 覆蓋equals請遵守通用規範](/2018/06/16/obey-the-general-contract-when-overriding-equals/)
+
 [Item11 - 覆蓋equals時總要覆蓋hashCode](/2018/06/23/always-override-hashcode-when-you-override-equals/)
 
 [Item12 - 始終要覆蓋toString](/2018/06/24/always-override-tostring/)

@@ -3,7 +3,7 @@ layout: default
 title: JVM
 ---
 
-# 每個程序員都該瞭解的JVM - 2
+# 每個程序員都該瞭解的JVM - 字串池
 
 你可能很常看到這樣的JAVA面試題
 

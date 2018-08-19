@@ -3,7 +3,7 @@ layout: default
 title: JVM
 ---
 
-# 每個程序員都該瞭解的JVM - 3
+# 每個程序員都該瞭解的JVM - finalize方法
 
 ## 垃圾收集器
 
@@ -189,6 +189,8 @@ Died
 
 當然在finalize裡自救不是個好的寫法 太容易讓人困惑而且性能非常差 這裡舉這個例子是告訴你有這個方法 以及finalize的調用方式
 
-更多精彩內容 敬請關注[每個程序員都該瞭解的JVM]()
+更多精彩預覽 請繼續閱讀 [Java中的各種引用](/toc/jvm/jvm_4/)
+
+完整內容 敬請關注[每個程序員都該瞭解的JVM]()
 
 {% include jvm_intro.html %}

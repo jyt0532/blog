@@ -108,7 +108,7 @@ Obj = null;
 pobj.get() always null
 當一個內存被虛引用給引用 那對於垃圾回收器來說 跟沒有被引用是一樣的意思 唯一的差別是當這個內存被回收的時候 你有機會可以得到一個系統通知 你可以想成是一個callback 他會丟一個通知到Reference Queue
 
-更多Reference Queue的講解 請看[Reference Queue](/toc/jvm/jvm_5/)
+更多Reference Queue的講解 請看Reference Queue
 
 ### 同一引用路徑上的不同引用
 
@@ -207,7 +207,7 @@ new B()就是弱引用
 
 弱引用: 最常見的例子是WeakHashMap 他的Key是WeakReference, Value是跟這個reference相關的資訊 當你map裡的的Key指到的東西被回收 value也跟著不見
 
-虛引用: 用來通知你某個物件已經被回收了 可以讓你清理某些當初分配給他的資源 詳見[Reference Queue](/toc/jvm/jvm_5/)
+虛引用: 用來通知你某個物件已經被回收了 可以讓你清理某些當初分配給他的資源 詳見Reference Queue
 
 完整內容 敬請關注[每個程序員都該瞭解的JVM]()
 

@@ -3,6 +3,7 @@ layout: default
 title: Design Pattern
 ---
 ## Design Pattern
+
 ### Creational Pattern
 [Abstract Factory](/2017/05/03/abstract-factory/)
 

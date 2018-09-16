@@ -20,9 +20,11 @@ paginate:         5
 
 # Custom vars
 version:          2.1.0
-plugins:
+plugins_dir:
         - jekyll-paginate
         - jekyll-gist
+
+gems: [jekyll-paginate,jekyll-gist]
 
 github:
   repo:           https://github.com/jyt0532

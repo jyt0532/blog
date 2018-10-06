@@ -39,3 +39,7 @@ validation-report.json
 
 # Folders to ignore
 node_modules
+
+# Others
+GemFile
+README

@@ -39,7 +39,7 @@ protected boolean removeEldestEntry(Map.Entry eldest){
 
 那你的map裡面就只能保存最近的100個entry 很多人會把這個用來當cache使用
 
-#### 用lambda試試
+### 用lambda試試
 
 如果LinkedHashMap現在需要重新實作的話 那對於removeEldestEntry這種簡單的函式 我們會在LinkedHashMap提供一個靜態工廠 或是 構造方法來接受一個函數對象
 
@@ -58,7 +58,8 @@ protected boolean removeEldestEntry(Map.Entry eldest){
 }
 {% endhighlight %}
 
-這種寫法可行 但是其實java.util.function包裡面提供了大量標準函數式接口 你應該要去了解目前有了什麼 在看需不需要定義自己的函數式接口 這也是這篇文章的主題
+這種寫法可行 但是其實java.util.function包裡面提供了大量標準函數式接口 你應該要去了解目前有了什麼
+再看需不需要定義自己的函數式接口 這也是這篇文章的主題
 
 java.util.Function中有43個接口 但你只需要記住其中的六個 其他的都是這六個的變形
 

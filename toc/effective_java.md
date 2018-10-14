@@ -48,6 +48,8 @@ title: Effective Engineer
 
 [Item43 - 方法引用優於lambda表達式](/2018/08/05/prefer-method-reference-to-lambdas/)
 
+[Item44 - 優先使用標準的函數式接口](/2018/10/07/favor-the-use-of-standard-functional-interfaces/)
+
 ## 第八章 方法
 [Item49 - 檢查參數的有效性](/2018/02/23/check-parameters-for-validity/)
 

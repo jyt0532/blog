@@ -52,6 +52,8 @@ title: Effective Engineer
 
 [Item45 - 謹慎的使用Stream](/2018/11/10/use-streams-judiciously/)
 
+[Item46 - 優先考慮在流的中間操作中使用無副作用的方法](/2018/11/18/prefer-side-effect-free-functions-in-streams/)
+
 ## 第八章 方法
 [Item49 - 檢查參數的有效性](/2018/02/23/check-parameters-for-validity/)
 

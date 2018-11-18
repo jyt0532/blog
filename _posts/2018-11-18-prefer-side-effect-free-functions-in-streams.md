@@ -10,7 +10,7 @@ excerpt: 本篇文章介紹@@@@
 
 這篇是Effective Java - Prefer side-effect-free functions in streams章節的讀書筆記 本篇的程式碼來自於原書內容
 
-本篇的原文內容非常的雜亂 筆者認為是寫得最莫名的一張 標題跟內文不太符合 硬啃原文書會非常吃力 筆者以自己的筆記方式 希望能以簡單易讀的方式表達作者想法
+本篇的原文內容非常的雜亂 筆者認為是寫得最莫名的一個章節 標題跟內文不太符合 硬啃原文書會非常吃力 筆者以自己的筆記方式 希望能以簡單易讀的方式表達作者想法
 
 ## Item46: 優先考慮流中無副作用的函數
 
@@ -42,14 +42,13 @@ Map<String, Long> freq = new HashMap<>();
 
 忘記merge的用法的可以看[這篇](/2018/08/05/prefer-method-reference-to-lambdas/)
 
-非常好懂 非常直觀 但這卻不是函數式編程的思維
+非常好懂 非常直觀 但這卻不是函數式編程的思維 問題在哪 
 
-問題在哪 他長得像 流 但卻又不是流
+他長得像 流 但卻又不是流
 
 ![Alt text]({{ site.url }}/public/item46-2.jpeg)
 
 他並沒有從流的API得到好處 反而讓程式代碼更加冗長難讀 原因只有一個
-
 那就是這個流使用了ForEach來當終結操作 且在這個終結操作中完成所有事情
 
 換個寫法
@@ -62,7 +61,7 @@ try (Stream<String> words = new Scanner(file).tokens()) {
 }
 {% endhighlight %}
 
-這裡的終結操作就是一個collect直接搞定 要寫好流運算就要能精通collect 這通常是你的終結運算 其中丟給coolect的最重要的含式是 toList toSet toMap groupingBy join 等等會一一提到
+這裡的終結操作就是一個collect直接搞定 要寫好流運算就要能精通collect 這通常是你的終結運算 其中丟給collect的最重要的函式是 toList toSet toMap groupingBy join 等等會一一提到
 
 由這個範例可以明白 **ForEach只適合用於報告流計算的結果 而不是用來執行計算**
 
@@ -97,7 +96,9 @@ toMap如果吃兩個參數的話 toMap的第一個參數是如何把流裡面的
 
 {a=apple, b=banana, c=cat}
 
-那今天如果stream的元素是("apple", "banana", "cat", "ball") 那就有兩個元素跑到同一個key 那就會噴IllegalStateException 所以toMap提供了吃三個參數的signature, 叫做merge function 也就是如果key一樣的話 要如何merge
+那今天如果stream的元素是("apple", "banana", "cat", "ball") 那就有兩個元素跑到同一個key 
+那就會拋出`IllegalStateException` 所以toMap提供了吃三個參數的signature
+第三個參數叫做merge function 也就是如果key一樣的話 要如何merge
 
 {% highlight java %}
 List<String> s = ImmutableList.of("apple", "banana", "cat");
@@ -123,7 +124,8 @@ m長這樣
 {% highlight java %}
 List<String> s = ImmutableList.of("apple", "banana", "cat", "pet");
 Map<Integer, List<String>> m2 = s.stream().collect(
-  Collectors.groupingBy(String::length));
+  Collectors.groupingBy(String::length)
+);
 {% endhighlight %} 
 
 groupBy只吃一個參數的時候 就是你要怎麼map到key 
@@ -155,10 +157,17 @@ String str = s.stream().collect(Collectors.joining());
 
 什麼參數都沒給的話 那就是硬接 str = "applebananacatball"
 
-只給一個參數的話 Collectors.joining("|"), 就是delimiter
+只給一個參數的話 `Collectors.joining("|")` 就是delimiter
 
-str = "apple|banana|cat|ball"
+str = "apple\|banana\|cat\|ball"
 
-給三個參數的話 Collectors.joining("|", "$", "^")就是delimer, prefix, suffix
+給三個參數的話 Collectors.joining("\|", "$", "^")就是delimer, prefix, suffix
 
-str = "$apple|banana|cat|ball^"
+str = "$apple\|banana\|cat\|ball^"
+
+### 總結
+
+這篇的標題跟第一段 講的是中間操作要使用無副作用的函數
+
+後段講的都是如何靈活使用終結操作 
+

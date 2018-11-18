@@ -5,7 +5,7 @@ comments: True
 subtitle: effective java - 謹慎的使用Stream
 tags: effectiveJava
 author: jyt0532
-excerpt: 本篇文章介紹@@@@
+excerpt: 本篇文章介紹如何靈活在流中使用終結操作
 ---
 
 這篇是Effective Java - Prefer side-effect-free functions in streams章節的讀書筆記 本篇的程式碼來自於原書內容

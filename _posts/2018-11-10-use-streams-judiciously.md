@@ -54,9 +54,7 @@ number.stream()
 
 可以使用流 不代表永遠應該使用
 
-上書中的例子
-
-Anagram指的是兩個單字 是同樣的英文字母但不同順序組合而成
+上書中的例子 Anagram指的是兩個單字 是同樣的英文字母但不同順序組合而成
 
 比如說tar跟rat是anagram, night跟thing也是anagram 
 
@@ -80,7 +78,7 @@ Anagram指的是兩個單字 是同樣的英文字母但不同順序組合而成
 
 3: [auctioned, cautioned, education]
 
-來看程式吧
+上程式
 {% highlight java %}
 public class Anagrams {
   public static void main(String[] args) throws IOException {
@@ -160,7 +158,9 @@ public class Anagrams {
 
 ### 雙層流
 
-用一般的方式發一副牌 雙重迴圈搞定
+其實流可以做得到的事 迴圈都可以做的到 那今天如果要雙重迴圈呢?
+
+比如說發一副牌 雙重迴圈搞定
 
 {% highlight java %}
 private static List<Card> newDeck() {
@@ -172,7 +172,7 @@ private static List<Card> newDeck() {
 }
 {% endhighlight %}
 
-用stream
+用stream 就需要使用flatMap
 
 {% highlight java %}
 private static List<Card> newDeck() {

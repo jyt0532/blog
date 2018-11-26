@@ -5,7 +5,7 @@ comments: True
 subtitle: effective java - 謹慎使用流並行
 tags: effectiveJava
 author: jyt0532
-excerpt: 本篇文章介紹用
+excerpt: 本篇文章介紹並行化Stream的難度以及可能的風險
 ---
 
 這篇是Effective Java - Use caution when making streams parallel章節的讀書筆記 本篇的程式碼來自於原書內容

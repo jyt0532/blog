@@ -56,6 +56,8 @@ title: Effective Engineer
 
 [Item47 - 優先使用Collection而不是Stream來作為函數的回傳類型](/2018/11/25/prefer-collection-to-stream-as-a-return-type/)
 
+[Item48 - 謹慎使用並行Stream](/2018/11/25/use-caution-when-making-streams-parallel/)
+
 ## 第八章 方法
 [Item49 - 檢查參數的有效性](/2018/02/23/check-parameters-for-validity/)
 

@@ -2,7 +2,7 @@
 layout: post
 title: Effective Java Item46 - 優先考慮在流的中間操作中使用無副作用的方法
 comments: True 
-subtitle: effective java - 謹慎的使用Stream
+subtitle: effective java - 本篇文章介紹如何靈活在流中使用終結操作
 tags: effectiveJava
 author: jyt0532
 excerpt: 本篇文章介紹如何靈活在流中使用終結操作

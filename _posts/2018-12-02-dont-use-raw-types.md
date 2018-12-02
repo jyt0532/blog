@@ -10,6 +10,7 @@ excerpt: 本篇文章介紹
 
 這篇是Effective Java - Don't use raw types章節的讀書筆記 本篇的程式碼來自於原書內容
 
+本章節可以搭配[泛型篇章簡介及術語列表](/2018/12/01/generics/)服用
 ## Item26: 不要使用原始類型
 
 先定義幾個術語:
@@ -71,11 +72,11 @@ to Stamp
 
 ### 小撇步
 
-我們知道了不應該使用原始類型`List` 但如果要使用參數化的類型插入任意對象 還是可以用List<Object> 差別差在哪？ 
+我們知道了不應該使用原始類型`List` 但如果要使用參數化的類型插入任意對象 還是可以用`List<Object>` 這兩者的差別在哪呢？ 
 
-List 逃避了泛型檢查 `List<Object>`則是明確的告訴compiler説 他能持有任意類型的對象 
+`List` 逃避了泛型檢查 `List<Object>`則是明確的告訴compiler説 他能持有任意類型的對象 
 
-順道一提 你可以將List<String>傳給List參數 但你卻不能傳給List<Object> 因為List<String>是List的子類型
+順道一提 你可以將`List<String>`傳給`Lis`t參數 但你卻不能傳給`List<Object>` 因為`List<String>`是`List`的子類型
 
 來看例子
 
@@ -124,7 +125,8 @@ static int numElementsInCommon(Set s1, Set s2) {
 }
 {% endhighlight %}
 
-這個寫法會對 但卻很危險 比較安全一點的方法是使用無限制通配符類型(unbounded wildcard types) 從今爾後 如果要使用泛型類型 但不知道或關心實際類型參數是什麼 那你可以使用問號來代替 變成List<?> 
+這個寫法會對 但卻很危險 比較安全一點的方法是使用無限制通配符類型(unbounded wildcard types) 從今爾後 如果要使用泛型類型 
+但不知道或不關心實際類型參數是什麼 那你可以使用問號來代替 變成List<?> 
 
 {% highlight java %}
 static int numElementsInCommon(Set<?> s1, Set<?> s2) {
@@ -141,9 +143,9 @@ static int numElementsInCommon(Set<?> s1, Set<?> s2) {
 
 有規則必有例外 我們來看看什麼時候應該要用原始類型
 
-1.類文字(class literals): `List.class` `String[].class` `int.class` 都合法 但是`List<String>.class``List<?>.class`都不合法
+1.類文字(class literals): `List.class`, `String[].class`,  `int.class` 都合法 但是`List<String>.class`, `List<?>.class`都不合法
 
-2.instanceof: 你不能這樣寫
+2.instanceof: 當你要使用instanceof 你不能這樣寫
 
 {% highlight java %}
 if (obj instanceof List<String>)

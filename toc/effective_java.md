@@ -36,9 +36,15 @@ title: Effective Engineer
 
 [Item18 - 復合優先於繼承](/2018/05/05/favor-composition-over-inheritance/)
 
-[Item24 - 優先考慮靜態成員類](/2018/07/31/favor-static-member-class-over-nonstatic/)
+[Item24 - 優先考慮靜態成員類](/2018/08/04/favor-static-member-class-over-nonstatic/)
+
+[Item25 - 讓每個java文件只有一個top-level類別](/2018/11/30/limit-source-files-to-a-single-top-level-class/)
 
 ## 第五章 泛型
+
+[泛型篇章簡介及術語列表](/2018/12/01/generics/)
+
+[Item26 - 不要使用原始類型](/2018/12/01/dont-use-raw-types/)
 
 ## 第六章 枚舉和註解
 

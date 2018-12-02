@@ -5,7 +5,7 @@ comments: True
 subtitle: effective java - 不要使用raw type
 tags: effectiveJava
 author: jyt0532
-excerpt: 本篇文章介紹
+excerpt: 本篇文章介紹為什麼應該避免使用原始類型
 ---
 
 這篇是Effective Java - Don't use raw types章節的讀書筆記 本篇的程式碼來自於原書內容

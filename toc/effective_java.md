@@ -44,7 +44,9 @@ title: Effective Engineer
 
 [泛型篇章簡介及術語列表](/2018/12/01/generics/)
 
-[Item26 - 不要使用原始類型](/2018/12/01/dont-use-raw-types/)
+[Item26 - 不要使用原始類型](/2018/12/02/dont-use-raw-types/)
+
+[Item27 - 消除非檢查警告](/2018/12/02/eliminate-unchecked-warnings/)
 
 ## 第六章 枚舉和註解
 

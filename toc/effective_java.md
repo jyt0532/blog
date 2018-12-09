@@ -48,6 +48,8 @@ title: Effective Engineer
 
 [Item27 - 消除非檢查警告](/2018/12/02/eliminate-unchecked-warnings/)
 
+[Item28 - 列表優於數組](/2018/12/08/prefer-lists-to-arrays/)
+
 ## 第六章 枚舉和註解
 
 ## 第七章 Lambda和Stream

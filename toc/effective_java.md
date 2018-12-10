@@ -50,6 +50,8 @@ title: Effective Engineer
 
 [Item28 - 列表優於數組](/2018/12/08/prefer-lists-to-arrays/)
 
+[Item29 - 優先考慮泛型](/2018/12/09/favor-generic-types/)
+
 ## 第六章 枚舉和註解
 
 ## 第七章 Lambda和Stream

@@ -5,7 +5,7 @@ comments: True
 subtitle: effective java - 優先考慮generic method
 tags: effectiveJava
 author: jyt0532
-excerpt: 本
+excerpt: 本篇文章介紹泛型方法的好處 並實際操作泛型化
 ---
 
 這篇是Effective Java - Favor generic methods章節的讀書筆記 本篇的程式碼來自於原書內容
@@ -16,9 +16,13 @@ excerpt: 本
 
 如同類可以是泛型的 方法也可以是泛型的 
 
-常見的有對於參數化類型(Parameterized type)進行操作的靜態工具方法通常都是泛型 或是集合(Collection)中的大部分algorithm比如`binarySearch` `sort` 都是泛型
+常見的泛型方法有
 
-來看個例子
+1.對於參數化類型(Parameterized type)進行操作的靜態工具方法通常都是泛型 
+
+2.集合(Collection)中的大部分algorithm比如`binarySearch` `sort` 都是泛型
+
+來看個例子 來看怎麼把原始型態方法變成泛型方法
 {% highlight java %}
 // Uses raw types - unacceptable! [Item 26]
 public static Set union(Set s1, Set s2) {
@@ -58,6 +62,7 @@ public static <E> Set<E> union(Set<E> s1, Set<E> s2) {
 {% highlight java %}
 // Generic singleton factory pattern
 private static UnaryOperator<Object> IDENTITY_FN = (t) -> t;
+
 @SuppressWarnings("unchecked")
 public static <T> UnaryOperator<T> identityFunction() {
   return (UnaryOperator<T>) IDENTITY_FN;
@@ -66,6 +71,7 @@ public static <T> UnaryOperator<T> identityFunction() {
 
 `IDENTITY_FN` 就是我們的函數對象 也就是我們上一段的**一個物件** 
 然後在使用者有需要的時候 把這個物件過一下工廠 幫忙Cast成我們要的類型
+
 至於`@SuppressWarnings("unchecked")` 則是因為把`UnaryOperator<Object>`轉成`UnaryOperator<T>`的時候會有unchecked warning 所以需要抑制
 
 看用法
@@ -82,17 +88,17 @@ for (Number n : numbers)
 
 {% endhighlight %}
 
+很簡單 呼叫同樣的工廠 你有什麼需求就給你什麼產品
+
 這就是泛型單例工廠 當你需要某個類型的函數方法 過個工廠後你就可以用了
 
 ### 遞歸類型限制(Recursive type bound)
 
 我們知道我們可以用一些限制來限定泛型類型所實際可選擇的類型
 
-比如
+比如`Collection<? extends E>` 代表說這個類型是`E`或是`E`的subtype 
 
-`Collection<? extends E>` 代表說這個類型是`E`或是`E`的subtype 
-
-雖然不常見 但我們可以用**這個類型有實作的介面** 來作為一個泛型類型的限制
+但還有一種更複雜的限制 就是**這個類型有實作的介面** 來作為一個泛型類型的限制
 
 最常見的例子
 {% highlight java %}
@@ -109,7 +115,7 @@ public interface Comparable<T> {
 {% endhighlight %}
 這就是說 現在你要用的E 必須要有實現`Comparable` 這樣這個方法就可以光明正大的在實作中呼叫`compareTo`
 
-看個用法
+看個實作
 
 {% highlight java %}
 // Returns max value in a collection - uses recursive type bound

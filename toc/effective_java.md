@@ -52,6 +52,8 @@ title: Effective Engineer
 
 [Item29 - 優先考慮泛型](/2018/12/09/favor-generic-types/)
 
+[Item29 - 優先考慮泛型方法](/2018/12/15/favor-generic-methods/)
+
 ## 第六章 枚舉和註解
 
 ## 第七章 Lambda和Stream

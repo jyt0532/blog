@@ -199,16 +199,16 @@ public static <T extends Comparable<? super T>> T max(List<? extends T> list)
 用中文來翻譯一下
 
 {% highlight java %}
-<E extends Comparable<E>>
+<T extends Comparable<T>>
 {% endhighlight %}
 
-限制是說 E必須要實作Comparable 並且這個接口的類型是E(只有這樣 E之間才能互相比大小) 比如具體類是Student 那它必須 implements Comparable<Student>
+限制是說 T必須要實作Comparable<T>(只有這樣 T之間才能互相比大小) 比如具體類T是Student 那它必須 implements Comparable<Student>
 
 {% highlight java %}
-<E extends Comparable<? super E>> 
+<T extends Comparable<? super T>> 
 {% endhighlight %}
 
-限制是說 E必須要實作Comparable 並且這個接口的類型是E或是E的任意父親(只有這樣 E的實例之間 或是E和他的父類的實例之間 才能互相比大小) 比如具體類是Student 有一個父類Person 那Student可以從Person那邊繼承到Comparable<Person> 或者自己implements Comparable<Student>
+限制是說 T必須要實作Comparable<T或是T的任意父類>(只有這樣 T的實例之間 **或是T和他的父類的實例之間** >才能互相比大小)
 
 
 Effective Java對於這個聲明給出的範例非常難懂 然後草草結束 用什麼`ScheduledFuture`跟`Delayed`這種沒人知道的東西解釋 一點意義都沒有 為此我特地開了一篇 [<T extends Comparable<? super T>>](/) 大家可以移駕到那篇去看我用簡單的解說說明兩個聲明的差異

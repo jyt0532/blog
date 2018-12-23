@@ -5,12 +5,22 @@ comments: True
 subtitle: effective java - 利用bounded wildcards來提昇API靈活性
 tags: effectiveJava
 author: jyt0532
-excerpt: 本篇文章介紹
+excerpt: 本篇文章介紹限制通配符的好處
 ---
 
 這篇是Effective Java - Use bounded wildcards to increase API flexibility章節的讀書筆記 本篇的程式碼來自於原書內容
 
-本章節可以搭配[泛型篇章簡介及術語列表](/2018/12/01/generics/)服用
+本篇是泛型系列文的高潮 請讀者務必要讀懂這篇的內容
+
+本章節可以搭配
+
+[泛型篇章簡介及術語列表](/2018/12/01/generics/) 
+
+[類型參數和通配符的選擇](/2018/12/23/how-to-choose-between-wildcard-and-generic-method/) 
+
+[到底 <T extends Comparable<? super T>>是什麼意思](/2018/12/23/t-extends-comparable-questionmark-super-t/)
+
+服用
 
 ## Item31: 利用限制通配符來提昇API靈活性
 
@@ -24,7 +34,7 @@ excerpt: 本篇文章介紹
 當我的input參數是Animal 你卻給我Dog 有沒有關係？ 答案是沒關係 因為所有我在函數裡可以對Animal的操作 我都可以對Dog做 
 
 但要是我變成這樣`void add(List<Animal> la)`
-我的input參數是`List<Animal>` 你卻給我`List<Dog>` 這樣就有關係了 因為我的函數裡面有可能會有`a.add(new Cat())`的操作 但我卻不應該套用在List<Dog>上
+我的input參數是`List<Animal>` 你卻給我`List<Dog>` 這樣就有關係了 因為我的函數裡面有可能會有`a.add(new Cat())`的操作 但我卻不應該套用在`List<Dog>`上
 
 所以泛型是invariant
 
@@ -49,13 +59,14 @@ public void pushAll(Iterable<E> src) {
 }
 {% endhighlight %}
 
-來試試看
+來試試看 push很多Integer進Number裡
 {% highlight java %}
 Stack<Number> numberStack = new Stack<>();
 Iterable<Integer> integers = ... ;
 numberStack.pushAll(integers);
 {% endhighlight %}
-預料之中
+編譯錯誤 因為`Iterable<Integer>`不是`Iterable<Number>`的子類
+
 ![Alt text]({{ site.url }}/public/item31-1.png)
 
 那該怎麼辦呢 主角登場 **限制通配符(bounded wildcard type)**
@@ -96,7 +107,8 @@ Collection<Object> objects = ... ;
 numberStack.popAll(objects);
 {% endhighlight %}
 
-把numberStack裡的`Number`全部丟進Collection<Object> 看起來很ok 但不好意思 泛型是invariant 
+把numberStack裡的`Number`全部丟進`Collection<Object>` 看起來很ok 但不好意思 泛型是invariant 
+`Collection<Object>` 不是`Collection<Number>`的父類
 
 我們會看到跟第一次寫`pushAll`一樣的錯誤
 
@@ -134,7 +146,9 @@ Stack類和客戶端都可以輕鬆搞定
 
 ### 回頭看看之前的程式碼
 
-我們現在有個更強大的武器 看一下[Item28](/2018/12/08/prefer-lists-to-arrays/)的`Choose`的構造器
+我們剛剛才學會了一個強大的武器 現在回頭看一下之前寫的東西
+
+[Item28](/2018/12/08/prefer-lists-to-arrays/)的`Choose`的構造器
 
 {% highlight java %}
 public Chooser(Collection<T> choices)
@@ -202,16 +216,17 @@ public static <T extends Comparable<? super T>> T max(List<? extends T> list)
 <T extends Comparable<T>>
 {% endhighlight %}
 
-限制是說 T必須要實作Comparable<T>(只有這樣 T之間才能互相比大小) 比如具體類T是Student 那它必須 implements Comparable<Student>
+限制是說 T必須要實作Comparable&lt;T&gt;(只有這樣 T之間才能互相比大小) 比如具體類T是Student 那它必須 implements Comparable&lt;Student&gt;
 
 {% highlight java %}
 <T extends Comparable<? super T>> 
 {% endhighlight %}
 
-限制是說 T必須要實作Comparable<T或是T的任意父類>(只有這樣 T的實例之間 **或是T和他的父類的實例之間** >才能互相比大小)
+限制是說 T必須要實作Comparable&lt;T或是T的任意父類&gt;(只有這樣 T的實例之間 **或是T和他的父類的實例之間** 才能互相比大小)
 
 
-Effective Java對於這個聲明給出的範例非常難懂 然後草草結束 用什麼`ScheduledFuture`跟`Delayed`這種沒人知道的東西解釋 一點意義都沒有 為此我特地開了一篇 [<T extends Comparable<? super T>>](/) 大家可以移駕到那篇去看我用簡單的解說說明兩個聲明的差異
+Effective Java對於這個聲明給出的範例非常難懂 然後草草結束 用什麼`ScheduledFuture`跟`Delayed`這種沒人知道的東西解釋 
+一點意義都沒有 為此我特地開了一篇 [<T extends Comparable<? super T>>](/2018/12/23/t-extends-comparable-questionmark-super-t/) 大家可以移駕到那篇去看我用簡單的解說說明兩個聲明的差異
 
 ### 類型參數和通配符
 
@@ -254,9 +269,8 @@ private static <E> void swapHelper(List<E> list, int i, int j) {
 
 搞什麼飛機 你選擇了wildcard當作公開API 但內部卻用generic type來實作 為什麼當初不直接用generic type當作公眾API呢
 
-這時候就可以移駕到這篇文章[類型參數和通配符的選擇](/)
+這時候就可以移駕到這篇文章[類型參數和通配符的選擇](/2018/12/23/how-to-choose-between-wildcard-and-generic-method/) 我在這篇文章有詳細的講解跟比較
 
 ### 總結
 
 正確的使用通配符類型會讓你的API更加靈活 記住基本的規則PECS 以及`Comparable`和`Comparator`都是消費者
-PECS

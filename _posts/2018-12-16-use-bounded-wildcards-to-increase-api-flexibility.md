@@ -239,7 +239,7 @@ public static void swap(List<?> list, int i, int j) {
 }
 {% endhighlight %}
 
-聲明雖然看起來好用 但實作上卻是絆手絆腳 你必須要用當初的第一個我們不喜歡的聲明來實作
+聲明雖然看起來好用 但實作上卻是綁手綁腳 你必須要用當初的第一個我們不喜歡的聲明來實作
 
 {% highlight java %}
 public static void swap(List<?> list, int i, int j) {

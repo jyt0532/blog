@@ -22,13 +22,15 @@ excerpt: 本篇文章介紹
 <T extends Comparable<T>>
 {% endhighlight %}
 
-限制是說 T必須要實作Comparable<T>(只有這樣 T之間才能互相比大小) 比如具體類T是Student 那它必須 implements Comparable<Student>
+限制是說 T必須要實作Comparable&lt;T&gt;(只有這樣 T之間才能互相比大小) 比如具體類T是Student 那它必須 implements Comparable&lt;Student&gt;
+
 
 {% highlight java %}
 <T extends Comparable<? super T>>
 {% endhighlight %}
 
-限制是說 T必須要實作Comparable<T或是T的任意父類>(只有這樣 T的實例之間 **或是T和他的父類的實例之間** 才能互相比大小)
+限制是說 T必須要實作Comparable&lt;T或是T的任意父類&gt;(只有這樣 T的實例之間 **或是T和他的父類的實例之間** 才能互相比大小)
+
 
 以上的定義取自[Item31](/2018/12/16/use-bounded-wildcards-to-increase-api-flexibility/)
 
@@ -119,11 +121,11 @@ public static <T extends Comparable<T>> void mySort1(List<T> list)
 
 如果輸入是**List of T** 那裡面的每個T都必須要有實作`Comparable<T>`
 
-1.allPersons: T在這裡是Person 不用多說 Person有實作Comparable<Person> 當然可以跑
+1.allPersons: T在這裡是Person 不用多說 Person有實作Comparable&lt;Person&gt; 當然可以跑
 
-2.mixedPerson: T在這裡是Person 有些Person 有些Student 問題在於 Student有沒有實作Comparable<Person>呢 答案是有 因為繼承自Person
+2.mixedPerson: T在這裡是Person 輸入參數中有些Person 有些Student 問題在於 Student有沒有實作Comparable&lt;Person&gt;呢 答案是有 因為繼承自Person
 
-3.allStudent: **T在這裡是Student** Student有沒有實作Comparable<Student>呢 答案是沒有 Student只有實作Comparable<Person> 所以不能執行 compile-time爆錯
+3.allStudent: **T在這裡是Student** Student有沒有實作Comparable&lt;Student&gt;呢 答案是沒有 Student只有實作Comparable&lt;Person&gt; 所以不能執行 compile-time爆錯
 
 ![Alt text]({{ site.url }}/public/item31-1-1.png)
 
@@ -135,32 +137,32 @@ public static <T extends Comparable<? super T>> void mySort2(List<T> list)
 
 如果輸入是**List of T** 那裡面的每個T都必須要有實作`Comparable<T>` 或是`Comparable<T的父類>`
 
-1.allPersons: T在這裡是Person 不用多說 Person有實作Comparable<Person> 當然可以跑
+1.allPersons: T在這裡是Person 不用多說 Person有實作Comparable&lt;Person&gt; 當然可以跑
 
-2.mixedPerson: T在這裡是Person 有些Person 有些Student 問題在於 Student有沒有實作Comparable<Person>呢 答案是有 因為繼承自Person
+2.mixedPerson: T在這裡是Person 輸入參數中有些Person 有些Student 問題在於 Student有沒有實作Comparable&lt;Person&gt;呢 答案是有 因為繼承自Person
 
-3.allStudent: **T在這裡是Student** Student有沒有實作Comparable<Student>或是Comparable<Person>呢 答案是有 Student有繼承Comparable<Person> 所以可以執行
+3.allStudent: **T在這裡是Student** Student有沒有實作Comparable&lt;Student&gt;或是Comparable&lt;Student的父類&gt;呢 答案是有 Student有繼承Comparable&lt;Person&gt; 所以可以執行
 
 
 ![Alt text]({{ site.url }}/public/how_to_play.gif)
 
 ### 老師我有問題
 
-Q1.老師你偷懶 你的Student在繼承Person的同時 也同時實作Comparable<Student>不就好了嗎
+Q1.老師你偷懶 你的Student在繼承Person的同時 也同時實作Comparable&lt;Student&gt;不就好了嗎
 
 A1.答案是不行 一個類別不能同時實作兩個不同類型的同個介面
 
 ![Alt text]({{ site.url }}/public/item31-1-2.png)
 
-你的Student不能同時實作Comparable<Student> 又同時有Comparable<Person>
+你的Student不能同時實作Comparable&lt;Student&gt; 又同時有Comparable&lt;Person&gt;
 
-Q2.不管啦 我就是要實作Comparable<Student>
+Q2.不管啦 我就是要實作Comparable&lt;Student&gt;
 
 A2.那你剩兩個選擇 
 
-第一個是Person也有實作Comparable<Person>然後Student不繼承Person 相信這不構成選項 Student沒繼承Person就是兩個完全不相關的類別 mixedPerson也無法創建
+第一個方法是Person也有實作Comparable&lt;Person&gt;然後Student不繼承Person 相信這不構成選項 Student沒繼承Person就是兩個完全不相關的類別 mixedPerson也無法創建
 
-第二個選項 Person不實作Comparable<Person>
+第二個選項 Person不實作Comparable&lt;Person&gt;
 
 {% highlight java %}
 class Person
@@ -193,7 +195,7 @@ mySort2(mixedPerson); // 5
 mySort2(allStudent);  // 6
 {% endhighlight %}
 
-那這六個只剩3跟6可以 因為根本沒有人實作Comparable<Person>
+那這六個只剩3跟6可以 因為根本沒有人實作Comparable&lt;Person&gt;
 
 ### 結論
 

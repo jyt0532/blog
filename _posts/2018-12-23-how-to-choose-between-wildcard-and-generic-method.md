@@ -61,7 +61,7 @@ public static void funct2(final List<?> list, final Object something) {
 }
 {% endhighlight %}
 
-記得: 通配符不能用在消費者參數
+記得: 能加進List<?>的只有null
 
 
 2.如果你想要在一個聲明裡面表明兩個類別的關係 那就要用類型參數
@@ -134,10 +134,11 @@ public void pushAll(Iterable<E> src) {
 
 4.函數的實作本身 也需要使用到同一個類型
 
-那你就必需要適用類型參數
+那你就必需要使用類型參數
 
 ### 參考資料
 
 [When to use generic methods and when to use wild-card?](https://stackoverflow.com/questions/18176594/when-to-use-generic-methods-and-when-to-use-wild-card)
+
 [Difference between generic type and wildcard type](https://stackoverflow.com/questions/10943137/difference-between-generic-type-and-wildcard-type#)
 

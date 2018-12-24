@@ -65,7 +65,7 @@ Stack<Number> numberStack = new Stack<>();
 Iterable<Integer> integers = ... ;
 numberStack.pushAll(integers);
 {% endhighlight %}
-編譯錯誤 因為`Iterable<Integer>`不是`Iterable<Number>`的子類
+編譯錯誤 因為如同剛剛所說 `Iterable<Integer>`不是`Iterable<Number>`的子類
 
 ![Alt text]({{ site.url }}/public/item31-1.png)
 
@@ -206,9 +206,7 @@ public static <T extends Comparable<? super T>> T max(List<? extends T> list)
 
 第一次是在輸入的參數 因為我們要找最大值 輸入的集合當然是個生產者 無庸置疑 extends
 
-第二個就精彩了 也是我們第一次看到限制通配符被用來**限制類型參數T**
-
-因為Comparable一定是個消費者 (畢竟他需要讀輸入才能比較) 因此 `Comparable<T>`就可以安心被`Comparable<? super T>` 取代
+第二個就精彩了 因為Comparable一定是個消費者 (畢竟他需要讀輸入才能比較) 因此 `Comparable<T>`就可以安心被`Comparable<? super T>` 取代
 
 用中文來翻譯一下
 
@@ -226,7 +224,7 @@ public static <T extends Comparable<? super T>> T max(List<? extends T> list)
 
 
 Effective Java對於這個聲明給出的範例非常難懂 然後草草結束 用什麼`ScheduledFuture`跟`Delayed`這種沒人知道的東西解釋 
-一點意義都沒有 為此我特地開了一篇 [<T extends Comparable<? super T>>](/2018/12/23/t-extends-comparable-questionmark-super-t/) 大家可以移駕到那篇去看我用簡單的解說說明兩個聲明的差異
+一點意義都沒有 為此我特地開了一篇 [到底<T extends Comparable<? super T>>是什麼意思](/2018/12/23/t-extends-comparable-questionmark-super-t/) 大家可以移駕到那篇去看我用簡單的解說說明兩個聲明的差異
 
 ### 類型參數和通配符
 
@@ -244,7 +242,8 @@ public static void swap(List<?> list, int i, int j);
 
 那這兩個哪個比較好呢 如果是你要提供公用的API 那第二個好一點 非常好懂 就是把一個List的兩個index交換
 
-通常來說**如果一個類型參數聲明中 類型參數只出現一次 那就把它換成通配符聲明** 這句話對於不論限制類型還是無限制類型都一樣有效
+通常來說**如果一個類型參數聲明中 類型參數只出現一次
+那就把它換成通配符聲明** 這句話對於不論限制類型還是無限制類型都一樣有效
 
 但是我們認為好懂的聲明 卻無法編譯以下簡單的實作
 

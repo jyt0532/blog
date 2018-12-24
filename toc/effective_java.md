@@ -52,7 +52,14 @@ title: Effective Engineer
 
 [Item29 - 優先考慮泛型](/2018/12/09/favor-generic-types/)
 
-[Item29 - 優先考慮泛型方法](/2018/12/15/favor-generic-methods/)
+[Item30 - 優先考慮泛型方法](/2018/12/15/favor-generic-methods/)
+
+[Item31 - 利用限制通配符來提昇API靈活性](/2018/12/23/use-bounded-wildcards-to-increase-api-flexibility/)
+
+[到底 <T extends Comparable<? super T>>是什麼意思](/2018/12/23/t-extends-comparable-questionmark-super-t/)
+
+[類型參數和通配符的選擇](/2018/12/23/how-to-choose-between-wildcard-and-generic-method/)
+
 
 ## 第六章 枚舉和註解
 

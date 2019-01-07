@@ -514,4 +514,150 @@ RETURN person.name
 
 但是因為是聲明式語言 你不用擔心數據庫實作的細節 查詢優化程序會自動選擇預測效率最高的策略
 
-#### Cypher查詢語言
+#### SQL中的圖查詢
+
+如果是把剛剛的例子用在關聯數據庫上 也可以用SQL查詢嗎
+
+可以 但有點困難 困難的點是在 你並不知道一個人頂點要經過多少個邊 才會到你要的location的點 所以connection的數目是變量!
+
+剛剛我們就輕描淡寫的用`WITHIN * 0`表示沿著WITHIN邊一次或多次搞定
+
+好消息是 SQL支持`WITH RECURSIVE`
+
+{% highlight sql %}
+WITH RECURSIVE
+  -- in_usa is the set of vertex IDs of all locations within US
+    in_usa(vertex_id) AS (
+    SELECT vertex_id FROM vertices WHERE properties ->> 'name' = 'United States'
+    UNION
+    SELECT edges.tail_vertex FROM edges
+      JOIN in_usa ON edges.head_vertex = in_usa.vertex_id
+      WHERE edges.label = 'within'
+  ),
+  -- in_europe is the set of vertex IDs of all locations within EU
+    in_europe(vertex_id) AS (
+    SELECT vertex_id FROM vertices WHERE properties ->> 'name' = 'Europe'
+    UNION
+    SELECT edges.tail_vertex FROM edges
+      JOIN in_europe ON edges.head_vertex = in_europe.vertex_id
+      WHERE edges.label = 'within' ),
+
+  -- born_in_usa is the set of vertex IDs of all people born in the US
+    born_in_usa(vertex_id) AS (
+      SELECT edges.tail_vertex FROM edges
+        JOIN in_usa ON edges.head_vertex = in_usa.vertex_id
+        WHERE edges.label = 'born_in' ),
+
+  -- lives_in_europe is the set of vertex IDs of all people living in EU
+    lives_in_europe(vertex_id) AS (
+      SELECT edges.tail_vertex FROM edges
+        JOIN in_europe ON edges.head_vertex = in_europe.vertex_id
+        WHERE edges.label = 'lives_in')
+
+  SELECT vertices.properties ->> 'name'
+  FROM vertices
+    JOIN born_in_usa ON vertices.vertex_id = born_in_usa.vertex_id
+    JOIN lives_in_europe ON vertices.vertex_id = lives_in_europe.vertex_id;
+{% endhighlight %}
+
+悲劇 你敢看我還真不敢寫 這說明了不同的設計模型完全是為了不同的應用而設計 選擇適合的模型非常的重要
+
+### 三元組存儲Triple-Stores
+
+除了屬性圖之外 還有三元組存儲可以可以儲存圖結構
+
+在三元組存儲中 所有信息都以非常簡單的三部分表示形式存儲
+
+(主詞, 動詞, 受詞) 
+
+比如說(Jim, likes, banana)
+
+主詞:就是圖上的一個頂點
+
+受詞:就是圖上的一個頂點 或是一個字串或數字 像是(lucy, age, 33)
+
+動詞:如果受詞是圖上的一個頂點 動詞就是連結兩者的邊
+
+再回顧一次我們要的結果
+
+![Alt text]({{ site.url }}/public/DDIA/DDIA-2-6.png)
+
+我們一樣來產生一下左半邊的Lucy的資料
+
+{% highlight Notation3 %}
+@prefix : <urn:example:>.
+_:lucy     a       :Person.
+_:lucy     :name   "Lucy".
+_:lucy     :bornIn _:idaho.
+_:idaho    a       :Location.
+_:idaho    :name   "Idaho".
+_:idaho    :type   "state".
+_:idaho    :within _:usa.
+_:usa      a       :Location
+_:usa      :name   "United States"
+_:usa      :type   "country".
+_:usa      :within _:namerica.
+_:namerica a       :Location
+_:namerica :name   "North America"
+_:namerica :type   :"continent"
+{% endhighlight %}
+
+`_：someName`就是頂點的名字
+
+一直重複相同的主詞有點惱人 幸運的是 我們可以寫成這樣
+
+{% highlight Notation3 %}
+@prefix : <urn:example:>.
+_:lucy      a :Person;   :name "Lucy";          :bornIn _:idaho.
+_:idaho     a :Location; :name "Idaho";         :type "state";   :within _:usa
+_:usa       a :Loaction; :name "United States"; :type "country"; :within _:namerica.
+_:namerica  a :Location; :name "North America"; :type "continent".
+{% endhighlight %}
+
+#### SPARQL查詢語言
+
+如同Cypher用來查詢屬性圖 SPARQL也可以用來查詢三元組存儲
+
+今天一樣來查找從美國轉移到歐洲的人 
+
+{% highlight SPARQL %}
+PREFIX : <urn:example:>
+SELECT ?personName WHERE {
+  ?person :name ?personName.
+  ?person :bornIn  / :within* / :name "United States".
+  ?person :livesIn / :within* / :name "Europe".
+}
+{% endhighlight %}
+
+結構非常相似 來比較一下 以下兩兩意思相同
+
+{% highlight txt %}
+(person) -[:BORN_IN]-> () -[:WITHIN*0..]-> (location)   # Cypher
+?person :bornIn / :within* ?location.                   # SPARQL
+
+(usa {name:'United States'})   # Cypher
+?usa :name "United States".    # SPARQL
+{% endhighlight %}
+
+## 總結
+
+數據模型是個複雜的問題 我們快速的瀏覽了各個不同的模型 希望能讓你有廣泛的了解 要深入研究就看各位施主的應用需要
+
+歷史中 數據最開始被表示為一棵大樹(層次數據模型) 但是這不利於表示多對多的關係 所以發明了關聯模型 但到了最近 開發人員發現某些應用不適合用關聯模型 這種NoSQL主要分成兩類
+
+1.文檔數據庫:數據通常是來於文檔中，而且文檔之間的關係非常稀少
+
+2.圖形數據庫:和文檔數據庫相反 圖形數據庫適合用在關聯非常多的情況
+
+NoSQL的共通好處是他們不再寫入時強制規定schema 這讓你的應用可以因應變化
+
+這三種模型在今日都被廣泛使用 而且每個模型都有各自的查詢語言和框架 我們討論了SQL, MapReduce, MongoDB的aggregation pipeline, Cypher, SPARQL等等
+
+雖然我們講了不少 但還有一些東西還沒被講到
+
+1.使用基因組數據的研究人員通常需要執行序列相似性搜索 這代表存儲需要很長的字串(代表DNA) 給定一個DNA串 要如何在數據庫裡找一個最相似的 我們目前提到的數據庫都沒有符合這樣的需求 這也是GenBank這樣的專門的基因組數據庫軟件處理的問題
+
+2.粒子物理學家也需要在數百億兆字節的範圍內搜索 這種規模通常也需要特別的解決方案來阻止硬件失控
+
+3.全文搜索是一種經常與數據庫一起使用的數據模型 在本書中不會提到太多 我們會在第三章提到搜尋索引
+

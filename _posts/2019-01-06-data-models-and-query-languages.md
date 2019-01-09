@@ -5,7 +5,7 @@ comments: True
 subtitle: 數據模型與查詢語言
 tags: systemDesign 
 author: jyt0532
-excerpt: 本篇文章介紹何謂數據模型與查詢語言????
+excerpt: 本篇文章介紹各種數據模型和各種查詢語言
 ---
 
 這是Designing Data-Intensive Application的第一部分第二章節: 數據模型與查詢語言
@@ -20,7 +20,7 @@ excerpt: 本篇文章介紹何謂數據模型與查詢語言????
 
 第一層:身為應用開發人員 你對於你的應用選擇了適當的對象或是資料結構來存儲 並定義了適當的API來操作(CRUD)這些資料結構
 
-第二層:存儲資料結構時 你用更廣義的data-model 像是JSON或是XML文件 關係數據庫中的table等等
+第二層:存儲資料結構時 你用更廣義的data-model 像是JSON或是XML文件 關聯數據庫中的table等等
 
 第三層:Database的工程師可以決定要如何以內存,硬碟或網路上的bytes來表示這些Json/Xml/relational/graph數據 選擇正確的表達形式可以讓數據能被查詢 搜索 處理
 
@@ -34,7 +34,10 @@ excerpt: 本篇文章介紹何謂數據模型與查詢語言????
 
 ## Relational Model vs Document Model
 
-眾所皆知的著名Data Model就是SQL 數據被組織為relations(tables) 而relation是由unordered tuples所組成 這個模型已經稱霸軟件界30年 算是極其穩定的設計 當時其他的數據模型迫使應用開發人員需要思考數據庫內部的數據表示形式 但relational model把上述細節隱藏在更姐單的接口之後 造就了它的成功
+眾所皆知的著名Data Model就是SQL 數據被組織為relations(tables) 而relation是由unordered tuples所組成 
+
+這個模型已經稱霸軟件界30年 算是極其穩定的設計 當時其他的數據模型迫使應用開發人員必須思考數據庫內部的數據表示形式 
+但relational model把上述細節隱藏在更簡單的接口之後 造就了它的成功
 
 ### NoSQL的誕生
 
@@ -46,13 +49,13 @@ excerpt: 本篇文章介紹何謂數據模型與查詢語言????
 
 3.關係模型不能很好地支持一些特殊的查詢操作
 
-4.更具多動態性(dynamic)與表現力(expressive)的數據模型
+4.更具動態性(dynamic)與表現力(expressive)的數據模型
 
-不同的應用程序有不同的需求 甚至關聯模型也可以混合著非關聯數據庫一起使用 稱為混合持久化(polyglot persistence)
+不同的應用程序有不同的需求 甚至關聯模型也可以混合著非關聯數據庫一起使用 稱為[混合持久化(polyglot persistence)](https://www.jamesserra.com/archive/2015/07/what-is-polyglot-persistence/)
 
 ### 對象關係不匹配 Object-Relational Mismatch
 
-現在大多數的應用都是使用面對對象(object-oriented)的語言來開發 這也造成了一些對於SQL的批評: 我們需要一的笨拙的轉換層 在每次讀寫的時候轉換
+現在大多數的應用都是使用面對對象(object-oriented)的語言來開發 這也造成了一些對於SQL的批評: 我們需要一個額外的笨拙的轉換層 在每次讀寫的時候轉換
 
 Object in application code <-> database rows and columns
 
@@ -111,7 +114,7 @@ Object in application code <-> database rows and columns
 }
 {% endhighlight %}
 
-雖然JSON模型減少了應用程序代碼和存儲層之間的阻抗不匹配 但JSON作爲數據編碼格式也存在問題 我們會在[文檔模式中的模式靈活性](/)中 討論這個問題
+雖然JSON模型減少了應用程序代碼和存儲層之間的阻抗不匹配 但JSON作爲數據編碼格式也存在問題 我們會在[文檔模式中的模式靈活性](/2019/01/06/data-models-and-query-languages/#%E6%96%87%E6%AA%94%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E6%9E%B6%E6%A7%8B%E9%9D%88%E6%B4%BB%E6%80%A7)中 討論這個問題
 
 JSON表達式比RMDB的多table格式具有更好的局部性 比如說你想獲取簡介 你在RMDB裡需要再另外Join 在這裏我所有東西都在document裡了
 
@@ -125,7 +128,7 @@ JSON表達式比RMDB的多table格式具有更好的局部性 比如說你想獲
 
 如果你有仔細看我們JSON的例子 你會發現`region_id`和`industry_id`是以ID形式被記錄 而不是純字串"Greater Seattle Area"和"Philanthropy" 為什麼呢? 
 
-雖然既然都是document了 輸入即使是個自由文本感覺也挺合理 但是使用標準化的列表 比如下拉選單給使用者選擇 或是auto-complete有其優勢 優勢如下
+既然都是document了 輸入即使是個自由文本感覺也挺合理 但是使用標準化的列表 比如下拉選單給使用者選擇 或是auto-complete有其優勢 優勢如下
 
 1. 各個簡介之間樣式和拼寫統一
 
@@ -160,6 +163,7 @@ JSON表達式比RMDB的多table格式具有更好的局部性 比如說你想獲
 ![Alt text]({{ site.url }}/public/DDIA/DDIA-2-4.png)
 
 這個模型其實跟JSON非常相似 但也和document數據庫一樣 IMS可以很好的處理一對多 但是對於多對多很難支持Join 開發人員必須決定是否複製數據到每個紀錄 或是手動解決引用 他們當時處理的問題 直到現在都還是document數據庫的問題
+
 而當時最被提倡的兩個解法 第一個是**關係模型(relational model)(之後也成為SQL統治了世界)** 第二個是**網路模型(network model)** 這兩個陣營的辯論延續了很長的時間 
 
 因為當初這兩個模型要解決的問題 直到今天都還在 讓我們來稍微回顧一下這辯論
@@ -178,7 +182,7 @@ JSON表達式比RMDB的多table格式具有更好的局部性 比如說你想獲
 
 #### 關聯模型Relational model
 
-這麼大家就很熟了 一個relation就是一個表(table) 也就是一堆tuples所組成 沒有像迷宮的嵌套結構 也沒有多重複雜的訪問路徑
+這個大家就很熟了 一個relation就是一個表(table) 也就是一堆tuples所組成 沒有像迷宮的嵌套結構 也沒有多重複雜的訪問路徑
 
 當你要Query你的數據庫 Query優化器會自動決定查詢的順序或是使用哪些索引 程序員幾乎不需要考慮 但如果你想要用新的方式搜索數據 你就需要建立一個新的索引 建立完後 你的Query也不用變 數據庫內部會自行利用你的新索引
 
@@ -272,6 +276,7 @@ UPDATE users SET first_name = substring_index(name, ' ', 1); 	-- MySQL
 
 直接看例子 給定一個動物物種的列表 我們想返回列表中的鯊魚
 
+聲明式語言
 {% highlight java %}
 function getSharks() {
     var sharks = [];
@@ -317,8 +322,8 @@ MapReduce既不是一個聲明式的查詢語言 也不是命令式 而是處於
 
 {% highlight sql %}
 SELECT
-	date_trunc('month', observation_timestamp) AS observation_month,
-	sum(num_animals)                           AS total_animals
+  date_trunc('month', observation_timestamp) AS observation_month,
+  sum(num_animals)                           AS total_animals
 FROM observations
 WHERE family = 'Sharks'
 GROUP BY observation_month;
@@ -376,7 +381,7 @@ db.observations.aggregate([
 
 看起來有點像SQL了(只要把match看成select就很像了) 
 
-這個各式的寓意 是NoSQL系統很可能會慢慢演進而發行SQL 儘管帶著一些偽裝
+這個故事的寓意 是NoSQL系統很可能會慢慢演進而發行SQL 儘管帶著一些偽裝
 
 ## 圖數據模型
 
@@ -643,7 +648,8 @@ SELECT ?personName WHERE {
 
 數據模型是個複雜的問題 我們快速的瀏覽了各個不同的模型 希望能讓你有廣泛的了解 要深入研究就看各位施主的應用需要
 
-歷史中 數據最開始被表示為一棵大樹(層次數據模型) 但是這不利於表示多對多的關係 所以發明了關聯模型 但到了最近 開發人員發現某些應用不適合用關聯模型 這種NoSQL主要分成兩類
+歷史中 數據最開始被表示為一棵大樹(層次數據模型) 但是這不利於表示多對多的關係 所以發明了關聯模型 但到了最近 
+開發人員發現某些應用不適合用關聯模型 適用的NoSQL主要分成兩類
 
 1.文檔數據庫:數據通常是來於文檔中，而且文檔之間的關係非常稀少
 

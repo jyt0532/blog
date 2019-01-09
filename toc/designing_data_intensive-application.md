@@ -23,7 +23,7 @@ Martin Kleppmann 前領英工程師 貢獻了許多open source專案比如Apache
 
 [Reliable, Scalable, and Maintainable Application](/2019/01/05/reliable-scalable-and-maintainable-application/)
 
-Data Models and Query Languages
+[Data Models and Query Languages](/2019/01/09/data-models-and-query-languages/)
 
 Storage and Retrieval
 

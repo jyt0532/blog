@@ -5,7 +5,7 @@ comments: True
 subtitle: 存儲與檢索
 tags: systemDesign 
 author: jyt0532
-excerpt: 本篇文章介紹
+excerpt: 本篇文章介紹存儲與檢索
 ---
 
 {% include copyright.html %}
@@ -14,7 +14,7 @@ excerpt: 本篇文章介紹
 
 本文所有圖片或代碼來自於原書內容
 
-## 存儲與檢索
+# 存儲與檢索
 
 一個數據庫最基本要完成兩件事 當給你數據的時候你存的下來 跟當跟你要數據的時候你給的出來
 

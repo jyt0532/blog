@@ -9,7 +9,7 @@ excerpt: 本篇文章介紹各種數據模型和各種查詢語言
 ---
 
 這是Designing Data-Intensive Application的第一部分第二章節: 數據模型與查詢語言
-
+{% include copyright.html %}
 本文所有圖片或代碼來自於原書內容
 
 ## 數據模型與查詢語言
@@ -17,7 +17,7 @@ excerpt: 本篇文章介紹各種數據模型和各種查詢語言
 數據模型(Data Model)大概是軟件開發中最重要的部分 你選擇的數據模型不僅影響著軟件的編寫方式 也影響著如何思考並解決問題
 
 大多數的應用 使用層層疊加的數據模型來構建 舉例來說
-
+{% include copyright.html %}
 第一層:身為應用開發人員 你對於你的應用選擇了適當的對象或是資料結構來存儲 並定義了適當的API來操作(CRUD)這些資料結構
 
 第二層:存儲資料結構時 你用更廣義的data-model 像是JSON或是XML文件 關聯數據庫中的table等等
@@ -33,7 +33,7 @@ excerpt: 本篇文章介紹各種數據模型和各種查詢語言
 第三章則會討論搜尋引擎如何運作 還有數據模型是如何實現(第三層)
 
 ## Relational Model vs Document Model
-
+{% include copyright.html %}
 眾所皆知的著名Data Model就是SQL 數據被組織為relations(tables) 而relation是由unordered tuples所組成 
 
 這個模型已經稱霸軟件界30年 算是極其穩定的設計 當時其他的數據模型迫使應用開發人員必須思考數據庫內部的數據表示形式 
@@ -54,7 +54,7 @@ excerpt: 本篇文章介紹各種數據模型和各種查詢語言
 不同的應用程序有不同的需求 甚至關聯模型也可以混合著非關聯數據庫一起使用 稱為[混合持久化(polyglot persistence)](https://www.jamesserra.com/archive/2015/07/what-is-polyglot-persistence/)
 
 ### 對象關係不匹配 Object-Relational Mismatch
-
+{% include copyright.html %}
 現在大多數的應用都是使用面對對象(object-oriented)的語言來開發 這也造成了一些對於SQL的批評: 我們需要一個額外的笨拙的轉換層 在每次讀寫的時候轉換
 
 Object in application code <-> database rows and columns
@@ -119,7 +119,7 @@ Object in application code <-> database rows and columns
 JSON表達式比RMDB的多table格式具有更好的局部性 比如說你想獲取簡介 你在RMDB裡需要再另外Join 在這裏我所有東西都在document裡了
 
 剛剛一對多的問題也在JSON格式中很好的被處理
-
+{% include copyright.html %}
 ![Alt text]({{ site.url }}/public/DDIA/DDIA-2-2.png)
 
 講到這裡 你大概可以區分出關聯模型與文檔模型的差異了
@@ -155,7 +155,7 @@ JSON表達式比RMDB的多table格式具有更好的局部性 比如說你想獲
 現在你的organization有著Company size和Website等等的資料 這時候你的應用程式就需要跟著改 如果你真的需要在應用程式支援Join的話 這幾乎無可避免 而且隨著資料量的增加 應用程式會越來越複雜
 
 ### 文檔數據庫是否在重蹈覆轍
-
+{% include copyright.html %}
 當多對多關係和Join已經在關聯數據庫用的輕鬆寫意時 document數據庫和NoSQL重啟了辯論: 要如何最好的在數據庫中表示多對多的關係
 
 來回顧一下歷史 1970年時最受歡迎的數據處理數據庫是IBM的Information Management System 他只使用了一個簡單的模型 稱為層次模型(hierarchical model)
@@ -191,7 +191,7 @@ JSON表達式比RMDB的多table格式具有更好的局部性 比如說你想獲
 文檔數據庫還原為層次模型 在父節點中儲存了嵌套記錄(比如說像是`position`或是`education`的一對多關係) 而不是存在單獨的表中
 
 但在表示多對一或是多對多的關係時 關聯數據庫和文檔數據庫並沒有根本的不同 相關項目都被一個unique identifier引用 在關聯數據庫中稱為foreign key 在文檔模型中稱為document reference 這個identifier會在讀取的時候被join或是後續的查詢來解析 
-
+{% include copyright.html %}
 所以 document model並沒有走上CODASYL的老路
 
 ### 關聯型數據庫與文檔數據庫在今日的對比
@@ -243,7 +243,7 @@ UPDATE users SET first_name = substring_index(name, ' ', 1); 	-- MySQL
 
 所以如果一個集合中的每個元素不是擁有同樣結構時 讀時模式更具優勢
 
-
+{% include copyright.html %}
 #### 查詢的數據局部性
 
 文檔通常是以一個很長的字串存成JSON或XML 所以如果應用程式需要經常訪問整個文檔(比如說render網頁) 那局部存儲就有很大的優勢 因為你不需要一直query數據庫去decorate你的id
@@ -275,7 +275,7 @@ UPDATE users SET first_name = substring_index(name, ' ', 1); 	-- MySQL
 關聯模型使用的是聲明式查詢語言 IMS和CODASYL則是使用命令式代碼來查詢數據庫
 
 直接看例子 給定一個動物物種的列表 我們想返回列表中的鯊魚
-
+{% include copyright.html %}
 聲明式語言
 {% highlight java %}
 function getSharks() {
@@ -319,7 +319,7 @@ MapReduce是Google推廣的編程模型 用於多台機器上批次處理大規�
 MapReduce既不是一個聲明式的查詢語言 也不是命令式 而是處於兩者之間 查詢的代碼是命令式 通常寫成`map()`和`reduce()` 然後這代碼會被複製到每個需要執行的機器去跑
 
 例子來了 你是個海洋生物學家 你每看到一隻鯊魚就會寫進DB 現在如果你想要知道你這個月看到多少鯊魚
-
+{% include copyright.html %}
 {% highlight sql %}
 SELECT
   date_trunc('month', observation_timestamp) AS observation_month,
@@ -366,7 +366,7 @@ db.observations.mapReduce(
 Map-Reduce在功能上也有所限制 他們必須是純函數(pure function) 意思是說他們只用傳給他們的輸入做運算 不能再發任何數據庫查詢 也不能有任何副作用 這個重要的限制 讓數據庫能以任何順序運行任何功能 並在失敗時重新跑一次
 
 方便是方便 但SQL只要寫一個query 你這裡還要寫兩個密切合作的方法 這通常比編寫單個查詢更困難 所以MongoDB2.2添加了叫做Aggregate pipeline的聲明式語言 你之後可以這樣寫
-
+{% include copyright.html %}
 {% highlight javascript %}
 db.observations.aggregate([
   { $match: { family: "Sharks" } },
@@ -425,7 +425,7 @@ db.observations.aggregate([
 4.一組屬性(key-value pair)
 
 每個**邊**包括了
-
+{% include copyright.html %}
 1.唯一的標識符(unique identifier)
 
 2.邊的起點
@@ -502,7 +502,7 @@ MATCH
   (person) -[:LIVES_IN]-> () -[:WITHIN*0..]-> (eu:Location {name:'Europe'})
 RETURN person.name
 {% endhighlight %}
-
+{% include copyright.html %}
 解讀如下
 
 > 找到滿足以下兩個條件的所有頂點(稱之為person頂點)
@@ -584,7 +584,7 @@ WITH RECURSIVE
 動詞:如果受詞是圖上的一個頂點 動詞就是連結兩者的邊
 
 再回顧一次我們要的結果
-
+{% include copyright.html %}
 ![Alt text]({{ site.url }}/public/DDIA/DDIA-2-6.png)
 
 我們一樣來產生一下左半邊的Lucy的資料
@@ -664,6 +664,6 @@ NoSQL的共通好處是他們不再寫入時強制規定schema 這讓你的應�
 1.使用基因組數據的研究人員通常需要執行序列相似性搜索 這代表存儲需要很長的字串(代表DNA) 給定一個DNA串 要如何在數據庫裡找一個最相似的 我們目前提到的數據庫都沒有符合這樣的需求 這也是GenBank這樣的專門的基因組數據庫軟件處理的問題
 
 2.粒子物理學家也需要在數百億兆字節的範圍內搜索 這種規模通常也需要特別的解決方案來阻止硬件失控
-
+{% include copyright.html %}
 3.全文搜索是一種經常與數據庫一起使用的數據模型 在本書中不會提到太多 我們會在第三章提到搜尋索引
 

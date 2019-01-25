@@ -5,7 +5,7 @@ comments: True
 subtitle: 編碼與演化
 tags: systemDesign 
 author: jyt0532
-excerpt: 本篇文章介紹
+excerpt: 本篇文章介紹編碼和演化
 ---
 
 這是Designing Data-Intensive Application的第一部分第四章節: 編碼與演化

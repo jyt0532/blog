@@ -1,0 +1,49 @@
+<script>
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+function onYouTubeIframeAPIReady(event) {
+	player = new YT.Player('blackjack', {
+		videoId: 'l2qZY5WFOYg',
+		events: {
+			'onReady': onPlayerReady,
+			'onStateChange': onPlayerStateChange
+		}
+	});
+}
+
+var pauseFlag = false;
+var totalTime = 0;
+var startTime = 0;
+var videoName = 'Blackjack';
+function onPlayerReady(event) {
+	// do nothing, no tracking needed
+}
+function onPlayerStateChange(event) {
+	// track when user clicks to Play
+	if (event.data == YT.PlayerState.PLAYING) {
+		ga('send', 'event', videoName, 'Play', 'Test Video');
+		pauseFlag = true;
+		startTime = Date.now()/1000;
+	}
+	// track when user clicks to Pause
+	if (event.data == YT.PlayerState.PAUSED && pauseFlag) {
+		ga('send', 'event', videoName, 'Pause', 'Test Video');
+		pauseFlag = false;
+		totalTime = totalTime + Date.now()/1000 - startTime;
+	}
+	// track when video ends
+	if (event.data == YT.PlayerState.ENDED) {
+		ga('send', 'event', videoName, 'Finished', 'Test Video');
+		totalTime = totalTime + Date.now()/1000 - startTime;
+	}
+}
+window.onunload = function(){
+	if(totalTime > 0){
+        	ga('send', 'event', videoName, 'Total', 'Test Video', parseInt(totalTime, 10));
+	}
+}
+</script>
+

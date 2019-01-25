@@ -8,6 +8,8 @@ author: jyt0532
 excerpt: 本篇文章介紹
 ---
 
+{% include copyright.html %}
+
 這是Designing Data-Intensive Application的第一部分第三章節: 存儲與檢索
 
 本文所有圖片或代碼來自於原書內容

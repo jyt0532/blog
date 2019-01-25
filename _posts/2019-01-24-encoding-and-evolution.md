@@ -11,8 +11,8 @@ excerpt: 本篇文章介紹
 這是Designing Data-Intensive Application的第一部分第四章節: 編碼與演化
 
 本文所有圖片或代碼來自於原書內容
-
-## 編碼與演化
+{% include copyright.html %}
+# 編碼與演化
 
 一個應用程序 無可避免的會隨著時間變化 不論是新產品的推出 對需求的深入了解 或是商業環境的變化 總是伴隨著**功能的修改** 功能的修改 大多數情況也意味著要更改底層存儲的數據 
 可能是加一些新的field 或是用一個完全不同的表達方式
@@ -24,10 +24,10 @@ excerpt: 本篇文章介紹
 
 Server端: 通常需要進行rolling upgrade或是staged rollout 也就是將新版本部署到少數幾個節點 跑一些測試看有沒有問題 都沒問題再慢慢部署到其他的節點 這樣就不需要中斷服務 支持可演化性
 
-客戶端: 除非你要求用戶強制升級(通常是不好的體驗) 不然客戶升不升級看客戶心情
+Client端: 除非你要求用戶強制升級(通常是不好的體驗) 不然客戶升不升級看客戶心情
 
 這代表 新舊版本的代碼或是新舊數據格式 可能會在系統中同時共處 想要系統正確的運作 就必須要保證**雙向兼容**
-
+{% include copyright.html %}
 **向後兼容(backward compatibility)**: 新代碼可以讀舊數據
 
 **向前兼容(forward compatibility)**: 舊代碼可以讀新數據
@@ -42,24 +42,24 @@ Server端: 通常需要進行rolling upgrade或是staged rollout 也就是將新
 
 3.如何使用這些格式進行數據存儲和通信(REST, RPC, Messaging queues)
 
-### 編碼數據的格式 Formats for encoding data
-
+## 編碼數據的格式 Formats for encoding data
 我們的程序使用兩種形式的數據
 
-1.在內存中 數據被保存在object, struct, lists, arrays, hash tables, trees等等 這些資料結構針對CPU的的訪問操作進行優化
+1.在內存中 數據被保存在object, struct, lists, arrays, hash tables, trees等等資料結構中  這些資料結構針對CPU的的訪問操作進行優化
 
-2.數據寫入文件 或是需要在網路上傳輸的話 你需要**編碼(encode)**成self-contained的自結序列(比如JSON) 
-這個字節序列表示會與通常在內存中使用的數據結構完全不同(比如說 因為每個process有自己獨立的位址空間 所以一個process中的pointer對於其他的process一點意義都沒有)
+2.數據寫入文件 或是需要在網路上傳輸的話 你需要**編碼(encode)**成self-contained的字節序列(比如JSON) 
+這個字節序列表示會與通常在內存中使用的數據結構完全不同
 
 所以 如果需要在兩個表達方式之間轉換 內存中表示到字節序列的轉換稱為**編碼(Encoding)或是序列化(serialization) 或是編組(marshalling)** 
 
 反之 稱為**解碼(Decoding) 或是解析(Parsing) 或是反序列化(deserialization) 或是反編組(unmarshalling)**
 
-> 本書中第七章也會出現**序列化**這個詞 而且有完全不同的含義 為了避免術語重載 本書中堅持使用編碼(Encoding)來表示內存中表示到字節序列的轉換
+> 本書中第七章也會出現**序列化**這個詞 而且有完全不同的含義 為了避免術語重載 本書中堅持使用編碼(Encoding)來代表內存表示到字節序列表示的轉換
 
 這是一個很常見的問題 所以有很多library和編碼格式可以選擇
+{% include copyright.html %}
 
-#### 語言所定的格式
+### 語言特定 的格式
 
 有許多語言 都有支持將內存對象編碼為字節序列 比如Java的`java.io.Serializable` Ruby的`Marshal` Python的`pickle`等等 
 
@@ -73,32 +73,32 @@ Server端: 通常需要進行rolling upgrade或是staged rollout 也就是將新
 
 4.效率也往往不佳(編碼或解碼所花費的CPU時間以及編碼結構的大小)
 
-所以通常採用語言內置編碼通常是一個壞主意
+所以通常採用語言內建編碼通常是一個壞主意
 
-#### JSON XML和二進制
+### JSON XML和二進制
 
 如果要說哪個編碼可以被各種不同語言編寫跟讀取 絕對是先想到JSON和XML
 
 但XML的冗長和不必要的複雜度常被詬病 JSON受歡迎是因為在Web瀏覽器中的支持 CSV則是功能弱了點
 
-JSON XML和CSV都是文本格式 因此具有人類可讀性 但也有些問題
+JSON,XML和CSV都是文本格式 因此具有人類可讀性 但也有些問題
 
 1.數字的編碼有些ambiguity 比如說XML和CSV不能區分數字和字符串(除非你知道schema) JSON雖然可以區分字符串和數字 但不區分整數和浮點數 而且不能指定精度
 
 這個問題在數字很大的時候更麻煩 比2^53還大的整數 分析會變得不準確
 
-2.JSON和XML對Unicode字符串有很好的支持 但不支持二進制數據(sequence of bytes without a character encoding) 可是二進制串是很實用的功能 所以解決方式就是用Base64來為二進制串編碼來繞開限制 但是這會讓傳輸的大小增加33%
+2.JSON和XML對Unicode字符串有很好的支持 但不支持binary string 可是二進制字串是很實用的功能 所以解決方式就是用Base64來為二進制字串編碼成文本來繞開限制 但是這會讓傳輸的大小增加33%
 
 3.XML跟Json都有schema可以選 這些schema語言很強大但也很難學
 
 4.CSV沒有任何schema 所以應用程式可以自己決定每個row/column代表什麼 但CSV也是個相當模糊的格式 如果一個值裡面有著逗號或是換行 那就很麻煩了
-
+{% include copyright.html %}
 儘管存在這些缺陷 但JSON XML和CSV已經足夠用於很多目的 特別是作為**數據交換格式**(將數據從一個組織發送到另一個組織) 這些格式用起來都不難 難的地方是讓不同的組織達成一致
 
 #### 二進制編碼
 
 JSON比XML簡潔 但是跟二進制比 還是太佔空間 
-所以有很多二進制編碼版本JSON(MessagePack BSON BJSON UBJSON BISON和Smile)跟二進制編碼版本XML(WBXML和Fast Infoset)出現 
+所以有很多二進制編碼版本JSON(MessagePack, BSON, BJSON, UBJSON, BISON和Smile)跟二進制編碼版本XML(WBXML和Fast Infoset)出現 
 雖然這些格式已經被各種各樣的領域所採用 但是沒有一個像JSON和XML的文本版本那樣被廣泛採用
 
 直接來看個例子 以下是JSON文檔
@@ -111,9 +111,9 @@ JSON比XML簡潔 但是跟二進制比 還是太佔空間
 {% endhighlight %}
 我們來看用MessagePack編碼會怎麼樣 MessagePack是Json的一種二進制編碼
 
-1.第一個byte `83` 低四位(0x03)代表有三個 高四位(0x80)代表是objects
+1.第一個byte`83` 低四位(0x03)代表有三個 高四位(0x80)代表是objects
 
-2.第二個byte `a8` 低四位(0x08)代表有三個 高四位(0xa0)代表是字串 表示長度是8的字串
+2.第二個byte`a8` 低四位(0x08)代表有三個 高四位(0xa0)代表是字串 表示長度是8的字串
 
 3.接下來八個字節是ASCII字符串形式的字段名稱`userName`
 
@@ -132,7 +132,7 @@ Apache Thrift和Protocol Buffers是基於相同原理的二進制編碼庫
 
 Protocol Buffers由Google開發 Thrift由Facebook開發 這兩個都需要schema來encode數據
 
-如過要用Thrift對同樣數據編碼 你需要定義Thrift的IDL(interface definition language)來描述schema
+如果要用Thrift對同樣數據編碼 你需要定義Thrift的IDL(interface definition language)來描述schema
 
 {% highlight cpp %}
 struct Person {
@@ -150,7 +150,7 @@ message Person {
     repeated string interests       = 3;
 }
 {% endhighlight %}
-
+{% include copyright.html %}
 其實Thrift有兩種不同的二進制編碼格式 BinaryProtocol和CompactProtocol 先來看BinaryProtocol 只需要使用59 bytes
 
 ![Alt text]({{ site.url }}/public/DDIA/DDIA-4-2.png)
@@ -210,7 +210,7 @@ record Person {
     ] 
 }
 {% endhighlight %}
-
+{% include copyright.html %}
 首先 注意schema中沒有field tag 而且如果我們用Avro編碼同樣的紀錄 只需要32bytes 這是目前最小的
 
 一樣 附上編碼方式
@@ -239,7 +239,7 @@ Avro庫會去同時看讀者schema跟寫者schema 來找出差異 並做出轉�
 
 2.比如讀者有但寫者沒有的field 就用default值
 
-3.比如寫者養但讀者沒有的field  就忽略
+3.比如寫者有但讀者沒有的field  就忽略
 
 #### Schema演變原則
 
@@ -265,7 +265,7 @@ Avro庫會去同時看讀者schema跟寫者schema 來找出差異 並做出轉�
 問題來了 一個應用程式要解碼的時候 到底要怎麼知道寫者是用哪個版本? 總不能傳輸數據的時候都把schema一起傳吧 某些時候schema檔案還比數據本身大
 
 以下討論這種不同的情況
-
+{% include copyright.html %}
 1.很多紀錄的大文件:
 比如說Hadoop環境中 用於存儲數百萬條紀錄的大文件 每個紀錄都用相同schema 這樣只需要在文件的一開始附上一個寫者schema就可以
 
@@ -299,7 +299,7 @@ Thrift和Protobuf依賴於代碼生成: 這對於Jaca, C, C++這種靜態語言�
 
 Avro為靜態語言提供了可選的代碼生成功能 但也可以在不生成任何代碼的情況下使用 這個屬性 特別適用於動態類型的數據處理語言如Apache Pig 在Pig中 你可以打開一些Avro文件 分析 並由Avro輸出 完全不用想schema的事
 
-#### Schema的優點
+### Schema的優點
 
 相較於Json, XML, CSV 我們看到了Protocol Buffers, Thrift和Avro都使用了schema來描述二進制編碼 因為實現起來簡單 用起來更簡單 所以很多語言都有支持
 
@@ -314,6 +314,7 @@ Avro為靜態語言提供了可選的代碼生成功能 但也可以在不生成
 4.對於靜態類型的語言 從模式生成代碼是很有用的 這讓你可以在編譯時進行類型檢查
 
 簡而言之 schema的演化也讓我們在某種程度上有著跟schema-less或是schema-on-read有著類似的彈性 也可以更好的保證你數據的安全和提供更好的工具
+{% include copyright.html %}
 
 ## 數據流的類型
 
@@ -321,17 +322,15 @@ Avro為靜態語言提供了可選的代碼生成功能 但也可以在不生成
 
 常見的需要編碼的數據流如下
 
-1.Via databases(#通過數據庫)
+1.[Via databases](#通過數據庫)(通過數據庫)
 
-2.Via service calls(#通過服務調用)
+2.[Via service calls](#通過服務調用---rest與rpc)(通過服務調用)
 
-3.Via asynchronous messaging passing(#通過異步消息傳遞)
+3.[Via asynchronous messaging passing](#通過異步消息傳遞)(通過異步消息傳遞)
 
 ### 通過數據庫
 
-寫入數據庫的過程對數據進行編碼 讀取數據庫的過程對數據進行解碼 
-
-這是很好理解的情況
+寫入數據庫的過程對數據進行編碼 讀取數據庫的過程對數據進行解碼 這是很好理解的情況 你可以想成是現在的你寫了一些數據 未來的你讀了一些數據
 
 向後兼容: 向後兼容當然是很重要的 不然未來的你怎麼讀取現在的你給他的數據呢
 
@@ -356,7 +355,7 @@ Avro為靜態語言提供了可選的代碼生成功能 但也可以在不生成
 
 server提供公開API讓client呼叫 被server公開的API稱為service
 
-Web已如下的方式工作: Client(瀏覽器)向web server發出請求 使用GET請求下載HTML/CSS/JavaScript等等 或是使用POST來寫數據 彼此的溝通都用大家都同意的協議和數據格式(HTTP, URL, SSL/TLS, HTML) 所以任何瀏覽器可以發請求到任何server
+Web以如下的方式工作: Client(瀏覽器)向web server發出請求 使用GET請求下載HTML/CSS/JavaScript等等 或是使用POST來寫數據 彼此的溝通都用大家都同意的協議和數據格式(HTTP, URL, SSL/TLS, HTML) 所以任何瀏覽器可以發請求到任何server
 
 當然 server本身也可能是別的server的client 比如說應用程式後端就是數據庫的client 這種方法常用於將大型的應用程序按照功能切成幾個比較小的服務 當某個服務需要數據或需要請求時 再向其他服務發出請求 這種構建應用程序的方式稱之為面向服務的體系結構(service-oriented architecture SOA) 也稱為微服務架構(microservice architecture)
 
@@ -369,7 +368,7 @@ Web已如下的方式工作: Client(瀏覽器)向web server發出請求 使用GE
 有兩種流行的Web服務方法 REST和SOAP
 
 SOAP: XML的協議用來發出網路API的請求 SOAP API網路服務是由某種基於xml的語言來描述 這個語言稱為WSDL(Web Service Description Language) WSDL支持代碼生成 所以客戶可以使用本地類跟方法調用來訪問遠端的服務 這在靜態語言中特別好用 
-
+{% include copyright.html %}
 由於WSDL的設計不是人類可讀的 所以SOAP的用戶在很大程度上依賴於工具支持 代碼生成跟IDE
 
 儘管SOAP及其各種擴展表面上是標準化的 但不同廠商的實現之間的互相操作常常造成問題
@@ -379,7 +378,7 @@ REST風格的API傾向於更簡單的方法 通常涉及較少的代碼生成和
 
 #### RPC的問題
 
-RPC(Remote Procedure Call) 希望你再往遠端發請求的時候 **看起來就像在調用本地的方法**一樣 雖然想法很好 但有著基本上的問題 因為遠端請求跟本地方法就是不一樣
+RPC(Remote Procedure Call) 目的是希望你在往遠端發請求的時候 **看起來就像在調用本地的方法**一樣 雖然想法很好 但有著基本上的問題 因為遠端請求跟本地方法就是不一樣
 
 1.本地函數調用可預測: 呼叫一個方法的成功失敗 僅取決於你給入的參數 但是遠端請求完全不是 可能是網路問題導致訊息丟失 或是遠端服務器很慢或壞了等等 這完全不在你控制的範圍內 
 
@@ -420,7 +419,7 @@ Client發送一個消息給一個中間者 稱為message broker或message queue�
 
 當然 這個通常是單向的溝通 發送的人通常不期望接收的人的回覆 這種發送模式是異步的(asynchronous) 發送的人傳了之後 就忘記它了
 
-##### Message queue
+#### Message queue
 
 以前 Message queue主要是被TIBCO, IBM WebSphere和webMethods等公司的商業軟件佔領 但現在有很多其他選擇 比如說RabbitMQ, ActiveMQ, HornetQ, NATS和Apache Kafka等等
 
@@ -432,7 +431,7 @@ message queue通常不要求任何特定的數據模型 就只是sequence of byt
 ## 總結
 
 本章中 我們討論了如何把內存的資料結構轉成網路/數據庫的byte 我們看到了編碼的細節不但影響效率 也影響了應用程式的架構跟演化的彈性
-
+{% include copyright.html %}
 我們知道許多服務都需要支持rolling upgrade(新版本的服務逐步部署到少數節點 再慢慢部署到所有節點) 不但可以在不關閉服務器的情況下安全的更新程式 更鼓勵了頻繁的部署小改動 這對於應用程式的可演化性(evolvability)非常有幫助
 
 當然我們也強調很多次 我們必須假設在同一個時間不同的節點可能會跑不同版本的程式 所以數據編碼的前後相容性就非常重要
@@ -441,7 +440,9 @@ message queue通常不要求任何特定的數據模型 就只是sequence of byt
 
 1.編程語言特定的編碼僅限於單一編程語言 而且沒什麼兼容性
 
-2.JSON, XML和CSV等文本格式非常普遍 有無兼容性就看你怎麼用它們 有一些有可選擇的schema language 有時候有用
+2.JSON, XML和CSV等文本格式非常普遍 有無兼容性就看你怎麼用它們 有一些有可選擇的schema language 有時候有用 有時候反而是阻礙 
+
+還有一點要小心 就是這種文本通常對於數字,標點符號或是二進位字串定義模糊 要小心使用
 
 3.Thrift, Protocol Buffers和Avro的二進制語言使用直白的語義定義了前後兼容性 還省了不少空間 這些模式可以用靜態語言的代碼生成 缺點就是必須在使用前先編碼解碼
 

@@ -24,7 +24,7 @@ excerpt: 本篇文章介紹
 我們會在[事務處理還是分析?](#事務處理系統還是分析系統)探討區別 並在[列存儲](#列存儲)中討論一系列針對分析存儲引擎的優化
 
 我們會研究兩大類的存儲引擎 日誌結構(log-structured)的存儲引擎 以及面向頁面(page-oriented)的存儲引擎
-
+{% include copyright.html %}
 抓穩 出發囉
 
 ## 數據庫的數據結構
@@ -79,7 +79,7 @@ key跟value甚至可以是任意的Json
 42,{"name":"San Francisco","attractions":["Golden Gate Bridge"]}
 42,{"name":"San Francisco","attractions":["Exploratorium"]}
 {% endhighlight %}
-
+{% include copyright.html %}
 很好懂 看起來不起眼的實作 卻已經描述了**日誌結構**的精神 
 
 許多數據庫內部都是使用日誌(log) 也就是一個append-only的文件 
@@ -172,7 +172,7 @@ A4. merge舊的檔案的時候 也不用擔心數據隨著時間跑來跑去的�
 除了保證順序的同時 還不讓key重複
 
 缺點就是寫入比較慢
-
+{% include copyright.html %}
 優點如下:
 
 1.合併檔案簡單又高效: 其實就是merge sort
@@ -372,7 +372,7 @@ B樹跟LSM樹都無法高效的查詢 因為我們有對經度跟緯度分別索
 
 除了二維空間還能幹什麼呢 我們還可以搜尋顏色! 怎麼做呢 就把(R, G, B)作個多維索引 就可以找到你想找的相近顏色的東西! 或者是任何二維的數據 比如說(時間 溫度) 你就可以找2013年五月氣溫在20-25度的日期
 
-
+{% include copyright.html %}
 
 #### 全文搜索和模糊索引
 
@@ -497,7 +497,7 @@ GROUP BY
 ![Alt text]({{ site.url }}/public/DDIA/DDIA-3-13.png)
 
 通常情況 distinct的值的數目會比總row的數目少很多(你可能有數十億的交易 但卻只有十萬個商品) 我們對於**每個出現過的value都建了一個bitmap** 如上圖所示
-
+{% include copyright.html %}
 而大多數情況下 每一個bitmap都會有大量個0(sparse) 這又讓我們可以再次使用Run-length encoding壓縮
 
 而且這種存儲很適合這種操作

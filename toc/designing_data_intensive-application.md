@@ -21,15 +21,19 @@ Martin Kleppmann 前領英工程師 貢獻了許多open source專案比如Apache
 
 ## Part1: Foundations of Data Systems
 
+[Part1: Intro](/)
+
 [Reliable, Scalable, and Maintainable Application](/2019/01/05/reliable-scalable-and-maintainable-application/)
 
 [Data Models and Query Languages](/2019/01/09/data-models-and-query-languages/)
 
-Storage and Retrieval
+[Storage and Retrieval](/2019/01/19/storage-and-retrieval/)
 
-Encoding and Evolution
+[Encoding and Evolution](/2019/01/24/encoding-and-evolution/)
 
 ## Part2: Distributed Data
+
+Part2: Intro
 
 Replication
 
@@ -42,6 +46,8 @@ The Trouble with Distributed Systems
 Consistency and Consensus
 
 ## Part3: Derived Data
+
+Part3: Intro
 
 Batch Processing
 

@@ -35,7 +35,7 @@ Martin Kleppmann 前領英工程師 貢獻了許多open source專案比如Apache
 
 Part2: Intro
 
-Replication
+[Replication](/2019/01/26/replication/)
 
 Partitioning
 

@@ -37,7 +37,7 @@ Part2: Intro
 
 [Replication](/2019/01/26/replication/)
 
-Partitioning
+[Partitioning](/2019/03/12/partitioning/)
 
 Transactions
 

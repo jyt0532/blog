@@ -1,27 +1,39 @@
 ---
 layout: post
-title: Designing Data-Intensive Application - Transactions
+title: Designing Data-Intensive Application - Transactions - ACID
 comments: True 
-subtitle: 事務
+subtitle: 事務 - ACID
 tags: systemDesign 
 author: jyt0532
-excerpt: 本篇文章介紹事務
+excerpt: 本篇文章介紹事務以及ACID的概念
 ---
 
-這是Designing Data-Intensive Application的第二部分第三章節: 事務
+這是Designing Data-Intensive Application的第二部分第三章節的Part1: ACID
+
+
+筆者註: 這個章節書中敘述的方式太過凌亂 對於初學者非常吃力 筆者改變了介紹的方式甚至例子都做了更改 在本部落格中將事務一章分為三篇文章
+
+事務Part1 - ACID
+
+事務Part2 - 弱隔離級別
+
+事務Part3 - 可串行化
+
+本篇是系列文的Part1
 
 本文所有圖片或代碼來自於原書內容
 {% include copyright.html %}
+
 
 # 事務
 
 在數據系統的現實世界中 很多事情都可能出錯
 
-1.數據庫軟硬體都可能再任意時刻發生故障(包括寫操作進行到一半時)
+1.數據庫軟硬體都可能在任意時刻發生故障(包括寫操作進行到一半時)
 
 2.應用程序可能在任意時刻崩潰(包括一系列操作的中間)
 
-3.網路中斷 切斷數據庫和應用的連接
+3.網路中斷可能切斷數據庫和應用的連接
 
 4.多個客戶端可能會同時寫入數據庫 覆蓋彼此的改動
 
@@ -33,7 +45,8 @@ excerpt: 本篇文章介紹事務
 
 數十年來 事務(Transaction)一直是簡化這些問題的首選機制
 
-事務是應用程序將**多個讀寫操作組合成一個邏輯單元**的一種方式 事務中的所有讀寫操作被視作單個操作來執行 整個事務要馬成功提交(commit) 要馬失敗(abort) 失敗後需要roll back 並且可以安全地重試
+事務是應用程序將**多個讀寫操作組合成一個邏輯單元**的一種方式 事務中的所有讀寫操作被視作單個操作來執行 
+整個事務要馬成功提交(commit) 要馬失敗(abort) 失敗後需要roll back同一個事務所有的讀寫操作 並且可以安全地重試
 
 問題變得簡單很多 因為我們不用再擔心**部分失敗**
 
@@ -44,8 +57,6 @@ excerpt: 本篇文章介紹事務
 本章將研究許多出錯案例 並探索數據庫用於防範這些問題的算法 還會提到許多並發控制的領域 和各種race condition 以及數據庫如何實現read committed, snapshot isolation和serializability
 
 本章同時適用於單機數據庫與分佈式數據庫 下一章會重點討論僅出現在分佈式系統中的特殊挑戰
-
-
 
 ## 事務的重要概念
 
@@ -83,13 +94,15 @@ ACID代表原子性(Atomicity) 一致性(Consistency), 隔離性(Isolation)和�
 
 #### 隔離性(Isolation)
 
-大多數數據庫都會同時被多個客戶端訪問 如果它們各自讀寫數據庫的不同部分 但如果他們是各自寫 那就可能會遇到並發問題或race condition
+大多數數據庫都會同時被多個客戶端訪問 如果它們各自讀寫數據庫的不同部分那當然沒什麼問題 但如果他們訪問的是相同的對象 那就可能會遇到並發問題或race condition
 
 ![Alt text]({{ site.url }}/public/DDIA/DDIA-7-1.png)
 
 假設你有兩個客戶端同時在數據庫中增長一個計數器 每個客戶端需要讀取計數器的當前值 加 1  再回寫新值 原本應該要是44的結果卻是43
 
-隔離性意思是 **同時執行的事務是相互隔離的** 傳統的數據庫教科書將隔離性形式化為可序列化(Serializability) 意味著每個事務可以假裝它是唯一在整個數據庫上運行的事務
+隔離性意思是 **同時執行的事務是相互隔離的** 傳統的數據庫教科書將隔離性形式化為可串行化(Serializability) 意味著每個事務可以假裝它是唯一在整個數據庫上運行的事務
+
+可是實踐上這是很困難的而且開銷非常大 所以現實生活中 我們會在Isolation這個面向做出取捨 我們會在[Part2](/)中討論這個問題
 
 #### 持久性(Durability)
 
@@ -135,7 +148,7 @@ ACID代表原子性(Atomicity) 一致性(Consistency), 隔離性(Isolation)和�
 假設我們現在想找一個用戶未讀的email
 
 {% highlight sql %}
-SELECT COUNT（*）FROM emails WHERE recipient_id = 2 AND unread_flag = true
+SELECT COUNT (*) FROM emails WHERE recipient_id = 2 AND unread_flag = true
 {% endhighlight %}
 
 可是每次都跑這個有點太慢 我們可以另外存一個計數器 每收到一個新信 計數器加一 每讀一封信 計數器減一
@@ -161,7 +174,7 @@ SELECT COUNT（*）FROM emails WHERE recipient_id = 2 AND unread_flag = true
 
 這些特殊的狀況都不好處理 所以存儲引擎對於單個對象也需要提供原子性和隔離性
 
-原子性可以透過log來修復任何崩潰情況(參閱[讓B-tree更可靠](/2019/01/19/storage-and-retrieval/#b-tree-1)) 或是每個對象都有個獨立的鎖 一次只有一個thread可以訪問一個對象
+原子性可以透過log來修復任何崩潰情況(參閱[讓B-tree更可靠](/2019/01/19/storage-and-retrieval/#讓b-tree更可靠)) 或是每個對象都有個獨立的鎖 一次只有一個thread可以訪問一個對象
 
 某些數據庫也提供複雜一點的原子操作 比如說[比較和設置(CAS, compare-and-set)](#) 當值沒有被其他人修改過時 才允許執行寫操作
 
@@ -203,47 +216,25 @@ SELECT COUNT（*）FROM emails WHERE recipient_id = 2 AND unread_flag = true
 
 4.如果事務在數據庫之外也有副作用 那即使事務中止 也可能發生這些副作用 常見例子是發電子郵件提醒 如果你想確保幾個不同的系統一起提交或放棄 [二階段提交](/)可以提供幫助
 
-分隔分隔分隔分隔分隔分隔分隔分隔分隔分隔分隔分隔分隔分隔分隔分隔
+## 總結
 
+本文中我們討論了ACID的各個意思 但其中一個保證開銷非常非常大 那就是Isolation隔離性的保證
 
+完全的事務隔離 稱為可串行化(Serializability) 需要花費非常多的心力 我們會在[Part3](/)中討論可串行化
 
-## 弱隔離級別
+但除了可串行化之外 我們有一些稍微弱化的保證 犧牲一點隔離性換取高一點的性能
 
-如果兩個事務不觸及相同的數據 那就可以安全的並行 但如果一個事務需要讀取由另一個事務修改的數據 或是兩個事務同時修改相同數據 並發問題才會出現
-
-並發bug很難通過測試找到 你也很難reproduce因為只有在特定的時機才會觸發
-
-因為這個原因 數據庫希望可以達到**事務隔離(transaction isolation)**的目標 讓開發者不需要擔心並發問題
-
-> serializable isolation(可序列化隔離)代表說數據庫保證這些事務跑起來跟一個一個跑結果是一樣的
-
-本節會討論實踐中的幾種弱隔離
-
-
-https://my.oschina.net/feichexia/blog/202520
-
-
-本書在這個章節的排版結構非常的差 基本上就是把所有概念全部照順序丟進來 
-沒有一個好懂的架構 讓我花了很多冤枉時間 我現在就用好懂的方式把作者想描述的概念寫下來
-
-我們知道 如果兩個事務處理的對象 涉及相同的數據 那就會有併發問題 
-
-並發bug很難通過測試找到 你也很難reproduce因為只有在特定的時機才會觸發
-
-當然最簡單的方式 就是當一個事務在做事的時候 另一個需要對相同物件操作的事務就是乖乖的等 天下太平 但是這個代價太高
-
-所以不同數據庫有這不同的取捨 我們可以只隔離到某種程度 承擔一些我們可以接受的並發問題來換取速度
 
 以下是四種不同的隔離程度 跟各種隔離程度可能會發生的並發問題
 
-| 隔離級別 | Dirty Read | Non-repeatable read  | Phantom read
-| --- | --- | --- | --- |
-| Read Uncommited      | O | O | O |
-| Read Commited(Non-repeatable read) | X | O | O |
-| Repeatable read      | X | X | O |
-| Serializable      | X | X | X |
+| 隔離級別 | Dirty Write | Dirty Read | Non-repeatable read  | Phantom read
+| --- | --- | --- | --- | --- |
+| None | O | O | O | O |
+| Read Uncommited      | X | O | O | O |
+| Read Commited(Non-repeatable read) | X | X | O | O |
+| Repeatable read      | X | X | X | O |
+| Serializable      | X | X | X | X |
 
-先來介紹各種並發問題 再來說各種隔離程度是如何避免那些病發問題
-
+我們在[Part2](/)會探討各個隔離級別以及實踐方式
 
 

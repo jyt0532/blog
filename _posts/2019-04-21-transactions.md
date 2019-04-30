@@ -102,7 +102,7 @@ ACID代表原子性(Atomicity) 一致性(Consistency), 隔離性(Isolation)和�
 
 隔離性意思是 **同時執行的事務是相互隔離的** 傳統的數據庫教科書將隔離性形式化為可串行化(Serializability) 意味著每個事務可以假裝它是唯一在整個數據庫上運行的事務
 
-可是實踐上這是很困難的而且開銷非常大 所以現實生活中 我們會在Isolation這個面向做出取捨 我們會在[Part2](/)中討論這個問題
+可是實踐上這是很困難的而且開銷非常大 所以現實生活中 我們會在Isolation這個面向做出取捨 我們會在[Part2](/2019/04/29/weak-isolation-levels/)中討論這個問題
 
 #### 持久性(Durability)
 
@@ -235,6 +235,6 @@ SELECT COUNT (*) FROM emails WHERE recipient_id = 2 AND unread_flag = true
 | Repeatable read      | X | X | X | O |
 | Serializable      | X | X | X | X |
 
-我們在[Part2](/)會探討各個隔離級別以及實踐方式
+我們在[Part2](/2019/04/29/weak-isolation-levels/)會探討各個隔離級別以及實踐方式
 
 

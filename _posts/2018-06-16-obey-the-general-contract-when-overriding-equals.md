@@ -239,6 +239,7 @@ p.equals(cp) return true
 
 <br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br>
+
 #### 再現高壇
 
 答案就是 繼承做不到
@@ -349,7 +350,7 @@ public boolean equals(Object o) {
 
 ## 其他注意事項
 
-1.[覆蓋equals時 總要覆蓋hashCode](/2018/06/17/always-override-hashcode-when-you-override-equals/)
+1.[覆蓋equals時 總要覆蓋hashCode](/2018/06/23/always-override-hashcode-when-you-override-equals/)
 
 2.不要企圖讓equals方法太過複雜
 

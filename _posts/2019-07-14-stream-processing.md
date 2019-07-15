@@ -5,7 +5,7 @@ comments: True
 subtitle: 流處理 - 傳遞事件流
 tags: systemDesign 
 author: jyt0532
-excerpt: 本篇文章介紹流處理
+excerpt: 本篇文章介紹流處理第一部分 - 傳遞事件流
 ---
 
 這是Designing Data-Intensive Application的第三部分第二章節Part1: 傳遞事件流

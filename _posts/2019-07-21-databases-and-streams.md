@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Designing Data-Intensive Application - Stream Processing - 數據庫與流 
+title: Designing Data-Intensive Application - Stream Processing - Databases and Streams 
 comments: True 
 subtitle: 流處理 - 數據庫與流
 tags: systemDesign 
@@ -14,7 +14,7 @@ excerpt: 本篇文章介紹流處理第二部分 - 數據庫與流
 
 流處理Part2 - 數據庫與流
 
-流處理Part3 - 流處理
+流處理Part3 - 處理流
 
 本篇是系列文的Part2
 

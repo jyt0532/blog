@@ -21,7 +21,7 @@ Martin Kleppmann 前領英工程師 貢獻了許多open source專案比如Apache
 
 ## Part1: Foundations of Data Systems
 
-[Part1: Intro](/)
+[Part1: Intro - Foundations of Data Systems](/2019/01/26/foundation-of-data-systems/)
 
 [Reliable, Scalable, and Maintainable Application](/2019/01/05/reliable-scalable-and-maintainable-application/)
 

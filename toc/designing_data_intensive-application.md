@@ -35,11 +35,14 @@ Martin Kleppmann 前領英工程師 貢獻了許多open source專案比如Apache
 
 Part2: Intro
 
-[Replication](/2019/01/26/replication/)
+[Replication](/2019/02/12/replication/)
 
 [Partitioning](/2019/03/12/partitioning/)
 
-Transactions
+[Transactions](/2019/04/21/transactions/)
+- [ACID](/2019/04/21/transactions/)
+- [弱隔離級別](/2019/04/29/weak-isolation-levels/)
+- [可串行化](/2019/05/11/serializability/)
 
 The Trouble with Distributed Systems
 
@@ -51,7 +54,10 @@ Part3: Intro
 
 Batch Processing
 
-Stream Processing
+[Stream Processing](/2019/07/14/stream-processing/)
+- [傳遞事件流](/2019/07/14/stream-processing/)
+- [數據庫與流](/2019/07/21/databases-and-streams/)
+- [處理流](/2019/07/28/processing-streams/)
 
 The Future of Data System
 

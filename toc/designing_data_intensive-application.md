@@ -40,9 +40,12 @@ Part2: Intro
 [Partitioning](/2019/03/12/partitioning/)
 
 [Transactions](/2019/04/21/transactions/)
-- [ACID](/2019/04/21/transactions/)
-- [弱隔離級別](/2019/04/29/weak-isolation-levels/)
-- [可串行化](/2019/05/11/serializability/)
+
+1. [ACID](/2019/04/21/transactions/)
+
+2. [弱隔離級別](/2019/04/29/weak-isolation-levels/)
+
+3. [可串行化](/2019/05/11/serializability/)
 
 The Trouble with Distributed Systems
 
@@ -55,9 +58,12 @@ Part3: Intro
 Batch Processing
 
 [Stream Processing](/2019/07/14/stream-processing/)
-- [傳遞事件流](/2019/07/14/stream-processing/)
-- [數據庫與流](/2019/07/21/databases-and-streams/)
-- [處理流](/2019/07/28/processing-streams/)
+
+1. [傳遞事件流](/2019/07/14/stream-processing/)
+
+2. [數據庫與流](/2019/07/21/databases-and-streams/)
+
+3. [處理流](/2019/07/28/processing-streams/)
 
 The Future of Data System
 

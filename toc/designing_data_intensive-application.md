@@ -33,7 +33,7 @@ Martin Kleppmann 前領英工程師 貢獻了許多open source專案比如Apache
 
 ## Part2: Distributed Data
 
-Part2: Intro
+[Part2: Intro - Distributed Data](/2019/09/27/distributed-data/)
 
 [Replication](/2019/02/12/replication/)
 

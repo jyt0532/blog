@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Designing Data-Intensive Application - Part1 Intro
+title: Designing Data-Intensive Application - Part1 Intro - Foundation of Data Systems
 comments: True 
 subtitle: 數據系統的基本概念
 tags: systemDesign 

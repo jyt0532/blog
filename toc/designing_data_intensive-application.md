@@ -47,7 +47,7 @@ Martin Kleppmann 前領英工程師 貢獻了許多open source專案比如Apache
 
 3. [可串行化](/2019/05/11/serializability/)
 
-The Trouble with Distributed Systems
+[The Trouble with Distributed Systems](/2019/10/05/the-trouble-with-distributed-systems/)
 
 Consistency and Consensus
 

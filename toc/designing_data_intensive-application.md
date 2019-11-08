@@ -49,7 +49,13 @@ Martin Kleppmann 前領英工程師 貢獻了許多open source專案比如Apache
 
 [The Trouble with Distributed Systems](/2019/10/05/the-trouble-with-distributed-systems/)
 
-Consistency and Consensus
+[Consistency and Consensus](/2019/10/12/consistency-and-consensus/)
+
+1. [線性一致性](/2019/10/17/linearizability/)
+
+2. [順序保證](/2019/10/24/ordering-guarantees/)
+
+3. [分佈式事務與共識](/2019/11/03/distributed-transactions-and-consensus/)
 
 ## Part3: Derived Data
 

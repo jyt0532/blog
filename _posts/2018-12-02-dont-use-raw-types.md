@@ -11,6 +11,7 @@ excerpt: 本篇文章介紹為什麼應該避免使用原始類型
 這篇是Effective Java - Don't use raw types章節的讀書筆記 本篇的程式碼來自於原書內容
 
 本章節可以搭配[泛型篇章簡介及術語列表](/2018/12/01/generics/)服用
+
 ## Item26: 不要使用原始類型
 
 先定義幾個術語:
@@ -68,15 +69,19 @@ to Stamp
 
 既然缺點這麼顯而易見 為什麼還要支持原始類型 答案是為了兼容Java5之前的程式
 
-總不能在泛型被加入Java時 之前的程式都強制compile-error 為了支援Java5之前的程式和新代碼交互操作是非常重要的
+總不能在泛型被加入Java時 之前的程式都強制compile-error吧 
+
+為了支援Java5之前的程式 和新代碼交互操作是非常重要的
 
 ### 小撇步
 
 我們知道了不應該使用原始類型`List` 但如果要使用參數化的類型插入任意對象 還是可以用`List<Object>` 這兩者的差別在哪呢？ 
 
-`List` 逃避了泛型檢查 `List<Object>`則是明確的告訴compiler説 他能持有任意類型的對象 
+`List` 逃避了泛型檢查 
 
-順道一提 你可以將`List<String>`傳給`Lis`t參數 但你卻不能傳給`List<Object>` 因為`List<String>`是`List`的子類型
+`List<Object>`則是明確的告訴compiler説 他能持有任意類型的對象 
+
+順道一提 你可以將`List<String>`傳給`List`參數 但你卻不能傳給`List<Object>` 因為`List<String>`是`List`的子類型
 
 來看例子
 

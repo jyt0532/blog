@@ -18,7 +18,7 @@ excerpt: 本篇文章介紹為什麼能使用list就要使用list 而不是array
 
 Array 是協變 意思是說 如果`Sub` 是`Super` 的子類 那`Sub[]` 也是 `Super[]`的子類
 
-泛型 則是不可變 意思是說 任意兩個Type, List<Type1> 和 List<Type2> 不是彼此的子類型或是父類型
+泛型 則是不可變 意思是說 任意兩個Type, `List<Type1>` 和 `List<Type2>` 不是彼此的子類型或是父類型
 
 來個例子 以下的代碼compile會過
 執行時才會在runtime拋出例外

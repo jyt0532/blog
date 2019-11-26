@@ -42,7 +42,7 @@ Server等待客戶的請求或指令到達 對於收到的每一個請求 server
 
 &nbsp;
 
-在本章中我們將會看到 批處理是構建可靠 可擴展和可維護應用程序的重要組成部分 比如2004年轟動武林的Map-Reduce 被稱為造就Google大規模可擴展性的算法 隨後也在各種開源數據系統中得到應用 包括Hadoop CouchDB和MongoDB
+在本章中我們將會看到 批處理是構建可靠 可擴展和可維護應用程序的重要組成部分 比如2004年轟動武林的Map-Reduce 被稱為是造就Google大規模可擴展性的算法 隨後也在各種開源數據系統中得到應用 包括Hadoop CouchDB和MongoDB
 
 在本章中 我們將瞭解MapReduce和其他一些批處理算法和框架 並探索它們在現代數據系統中的作用
 
@@ -106,7 +106,7 @@ cat /var/log/nginx/access.log | #1
 915 /css/typography.css
 {% endhighlight %}
 
-Unix工具非常強大 他可以在幾秒內處理幾GB的日誌文件 還可以根據需要輕鬆修改命令 只要你能輕鬆自在的運用`awk` `sed` `grep` `sort` `uniq`和`xargs` 那你幾乎可以做出和資料分析
+Unix工具非常強大 他可以在幾秒內處理幾GB的日誌文件 還可以根據需要輕鬆修改命令 只要你能輕鬆自在的運用`awk` `sed` `grep` `sort` `uniq`和`xargs` 那你幾乎可以做出決大部分的資料分析
 
 #### 自定義程序
 
@@ -188,7 +188,7 @@ Unix pipes的發明人 Doug McIlroy 在1964就提出了他的看法
 
 #### logic與wiring相分離
 
-Unix工具的另一個特點是使用標準輸入`stdin`和標準輸出`stdout` 如果你運行一個程序 而不指定任何其他的東西 標準輸入來自鍵盤 標準輸出指向螢幕 但你可以輕易把輸入(輸出)改成文件 或者是把某個程序的`stdout`導到另一格程序的`stdin`
+Unix工具的另一個特點是使用標準輸入`stdin`和標準輸出`stdout` 如果你運行一個程序 而不指定任何其他的東西 標準輸入來自鍵盤 標準輸出指向螢幕 但你可以輕易把輸入(輸出)改成文件 或者是把某個程序的`stdout`導到另一個程序的`stdin`
 
 程序本身並不需要處理輸入輸出 使得程式開發變得簡單很多(想想我們寫python要爬一個文件 需要去研究一些file IO的東西 而且如果輸入改成非文件 我們還要改程式去讀輸入)
 
@@ -222,7 +222,7 @@ HDFS是由每台機器上的守護進程(daemon process)所組成 這個進程�
 
 ### MapReduce作業執行
 
-MapReduce是一個programming framework 你可以寫代碼來處理HDFS等分佈式文件系統中的大型數據集 理解他的最簡單方式 就是參考(#分析簡單日誌)中的Web服務器日誌分析例子 MapReduce處理方法類似
+MapReduce是一個programming framework 你可以寫代碼來處理HDFS等分佈式文件系統中的大型數據集 理解他的最簡單方式 就是參考[分析簡單日誌](#分析簡單日誌)中的Web服務器日誌分析例子 MapReduce處理方法類似
 
 1.讀取一組輸入文件 並將其分解成記錄(records) 在Web服務器日誌示例中 每個record都是一行
 
@@ -254,7 +254,7 @@ Reducer: 得到由Mapper生成的key-value pair 收集屬於同一個key的所�
 
 把Mapper傳輸到每個機器之後呢 開始跑 針對每一條紀錄 一條一條執行程式 Mapper的輸出是許許多多的key-value pair
 
-雖然Map任務的數量由輸入文件塊的數量決定 但Reducer的任務的數量是由作業者配置的(可以跟mapper的數量不一樣) 為了保證每個Reducer拿到相同的key 我們使用一個hash來針對key分配每個key-value pair要去哪個Reducer
+雖然Mapper的數量由輸入文件塊的數量決定 但Reducer的任務的數量是由作業者配置的(可以跟mapper的數量不一樣) 為了保證每個Reducer拿到相同的key 我們使用一個hash來針對key分配每個key-value pair要去哪個Reducer
 
 但別忘了在丟給Reducer之前我們要先排序 那要是所有的key-value pairs太多存不進內存怎麼辦 我們在[SSTables和LSM樹](/2019/01/19/storage-and-retrieval/#sstables和lsm樹)討論過這個問題 
 
@@ -267,7 +267,7 @@ Reduce任務從Mapper獲取文件的同時文件已經有個有序性 因此 如
 
 單個MapReduce作業可以解決的問題範圍很有限 我們剛剛討論的Map-Reduce就只能統計每個URL出現的次數 如果你要對次數排序 你需要另外一個Map-Reduce作業
 
-所以我們把Map-Reduce作業們接成工作流(workflow) 比如說一個作業就是下個作業的輸入 對於MapReduce框架來說 這兩個是獨立的作業 只是我們在寫的時候就要先安排好 第二個作業的輸入HDFS目錄需要是第一個作業的輸入HDFS目錄
+所以我們把Map-Reduce作業們接成工作流(workflow) 比如說一個作業就是下個作業的輸入 對於MapReduce框架來說 這兩個是獨立的作業 只是我們在寫的時候就要先安排好 第二個作業的輸入HDFS目錄需要是第一個作業的輸出HDFS目錄
 
 只有當作業成功完成後 批處理作業的輸出才會被視為有效的(MapReduce會丟棄失敗作業的部分輸出) 所以下一個作業需要等到前一個作業全部成功完全 才會開始進行 各大公司有很多的workflow scheduler被廣泛應用 比如說Oozie, Azkaban, Luigi, Airflow, Pinball等等
 
@@ -280,7 +280,7 @@ Hadoop的各種高級工具(如Pig Hive Cascading Crunch和FlumeJava) 也能自�
 如果查詢涉及到Join 那就可能涉及到查找多個索引 可是MapReduce沒有索引的概念
 
 當MapReduce作業被賦予一組文件作為輸入時 它讀取所有這些文件的全部內容 數據庫會將這種操作稱為全表掃瞄 當然如果你只是想搜尋少量的紀錄 這樣的操作非常耗時 
-可是在[分析查詢](/2019/01/19/storage-and-retrieval/#事務處理系統還是分析系統)中 通常需要大量數據的聚合 所以可以接受 更何況我們是在多台機器中執行查詢 所以全表掃描也是很合理的事情
+可是在[分析查詢](/2019/01/19/storage-and-retrieval/#事務處理系統還是分析系統)中 通常需要大量數據的Aggregate 所以可以接受 更何況我們是在多台機器中執行查詢 所以全表掃描也是很合理的事情
 
 我們來試著分析一個用戶活動事件
 
@@ -378,10 +378,40 @@ MapReduce作業的輸出處理遵循同樣的原理 在將輸入視為不可變�
 
 ## 高級API和語言
 
-雖然MapReduce在二十世紀二十年代後期變得非常流行 並受到大量的炒作 但它只是分佈式系統的許多可能的編程模型之一 我們在這一章花了很多時間來討論MapReduce 因為他是分佈式文件系統的一種相當簡單明晰的抽象 這裡的簡單指的是理解起來很簡單 而不是寫起來很簡單 事實上 對於每件事都要寫map/reduce是很累人的
+雖然MapReduce在二十世紀後期變得非常流行 並受到大量的炒作 但它只是分佈式系統的許多可能的編程模型之一 我們在這一章花了很多時間來討論MapReduce 因為他是分佈式文件系統的一種相當簡單明晰的抽象 這裡的簡單指的是理解起來很簡單 而不是寫起來很簡單 事實上 對於每件事都要寫map/reduce是很累人的
 
 所以 有很多高級一點的編程模型就被實現了 Pig, Hive, Cascading, Crunch這些建立在Map/Reduce之上的抽象 學起來都非常簡單 
 Spark和Flink也有它們自己的高級數據流API 通常是從FlumeJava中獲取的靈感
 
 ## 總結
+
+在本章中 我們討論了批處理 我們先討論了Unix的工具(`awk`, `grep`, `sort`等等) 然後我們看到了如何把這些工具的理念應用到MapReduce 某些設計原則非常類似: 輸入是不可變 輸出是另一個程序的輸入
+
+在Unix世界中 讓程序跟程序之間組合起來的接口是file跟pipe 在MapReduce的世界中 則是分佈式文件系統
+
+分佈式批處理框架常需要克服的兩個主要問題是:
+
+1.分區: Mapper根據輸入文件塊進行分區 Mapper的輸出被重新分區 排序 然後合併給Reducer 目的是把一系列的相關數據都放到同一個地方
+
+後MapReduce時代的數據流引擎若非必要會儘量避免排序 但它們也採取了大致類似的分區方法
+
+2.容錯: MapReduce經常需要寫入Disk 所以如果有單獨一個小任務失敗的話 不用重啟整個作業 就是重跑那個小小的任務就可以 但當然因為要寫進Disk 所以速度也慢很多
+
+我們還討論了幾種MapReduce的Join算法
+
+1.Sort-merge joins: 每個輸入紀錄 都通過一個Mapper產生一個可以被join的紀錄 通過分區 排序 合併到同一個Reducer之後 就可以輸出一個join完的結果
+
+2.Broadcast hash join: 兩個Join輸入的其中之一很小 可以塞進內存的話 就把這個小的塞到每個Mapper的內存 就輕鬆搞定Join
+
+3.partitioned hash join: 如果兩個Join的輸入以相同的方式分區 則可以獨立地對每個分區Join
+
+&nbsp;
+
+分佈式批處理引擎有一個刻意限制的編程模型: Callback function(map/reduce) 被假定是stateless的 除了輸出之外 沒有任何顯著的副作用 這一個抽象讓MapReduce的框架隱藏了很多分布式系統中的困難問題 比如說遇到崩潰跟困難時 framework可以安全的一直重試 任何失敗任務的輸出都被丟棄
+
+因為抽象的很漂亮 所以你在用的時候 根本不用擔心底層的容錯機制 framework保證了如果有輸出的話 這個輸出就跟沒有發生錯誤的情況長得一樣 所以這種批處理的可靠性比起在線的online service都強很多
+
+批處理的特點是 輸入數據是有界的(bounded) 他有一個已知的 固定的大小 所以一個任務可以明確的知道他是否已經完成
+
+[下一章](/2019/07/14/stream-processing/)中 我們會討論流處理 流處理的輸入是無界的(unbounded) 在這種情況之下會有許多更好玩複雜的問題值得探討
 

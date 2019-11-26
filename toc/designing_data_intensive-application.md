@@ -61,7 +61,7 @@ Martin Kleppmann 前領英工程師 貢獻了許多open source專案比如Apache
 
 Part3: Intro
 
-Batch Processing
+[Batch Processing](/2019/11/24/batch-processing/)
 
 [Stream Processing](/2019/07/14/stream-processing/)
 

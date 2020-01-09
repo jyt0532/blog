@@ -29,7 +29,7 @@ Java類庫裡有許多不可變類 比如說String, BigInteger等等 這類型�
 
 5.確保客戶不能存取到可變對象: 說起來容易 但很容易出錯 
 比如說不要直接拿客戶提供的引用 assign給自己的變量 
-而且要記得在構造器 訪問方法和readObject方法中使用[保護型拷貝](2017/09/26/make-defensive-copies-when-needed/)
+而且要記得在構造器 訪問方法和readObject方法中使用[保護型拷貝](/2017/09/26/make-defensive-copies-when-needed/)
 
 比如說 看一下這個複數(包含實部和虛部)的example
 
@@ -80,7 +80,7 @@ public static final Complex I = new Complex(0, 1);
 
 永遠記得在設計一個類別時 選擇用靜態工廠取代公有構造器可以讓你有添加緩存的靈活性 而不影響客戶
 
-3.不需進行[保護型拷貝](2017/09/26/make-defensive-copies-when-needed/) 也不需要提供clone 或是copy constructor
+3.不需進行[保護型拷貝](/2017/09/26/make-defensive-copies-when-needed/) 也不需要提供clone 或是copy constructor
 
 4.不僅可以共享不可變對象 還可以共享訊息 比如說BigInteger的negate
 

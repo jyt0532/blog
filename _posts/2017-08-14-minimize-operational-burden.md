@@ -23,7 +23,7 @@ author: jyt0532
 所以Instagram每一個決定都是安全的路 每個使用的technology都是被證明很猛的他們才用 
 所以很多startup選擇如同雨後春筍般的NoSQL的同時 Instagram用PostgreSQL, Memcache, Redis 這讓他們非常輕易的維持擴展他們的app
 
-([High Scalaibily](http://highscalability.com/blog/2011/12/6/instagram-architecture-14-million-users-terabytes-of-photos.html)裡面就有關於Instagram architecture的介紹 值得一看)
+([High Scalability](http://highscalability.com/blog/2011/12/6/instagram-architecture-14-million-users-terabytes-of-photos.html)裡面就有關於Instagram architecture的介紹 值得一看)
 
 ### 經營簡單化
 

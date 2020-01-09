@@ -141,7 +141,7 @@ JVM會在任何thread有機會進來之前就先建好這個instance 這個getIn
 
 {% highlight java %}
 public class SoulMate{
-    private static SoulMate uniqueInstance = new SoulMate();
+    private static SoulMate uniqueInstance;
     private SoulMate() {}
 
     public static SoulMate getInstance(){
@@ -167,7 +167,7 @@ public class SoulMate{
 
 {% highlight java %}
 public class SoulMate{
-    private static SoulMate uniqueInstance = new SoulMate();
+    private static SoulMate uniqueInstance;
     private SoulMate() {}
 
     public static SoulMate getInstance(){
@@ -196,7 +196,7 @@ public class SoulMate{
 
 {% highlight java %}
 public class SoulMate{
-    private volatile static SoulMate uniqueInstance = new SoulMate();
+    private volatile static SoulMate uniqueInstance;
     private SoulMate() {}
 
     public static SoulMate getInstance(){

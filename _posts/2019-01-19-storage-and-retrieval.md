@@ -182,7 +182,7 @@ A4. merge舊的檔案的時候 也不用擔心數據隨著時間跑來跑去的�
 當key有重複 就拿比較晚生成的segment
 
 2.你的索引不需要有所有的key: 你的key可以sparse一點 比如說你要找`handiwork`這個字 而你的hash map裡有`handbag -> 102134`和`handsome -> 104667` 你就可以直接從102134開始掃
-![Alt text]({{ site.url }}/public/DDIA/DDIA-3-4.png)
+![Alt text]({{ site.url }}/public/DDIA/DDIA-3-5.png)
 
 3.key跟key的offset之間的文件可以壓縮: 如同上圖的灰色區段 等到需要掃灰色區域的時候再拿出來 不用的時候可以壓縮後放在disk裡 省空間 省IO開銷
 

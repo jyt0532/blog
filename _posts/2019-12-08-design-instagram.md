@@ -71,14 +71,27 @@ jyt0532: 接下來來設計一下服務的API吧
 
 就這麼簡單 text是這篇post的文字 media_ids是array of photos/videos ids
 
-api_dev_key 指的是允許呼叫你的前端的token 讓server知道現在是誰在發送請求 我們就可
-以分配/控制每個前端發送請求的bandwidth 比如我們可以限制每個使用者的請求數量 用途是避免惡意對手DDOS搞爆你的服務
+api_dev_key 指的是允許呼叫你的前端的token 讓server知道現在是誰在發送請求 我們就可以分配/控制每個前端發送請求的bandwidth 比如我們可以限制每個使用者的請求數量 用途是避免惡意對手DDOS搞爆你的服務
 
 回傳feed id
 
 第二個: `getUserFeed(api_dev_key, user_id, since_id, count)`
 
 回傳array of feed id
+
+jyt0532: 你這個`since_id`跟`count` 基本上就是pagination的參數 為什麼你pagination的參數這麼選擇呢
+
+迷途書僮: 就像斯斯有兩種 pagination也有兩種 
+
+1.Offset based: 就是給定從第幾個開始(offset) 要回傳幾個(count) 這是最常見的
+
+2.Cursor based: 就是給一個參考的物件(cursor)(可以是postId 也可以是timestamp) 從那個之後要回傳幾個(count)
+
+jyt0532: 什麼時候用哪個呢
+
+迷途書僮: 取決於你內容是靜態還是動態 如果是靜態的就用offset based 比如說Google search的結果 如果是動態的就用Cursor based 比如說feed generation 這樣不會說我過了一分鐘後發一樣的request拿到不一樣的結果
+
+更多細節可以參考[How to do Pagination?](https://b96016.gitlab.io/post/how-to-pagination/)
 
 ## Database design
 
@@ -124,6 +137,10 @@ FeedMedia Table:
 比如說Redis/Dynamo/Voldemort 在這裡key就是PhotoId, value就是Photo的metaData等等
 
 但對於Association table `UserFollow` `FeedMedia` 我們可以用wide-column的NoSQL比如說Cassandra 以`UserFollow`為例 key就是UserId, value就是所有這個user follow的人 以`FeedMedia`為例 key就是FeedId, value就是這個feed所擁有的mediaId
+
+把Cassandra想的簡單一點 就是把數據存進這個資料結構
+
+`Map<PartitionKey, SortedMap<ColumnKey, ColumnValue>>`
 
 ## Algorithm
 
@@ -251,9 +268,11 @@ jyt0532: 那你的選擇是?
 
 對於follower多的人 使用Pull model
 
-這是最簡單的綜合解法 當然對於follower很多的名人 我們可以對所有在線上的followers使用Push model也可以 這也大幅的減少了對所有人Push所需要的bandwidth
+所以今天如果一般人發了一篇feed 就會直接即時的保存到所有追蹤者的預先生成的資料結構裡 如果是名人 就先不做事
 
-???上個圖????
+當有人上線要看timeline時 系統要做的是就是除了找到預先算好的feed之外 再另外去問你追蹤的名人的feed 合在一起再傳給使用者
+
+這是最簡單的綜合解法 當然對於follower很多的名人 我們可以對所有在線上的followers使用Push model也可以 這也大幅的減少了對所有人Push所需要的bandwidth
 
 ## Ranking 
 
@@ -267,11 +286,28 @@ jyt0532: 對於一個Timeline裡面的Feed排序 該怎麼做
 
 jyt0532: 我們一天產生2TB的文章要存 總不可能都放在同一個機器吧 所以勢必要處理sharding的問題 有兩個東西要分區
 
-1.Sharding post and metadata
+1.Sharding feed
 
-2.Sharding feed
+2.Sharding post and metadata
 
 迷途書僮:我們各個擊破
+
+### Sharding feed
+
+簡單 我們有的是
+
+{% highlight cpp %}
+Map<
+        UserId,
+        Struct {
+                LinkedHashMap<FeedId, Feed> feeds,
+                DateTime lastGeneratedTime
+        }
+
+>
+{% endhighlight %}
+
+那就shard by UserId 搞定
 
 ### Sharding post and metadata
 
@@ -287,17 +323,19 @@ PostId -> `Hash(PostId)%N`
 
 jyt0532: 這樣同一個發文者的Post分散在各台機器 你怎麼集合起來?
 
-迷途書僮: 要找UserId的發文 我們要**對所有的機器找** 每台機器回傳它所存的UserId的發文
+迷途書僮: 比如我們要找某個名人的發文 我們要**對所有的機器找** 每台機器回傳它所存的名人的發文
 
 演算法變成 
 
 1.Alex要看他的timeline
 
-2.Application Server問UserFollow table 來找出Alex所有朋友/Followee
+2.系統拿到了預先生成好的Feed
 
-3.對所有FeedTable問說每個Alex的朋友的所有文章
+3.系統問UserFollow table 來找出Alex所有朋友/Followee
 
-4.Combine and Rank 
+4.對所有FeedTable問說每個Alex追蹤的名人的文章
+
+5.Combine and Rank 
 
 jyt0532: 這的確是解決了hot server的問題 但每次都問所有database 也會造成極高的latency 有其他解法嗎
 
@@ -305,7 +343,9 @@ jyt0532: 這的確是解決了hot server的問題 但每次都問所有database 
 
 jyt0532: 這麼狂的嗎
 
-迷途書僮: 按照文章的creation time來存可以保證每次都只需要query一小部分的機器
+迷途書僮: 按照發文的creation time來存可以保證每次都只需要query一小部分的機器
+
+而且不得不說 如果key裡面有creation time真的很爽 我們就不需要在creationTime這個field另外index 省掉的index可以讓我們讀寫latency下降
 
 jyt0532: 那unbalanced traffic的問題又出現了不是嗎 每次都寫進讀取那小部分的機器
 
@@ -343,10 +383,29 @@ jyt0532: 你的PostId到底要多長?
 
 ...依此類推
 
-這個做法雖然還是需要問所有的database 但是第一 這個設計減少了寫的時間(因為我們不需要對createdTime index) 第二 read會變得非常的快 因為我們不用再filter by createdTime
+[這個設計](https://instagram-engineering.com/sharding-ids-at-instagram-1cf5a71e5a5c)避免了只shard by postId的熱門文章問題 也避免了相同timestamp的文章跑到同一機器的hot partition問題 因為這個Id的Hash被平均的打散了
+
+這個做法雖然在生成timeline的時候還是需要問所有的database 但是第一 這個設計減少了寫的時間(因為我們不需要對createdTime index) 第二 read會變得非常的快 因為我們不用再filter by createdTime
+
+## 總結
+
+jyt0532: 很好 我想今天也討論的差不多了 今天的面試中 我們複習了不少概念 其中重要的是:
+
+1.系統設計面試的流程
+
+2.API design中的pagination設計
+
+3.不同Table可以用不同的Database存
+
+4.快速Serve Timeline的資料結構
+
+5.推/拉/混合 的推送Feed方式
+
+6.Shard Data的方法
+
+有機會再來討論其他題目吧 我們下次見！
 
 
-如果我們資料庫選擇用的是RMDB的話 我們可以在`Feed` Table上index by (FeedId, CreateDate) 也是一樣的效果
 
 
 

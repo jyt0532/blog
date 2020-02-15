@@ -3,7 +3,7 @@ layout: default
 title: JVM
 ---
 
-# 每個程序員都該瞭解的JVM - 1
+# 每個程序員都該瞭解的JVM - 類加載機制導讀
 
 聽說你Java很熟？考考你。
 

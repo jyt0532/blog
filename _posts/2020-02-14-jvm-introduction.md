@@ -135,11 +135,6 @@ IBM’s JVM
 注意每一個運行時實例只會跑一個java應用 所以要是你在終端機連輸入五次java Hello 會生出五個運行時實例去跑五個程式
 
 
-## 為什麼所有程序員都應該了解
-
-越來越多的語言熟知JVM的強大 於是那些語言的編譯器就也是編譯成bytecode 丟給JVM 比如說Scala, Kotlin, Apache groovy等等
-效能 安全性 跨平台
-
 
 ## JVM 架構
 

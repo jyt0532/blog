@@ -3,12 +3,21 @@ layout: default
 title: 每個程序員都該瞭解的JVM
 ---
 
-[每個程序員都該瞭解的JVM - 類加載機制導讀](/toc/jvm/jvm_1)
+### [前言](/2020/02/15/jvm-preface/)
 
-[每個程序員都該瞭解的JVM - 字串池](/toc/jvm/jvm_2)
+### [JAVA虛擬機介紹](/2020/02/14/jvm-introduction/)
 
-[每個程序員都該瞭解的JVM - finalize方法](/toc/jvm/jvm_3)
+### 類文件結構
 
-[每個程序員都該瞭解的JVM - Java中的各種引用](/toc/jvm/jvm_4)
+### 虛擬機類加載機制
 
-[每個程序員都該瞭解的JVM - Reference Queue](/toc/jvm/jvm_5)
+### 反射
+
+### 執行引擎
+
+### 運行時數據區
+
+### 垃圾收集器
+
+### 附錄
+

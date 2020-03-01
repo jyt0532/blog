@@ -1,0 +1,216 @@
+---
+layout: post
+title: 每個程序員都該瞭解的JVM - 虛擬機字節碼指令表
+comments: True 
+subtitle: 虛擬機字節碼指令表
+tags: jvm
+author: jyt0532
+---
+
+
+## 附錄 - 虛擬機字節碼指令表
+
+| 字節碼  | 助記符             | 指令含義                                                       |
+|------|-----------------|------------------------------------------------------------|
+| 0x00 | nop             | 什麼都不做                                                      |
+| 0x01 | aconst_null     | 將null推送至棧頂                                                 |
+| 0x02 | iconst_m1       | 將int型-1推送至棧頂                                               |
+| 0x03 | iconst_0        | 將int型0推送至棧頂                                                |
+| 0x04 | iconst_1        | 將int型1推送至棧頂                                                |
+| 0x05 | iconst_2        | 將int型2推送至棧頂                                                |
+| 0x06 | iconst_3        | 將int型3推送至棧頂                                                |
+| 0x07 | iconst_4        | 將int型4推送至棧頂                                                |
+| 0x08 | iconst_5        | 將int型5推送至棧頂                                                |
+| 0x09 | lconst_0        | 將long型0推送至棧頂                                               |
+| 0x0a | lconst_1        | 將long型1推送至棧頂                                               |
+| 0x0b | fconst_0        | 將float型0推送至棧頂                                              |
+| 0x0c | fconst_1        | 將float型1推送至棧頂                                              |
+| 0x0d | fconst_2        | 將float型2推送至棧頂                                              |
+| 0x0e | dconst_0        | 將double型0推送至棧頂                                             |
+| 0x0f | dconst_1        | 將double型1推送至棧頂                                             |
+| 0x10 | bipush          | 將單字節的常量值(-128~127)推送至棧頂                                    |
+| 0x11 | sipush          | 將一個短整型常量值(-32768~32767)推送至棧頂                               |
+| 0x12 | ldc             | 將int, float或String型常量值從常量池中推送至棧頂                           |
+| 0x13 | ldc_w           | 將int, float或String型常量值從常量池中推送至棧頂（寬索引）                      |
+| 0x14 | ldc2_w          | 將long或double型常量值從常量池中推送至棧頂（寬索引）                            |
+| 0x15 | iload           | 將指定的int型本地變量推送至棧頂                                          |
+| 0x16 | lload           | 將指定的long型本地變量推送至棧頂                                         |
+| 0x17 | fload           | 將指定的float型本地變量推送至棧頂                                        |
+| 0x18 | dload           | 將指定的double型本地變量推送至棧頂                                       |
+| 0x19 | aload           | 將指定的引用類型本地變量推送至棧頂                                          |
+| 0x1a | iload_0         | 將第一個int型本地變量推送至棧頂                                          |
+| 0x1b | iload_1         | 將第二個int型本地變量推送至棧頂                                          |
+| 0x1c | iload_2         | 將第三個int型本地變量推送至棧頂                                          |
+| 0x1d | iload_3         | 將第四個int型本地變量推送至棧頂                                          |
+| 0x1e | lload_0         | 將第一個long型本地變量推送至棧頂                                         |
+| 0x1f | lload_1         | 將第二個long型本地變量推送至棧頂                                         |
+| 0x20 | lload_2         | 將第三個long型本地變量推送至棧頂                                         |
+| 0x21 | lload_3         | 將第四個long型本地變量推送至棧頂                                         |
+| 0x22 | fload_0         | 將第一個float型本地變量推送至棧頂                                        |
+| 0x23 | fload_1         | 將第二個float型本地變量推送至棧頂                                        |
+| 0x24 | fload_2         | 將第三個float型本地變量推送至棧頂                                        |
+| 0x25 | fload_3         | 將第四個float型本地變量推送至棧頂                                        |
+| 0x26 | dload_0         | 將第一個double型本地變量推送至棧頂                                       |
+| 0x27 | dload_1         | 將第二個double型本地變量推送至棧頂                                       |
+| 0x28 | dload_2         | 將第三個double型本地變量推送至棧頂                                       |
+| 0x29 | dload_3         | 將第四個double型本地變量推送至棧頂                                       |
+| 0x2a | aload_0         | 將第一個引用類型本地變量推送至棧頂                                          |
+| 0x2b | aload_1         | 將第二個引用類型本地變量推送至棧頂                                          |
+| 0x2c | aload_2         | 將第三個引用類型本地變量推送至棧頂                                          |
+| 0x2d | aload_3         | 將第四個引用類型本地變量推送至棧頂                                          |
+| 0x2e | iaload          | 將int型數組指定索引的值推送至棧頂                                         |
+| 0x2f | laload          | 將long型數組指定索引的值推送至棧頂                                        |
+| 0x30 | faload          | 將float型數組指定索引的值推送至棧頂                                       |
+| 0x31 | daload          | 將double型數組指定索引的值推送至棧頂                                      |
+| 0x32 | aaload          | 將引用型數組指定索引的值推送至棧頂                                          |
+| 0x33 | baload          | 將boolean或byte型數組指定索引的值推送至棧頂                                |
+| 0x34 | caload          | 將char型數組指定索引的值推送至棧頂                                        |
+| 0x35 | saload          | 將short型數組指定索引的值推送至棧頂                                       |
+| 0x36 | istore          | 將棧頂int型數值存入指定本地變量                                          |
+| 0x37 | lstore          | 將棧頂long型數值存入指定本地變量                                         |
+| 0x38 | fstore          | 將棧頂float型數值存入指定本地變量                                        |
+| 0x39 | dstore          | 將棧頂double型數值存入指定本地變量                                       |
+| 0x3a | astore          | 將棧頂引用型數值存入指定本地變量                                           |
+| 0x3b | istore_0        | 將棧頂int型數值存入第一個本地變量                                         |
+| 0x3c | istore_1        | 將棧頂int型數值存入第二個本地變量                                         |
+| 0x3d | istore_2        | 將棧頂int型數值存入第三個本地變量                                         |
+| 0x3e | istore_3        | 將棧頂int型數值存入第四個本地變量                                         |
+| 0x3f | lstore_0        | 將棧頂long型數值存入第一個本地變量                                        |
+| 0x40 | lstore_1        | 將棧頂long型數值存入第二個本地變量                                        |
+| 0x41 | lstore_2        | 將棧頂long型數值存入第三個本地變量                                        |
+| 0x42 | lstore_3        | 將棧頂long型數值存入第四個本地變量                                        |
+| 0x43 | fstore_0        | 將棧頂float型數值存入第一個本地變量                                       |
+| 0x44 | fstore_1        | 將棧頂float型數值存入第二個本地變量                                       |
+| 0x45 | fstore_2        | 將棧頂float型數值存入第三個本地變量                                       |
+| 0x46 | fstore_3        | 將棧頂float型數值存入第四個本地變量                                       |
+| 0x47 | dstore_0        | 將棧頂double型數值存入第一個本地變量                                      |
+| 0x48 | dstore_1        | 將棧頂double型數值存入第二個本地變量                                      |
+| 0x49 | dstore_2        | 將棧頂double型數值存入第三個本地變量                                      |
+| 0x4a | dstore_3        | 將棧頂double型數值存入第四個本地變量                                      |
+| 0x4b | astore_0        | 將棧頂引用型數值存入第一個本地變量                                          |
+| 0x4c | astore_1        | 將棧頂引用型數值存入第二個本地變量                                          |
+| 0x4d | astore_2        | 將棧頂引用型數值存入第三個本地變量                                          |
+| 0x4e | astore_3        | 將棧頂引用型數值存入第四個本地變量                                          |
+| 0x4f | iastore         | 將棧頂int型數值存入指定數組的指定索引位置                                     |
+| 0x50 | lastore         | 將棧頂long型數值存入指定數組的指定索引位置                                    |
+| 0x51 | fastore         | 將棧頂float型數值存入指定數組的指定索引位置                                   |
+| 0x52 | dastore         | 將棧頂doube型數值存入指定數組的指定索引位置                                   |
+| 0x53 | aastore         | 將棧頂引用型數值存入指定數組的指定索引位置                                      |
+| 0x54 | bastore         | 將棧頂boolean或byte型數值存入指定數組的指定索引位置                            |
+| 0x55 | castore         | 將棧頂char型數值存入指定數組的指定索引位置                                    |
+| 0x56 | sastore         | 將棧頂short型數值存入指定數組的指定索引位置                                   |
+| 0x57 | pop             | 將棧頂數值彈出 (數值不能是long或double類型的)                              |
+| 0x58 | pop2            | 將棧頂的一個（對於long或double類型)或兩個數值（對於非long或double的其他類型）彈出        |
+| 0x59 | dup             | 複製棧頂數值並將複製值壓入棧頂                                            |
+| 0x5a | dup_x1          | 複製棧頂數值並將兩個複製值壓入棧頂                                          |
+| 0x5b | dup_x2          | 複製棧頂數值並將三個（或兩個）複製值壓入棧頂                                     |
+| 0x5c | dup2            | 複製棧頂一個（對於long或double類型)或兩個（對於非long或double的其他類型）數值並將複製值壓入棧頂 |
+| 0x5d | dup2_x1         | dup_x1 指令的雙倍版本                                             |
+| 0x5e | dup2_x2         | dup_x2 指令的雙倍版本                                             |
+| 0x5f | swap            | 將棧最頂端的兩個數值互換(數值不能是long或double類型)                           |
+| 0x60 | iadd            | 將棧頂兩int型數值相加並將結果壓入棧頂                                       |
+| 0x61 | ladd            | 將棧頂兩long型數值相加並將結果壓入棧頂                                      |
+| 0x62 | fadd            | 將棧頂兩float型數值相加並將結果壓入棧頂                                     |
+| 0x63 | dadd            | 將棧頂兩duble型數值相加並將結果壓入棧頂                                     |
+| 0x64 | isub            | 將棧頂兩int型數值相減並將結果壓入棧頂                                       |
+| 0x65 | lsub            | 將棧頂兩long型數值相減並將結果壓入棧頂                                      |
+| 0x66 | fsub            | 將棧頂兩float型數值相減並將結果壓入棧頂                                     |
+| 0x67 | dsub            | 將棧頂兩double型數值相減並將結果壓入棧頂                                    |
+| 0x68 | imul            | 將棧頂兩int型數值相乘並將結果壓入棧頂                                       |
+| 0x69 | lmul            | 將棧頂兩long型數值相乘並將結果壓入棧頂                                      |
+| 0x6a | fmul            | 將棧頂兩float型數值相乘並將結果壓入棧頂                                     |
+| 0x6b | dmul            | 將棧頂兩double型數值相乘並將結果壓入棧頂                                    |
+| 0x6c | idiv            | 將棧頂兩int型數值相除並將結果壓入棧頂                                       |
+| 0x6d | ldiv            | 將棧頂兩long型數值相除並將結果壓入棧頂                                      |
+| 0x6e | fdiv            | 將棧頂兩float型數值相除並將結果壓入棧頂                                     |
+| 0x6f | ddiv            | 將棧頂兩double型數值相除並將結果壓入棧頂                                    |
+| 0x70 | irem            | 將棧頂兩int型數值作取模運算並將結果壓入棧頂                                    |
+| 0x71 | lrem            | 將棧頂兩long型數值作取模運算並將結果壓入棧頂                                   |
+| 0x72 | frem            | 將棧頂兩float型數值作取模運算並將結果壓入棧頂                                  |
+| 0x73 | drem            | 將棧頂兩double型數值作取模運算並將結果壓入棧頂                                 |
+| 0x74 | ineg            | 將棧頂int型數值取負並將結果壓入棧頂                                        |
+| 0x75 | lneg            | 將棧頂long型數值取負並將結果壓入棧頂                                       |
+| 0x76 | fneg            | 將棧頂float型數值取負並將結果壓入棧頂                                      |
+| 0x77 | dneg            | 將棧頂double型數值取負並將結果壓入棧頂                                     |
+| 0x78 | ishl            | 將int型數值左移位指定位數並將結果壓入棧頂                                     |
+| 0x79 | lshl            | 將long型數值左移位指定位數並將結果壓入棧頂                                    |
+| 0x7a | ishr            | 將int型數值右（帶符號）移位指定位數並將結果壓入棧頂                                |
+| 0x7b | lshr            | 將long型數值右（帶符號）移位指定位數並將結果壓入棧頂                               |
+| 0x7c | iushr           | 將int型數值右（無符號）移位指定位數並將結果壓入棧頂                                |
+| 0x7d | lushr           | 將long型數值右（無符號）移位指定位數並將結果壓入棧頂                               |
+| 0x7e | iand            | 將棧頂兩int型數值作“按位與”並將結果壓入棧頂                                   |
+| 0x7f | land            | 將棧頂兩long型數值作“按位與”並將結果壓入棧頂                                  |
+| 0x80 | ior             | 將棧頂兩int型數值作“按位或”並將結果壓入棧頂                                   |
+| 0x81 | lor             | 將棧頂兩long型數值作“按位或”並將結果壓入棧頂                                  |
+| 0x82 | ixor            | 將棧頂兩int型數值作“按位異或”並將結果壓入棧頂                                  |
+| 0x83 | lxor            | 將棧頂兩long型數值作“按位異或”並將結果壓入棧頂                                 |
+| 0x84 | iinc            | 將指定int型變量增加指定值（i++, i–-, i+=2等）                            |
+| 0x85 | i2l             | 將棧頂int型數值強制轉換成long型數值並將結果壓入棧頂                              |
+| 0x86 | i2f             | 將棧頂int型數值強制轉換成float型數值並將結果壓入棧頂                             |
+| 0x87 | i2d             | 將棧頂int型數值強制轉換成double型數值並將結果壓入棧頂                            |
+| 0x88 | l2i             | 將棧頂long型數值強制轉換成int型數值並將結果壓入棧頂                              |
+| 0x89 | l2f             | 將棧頂long型數值強制轉換成float型數值並將結果壓入棧頂                            |
+| 0x8a | l2d             | 將棧頂long型數值強制轉換成double型數值並將結果壓入棧頂                           |
+| 0x8b | f2i             | 將棧頂float型數值強制轉換成int型數值並將結果壓入棧頂                             |
+| 0x8c | f2l             | 將棧頂float型數值強制轉換成long型數值並將結果壓入棧頂                            |
+| 0x8d | f2d             | 將棧頂float型數值強制轉換成double型數值並將結果壓入棧頂                          |
+| 0x8e | d2i             | 將棧頂double型數值強制轉換成int型數值並將結果壓入棧頂                            |
+| 0x8f | d2l             | 將棧頂double型數值強制轉換成long型數值並將結果壓入棧頂                           |
+| 0x90 | d2f             | 將棧頂double型數值強制轉換成float型數值並將結果壓入棧頂                          |
+| 0x91 | i2b             | 將棧頂int型數值強制轉換成byte型數值並將結果壓入棧頂                              |
+| 0x92 | i2c             | 將棧頂int型數值強制轉換成char型數值並將結果壓入棧頂                              |
+| 0x93 | i2s             | 將棧頂int型數值強制轉換成short型數值並將結果壓入棧頂                             |
+| 0x94 | lcmp            | 比較棧頂兩long型數值大小，並將結果（1，0，-1）壓入棧頂                            |
+| 0x95 | fcmpl           | 比較棧頂兩float型數值大小，並將結果（1，0，-1）壓入棧頂；當其中一個數值為NaN時，將-1壓入棧頂      |
+| 0x96 | fcmpg           | 比較棧頂兩float型數值大小，並將結果（1，0，-1）壓入棧頂；當其中一個數值為NaN時，將1壓入棧頂       |
+| 0x97 | dcmpl           | 比較棧頂兩double型數值大小，並將結果（1，0，-1）壓入棧頂；當其中一個數值為NaN時，將-1壓入棧頂     |
+| 0x98 | dcmpg           | 比較棧頂兩doube型數值大小，並將結果（1，0，-1）壓入棧頂；當其中一個數值為NaN時，將1壓入棧頂       |
+| 0x99 | ifeq            | 當棧頂int型數值等於0時跳轉                                            |
+| 0x9a | ifne            | 當棧頂int型數值不等於0時跳轉                                           |
+| 0x9b | iflt            | 當棧頂int型數值小於0時跳轉                                            |
+| 0x9c | ifge            | 當棧頂int型數值大於等於0時跳轉                                          |
+| 0x9d | ifgt            | 當棧頂int型數值大於0時跳轉                                            |
+| 0x9e | ifle            | 當棧頂int型數值小於等於0時跳轉                                          |
+| 0x9f | if_icmpeq       | 比較棧頂兩int型數值大小，當結果等於0時跳轉                                    |
+| 0xa0 | if_icmpne       | 比較棧頂兩int型數值大小，當結果不等於0時跳轉                                   |
+| 0xa1 | if_icmplt       | 比較棧頂兩int型數值大小，當結果小於0時跳轉                                    |
+| 0xa2 | if_icmpge       | 比較棧頂兩int型數值大小，當結果大於等於0時跳轉                                  |
+| 0xa3 | if_icmpgt       | 比較棧頂兩int型數值大小，當結果大於0時跳轉                                    |
+| 0xa4 | if_icmple       | 比較棧頂兩int型數值大小，當結果小於等於0時跳轉                                  |
+| 0xa5 | if_acmpeq       | 比較棧頂兩引用型數值，當結果相等時跳轉                                        |
+| 0xa6 | if_acmpne       | 比較棧頂兩引用型數值，當結果不相等時跳轉                                       |
+| 0xa7 | goto            | 無條件跳轉                                                      |
+| 0xa8 | jsr             | 跳轉至指定16位offset位置，並將jsr下一條指令地址壓入棧頂                          |
+| 0xa9 | ret             | 返回至本地變量指定的index的指令位置（一般與jsr或jsr_w聯合使用）                     |
+| 0xaa | tableswitch     | 用於switch條件跳轉，case值連續（可變長度指令）                               |
+| 0xab | lookupswitch    | 用於switch條件跳轉，case值不連續（可變長度指令）                              |
+| 0xac | ireturn         | 從當前方法返回int                                                 |
+| 0xad | lreturn         | 從當前方法返回long                                                |
+| 0xae | freturn         | 從當前方法返回float                                               |
+| 0xaf | dreturn         | 從當前方法返回double                                              |
+| 0xb0 | areturn         | 從當前方法返回對象引用                                                |
+| 0xb1 | return          | 從當前方法返回void                                                |
+| 0xb2 | getstatic       | 獲取指定類的靜態域，並將其值壓入棧頂                                         |
+| 0xb3 | putstatic       | 為指定的類的靜態域賦值                                                |
+| 0xb4 | getfield        | 獲取指定類的實例域，並將其值壓入棧頂                                         |
+| 0xb5 | putfield        | 為指定的類的實例域賦值                                                |
+| 0xb6 | invokevirtual   | 調用實例方法                                                     |
+| 0xb7 | invokespecial   | 調用超類構造方法，實例初始化方法，私有方法                                      |
+| 0xb8 | invokestatic    | 調用靜態方法                                                     |
+| 0xb9 | invokeinterface | 調用接口方法                                                     |
+| 0xba | invokedynamic   | 調用動態方法                                                     |
+| 0xbb | new             | 創建一個對象，並將其引用值壓入棧頂                                          |
+| 0xbc | newarray        | 創建一個指定原始類型（如int, float, char等）的數組，並將其引用值壓入棧頂               |
+| 0xbd | anewarray       | 創建一個引用型（如類，接口，數組）的數組，並將其引用值壓入棧頂                            |
+| 0xbe | arraylength     | 獲得數組的長度值並壓入棧頂                                              |
+| 0xbf | athrow          | 將棧頂的異常拋出                                                   |
+| 0xc0 | checkcast       | 檢驗類型轉換，檢驗未通過將拋出ClassCastException                          |
+| 0xc1 | instanceof      | 檢驗對象是否是指定的類的實例，如果是將1壓入棧頂，否則將0壓入棧頂                          |
+| 0xc2 | monitorenter    | 獲得對象的鎖，用於同步方法或同步塊                                          |
+| 0xc3 | monitorexit     | 釋放對象的鎖，用於同步方法或同步塊                                          |
+| 0xc4 | wide            | 擴展本地變量的寬度                                                  |
+| 0xc5 | multianewarray  | 創建指定類型和指定維度的多維數組（執行該指令時，操作棧中必須包含各維度的長度值），並將其引用值壓入棧頂        |
+| 0xc6 | ifnull          | 為null時跳轉                                                   |
+| 0xc7 | ifnonnull       | 不為null時跳轉                                                  |
+| 0xc8 | goto_w          | 無條件跳轉（寬索引）                                                 |
+| 0xc9 | jsr_w           | 跳轉至指定32位offset位置，並將jsr_w下一條指令地址壓入棧頂                        |

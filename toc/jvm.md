@@ -7,7 +7,7 @@ title: 每個程序員都該瞭解的JVM
 
 ### [JAVA虛擬機介紹](/2020/02/14/jvm-introduction/)
 
-### 類文件結構
+### [類文件結構](/2020/03/01/class-file-structure/)
 
 ### 虛擬機類加載機制
 

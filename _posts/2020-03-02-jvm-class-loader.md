@@ -400,7 +400,7 @@ public class TestBootstrap {
      cl = cl.getParent();
    }
  }
- private static class CustomClassLoader extends ClassLoader { }
+ private static class CustomClassLoader extends ClassLoader {}
 }
 
 {% endhighlight %}
@@ -511,7 +511,7 @@ void printClassName(Object obj) {
 
 符號引用驗證的目的是確保解析階段能被順利的進行
 
-### 非必要的步驟
+### 重要但非必要的步驟
 
 驗證階段 是個非常重要但並非必要的步驟 但就跟所有的網站或系統一樣 絕對是越安全越謹慎越好 純粹是為了安全性考量 但如果你信任所有的你會用到的class 你也可以在你執行的時候給jvm 一個參數 -Xverifiy:none 把大部分的驗證都關掉 加速jvm運行
 
@@ -529,7 +529,7 @@ void printClassName(Object obj) {
 public static int value = 111;
 {% endhighlight %}
 
-此時value會被設為0 在初始化階段才會在設成111
+此時value會被設為0 在初始化階段才會再設成111
 
 下表是java裡面各個形態的初始值
 
@@ -639,7 +639,9 @@ Constant pool:
 
 #2跟#13都幫你找好了 總之呢 就是要呼叫Person的constructor
 
-這些 就是符號引用 之前的驗證階段讓你知道 ok的確有Person這麼個類別 這個方法是合理的等等 處於紙上談兵的階段 
+這些 就是符號引用 
+
+之前的驗證階段讓你知道 ok的確有Person這麼個類別 這個方法是合理的等等 處於紙上談兵的階段 
 
 當你上戰場了 當你真的需要Person了 你就需要去解析他 這可能包含了需要加載Person等等 其中還包含了存取權限的確認 看我現在的類別有沒有權限存取Person 
 如果沒有的話會拋出`java.lang.IllegalAccessError` 加載完並且初始化完後會有一個Person物件在堆中 
@@ -654,6 +656,8 @@ Constant pool:
 每當台灣戶政事務所需要登記兒子S的資料時 比較嚴格 需要明確的知道爸爸住哪裡 才可以登記兒子的戶籍資料 所以這時需要去幫爸爸F登記 並且要知道爸爸住哪裡 登記完爸爸後 再來登記兒子的資料跟住哪裡 以後如果戶政事務所要靠兒子找爸爸就直接看戶政事務所的資料
 
 但美國就比較不一樣 因為DMV效率實在慢 所以在幫兒子S登記時 我只要知道你爸爸的名字 確定你找得到人就好 我並不是一定要知道你爸住哪 那如果真的需要找人的話 就去認真地找一次 找到後登記在兒子的資料裡 這樣下次需要的時候就可以直接找
+
+![Alt text]({{ site.url }}/public/jvm/jvm-3-6.jpeg)
 
 扯了這麼多 其實要完全懂解析這個部分 需要了解oop-klass模型 而我認為這個主題太過艱澀違背了本書的主旨 所以你只要知道這是個把類文件裡面的符號引用轉化為可以直接指到目標在內存的位置的指針 的步驟就可以
 
@@ -822,13 +826,14 @@ public class StaticOrder {
 8
 11
 10
+6
+0
 16
 
 {% endhighlight %}
 
 驗收時間 我們來一一解釋一下
 
-1.
 {% highlight txt %}
 [Loaded demo.ClassInitialization from file:/Users/bchiang/code/jyt0532JVM/out/production/jyt0532JVM/]
 2
@@ -837,7 +842,6 @@ public class StaticOrder {
 因為我們執行了包含這個類別 也就是包含public static void main(String[] args)的ClassInitialization類 
 符合主動使用的第五個時機 所以ClassInitialization被初始化 當然初始化包含了類加載跟執行靜態block
 
-2.
 {% highlight txt %}
 3
 4: 123
@@ -845,7 +849,6 @@ public class StaticOrder {
 
 因為Subclass.var1 是compile-time的常數 所以為Subclass不需要加載(看看我們主動使用類別的第三種情況的例外)
 
-3.
 {% highlight txt %}
 5
 [Loaded demo.SuperInterface from file:/Users/bchiang/code/jyt0532JVM/out/production/jyt0532JVM/]
@@ -878,7 +881,6 @@ random是Math類別的靜態函式 符合主動使用的第二個時機 所以�
 回到主程式碼 印出靜態變數Subclass.var2
 
 
-4.
 {% highlight txt %}
 7
 12
@@ -895,7 +897,6 @@ random是Math類別的靜態函式 符合主動使用的第二個時機 所以�
 
 父Instance Initializer -> 父constructor -> 子Instance Initializer -> 子constructor
 
-5.
 {% highlight txt %}
 [Loaded demo.Hello from file:/Users/bchiang/code/jyt0532JVM/out/production/jyt0532JVM/]
 19
@@ -918,6 +919,8 @@ random是Math類別的靜態函式 符合主動使用的第二個時機 所以�
 {% highlight txt %}
 4
 2
+6
+0
 16
 {% endhighlight %}
 
@@ -1016,16 +1019,11 @@ int x = SuperClass.STATIC_1;
 
 你捫心自問 如果不是因為你想徹底了解輸出的順序 有誰會在乎類加載的步驟中 是先加載還是先初始化呢? 
 
-所以我除了把前因後果在這篇文章說得明明白白之外 還使用了楔子程式碼 讓你對類加載的步驟感興趣
+所以我除了把前因後果在這篇文章說明白之外 還使用了楔子程式碼 讓你不得不對類加載的步驟感興趣
 
-有沒有感受到作者的用心良苦? 有沒有感覺JVM學習的門檻降低了不少?
+有沒有感受到作者的用心良苦? 有沒有感覺這樣引進門之後 JVM學習的門檻降低了不少呢?
 
-
-
-不否認 我想大概所有Java開發者中只有不到1%可以輸出順序全部答對 而事實上會這個對你成為資深工程師有沒有幫助呢 
-
-我也不知道
-
-但就是即使不知道對你未來有沒有幫助 你還是會想要學 你還是想要了解 這個心態才讓你成為資深工程師
+本篇文章還埋了不少坑 比如類文件的厲害之處 以及反射 這都會在未來的章節中提到 建議讀者先把這篇通透之後 
+再繼續接下來的學習
 
 

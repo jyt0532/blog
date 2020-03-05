@@ -51,6 +51,11 @@ A2.其實在開始執行bytecode的時候 都是用直譯器先跑 然後對於�
 
 ![Alt text]({{ site.url }}/public/jvm/jvm-4-2.png)
 
+## 伏筆
+
+你有沒有想過為什麼Oracle HotSpot叫做HotSpot呢? 這是因為Oracle出產的執行引擎可以找到具有最高編譯優先級的"熱點"代碼 先將這些熱點代碼編譯成machine code以後就輕鬆愉快
+
 ## 總結
 
 本章說明了JVM是如何使用JIT來加速運行 讓Java達到高效能的目標
+

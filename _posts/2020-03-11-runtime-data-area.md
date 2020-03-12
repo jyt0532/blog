@@ -129,7 +129,7 @@ Instruction set如下圖:
 
 JVM最高點 心中有圖形
 
-以上關於stack frame的介紹 在很多網路上的文章都找得到 但願意認真解釋到你懂的人還真不多 恰巧一個就是我 我在這裡直接Demo一個例子給你看
+以上關於stack frame的介紹 在很多網路上的文章都找得到 但願意認真解釋到你懂的人還真不多 恰巧其中一個就是我 我在這裡直接Demo一個例子給你看
 
 {% highlight java %}
 void foo(){
@@ -305,7 +305,7 @@ public class Foo {
 
 堆的用途就是存放對象實例 也是虛擬機內存中最大的一塊 所有線程共享 在虛擬機啟動時創建 所有的對象實例和數組都存在這裡 包含類物件 也是垃圾收集器作用的地方 為了要達成更有效率的垃圾回收 還會再把這塊區域分配成新生代老年代等等 在垃圾回收一節會再詳談
 
-如果堆中已經沒有空間可以給新建的實例 則會拋出OutOfMemoryError異常
+如果堆中已經沒有空間可以給新建的實例 則會拋出`OutOfMemoryError`異常
 
 調整你的heap size對於程式的效能有至關重要的影響(-Xmx, -Xms)
 
@@ -464,7 +464,7 @@ Hello hello1 = new Hello();
 當我的程式第二次需要用到Hello的物件
 
 {% highlight java %}
-Hello hello1 = new Hello();
+Hello hello2 = new Hello();
 {% endhighlight %}
 
 類加載器發現 Hello的類物件已經在堆裡了 所以不需要加載了 直接生實例
@@ -509,4 +509,4 @@ World world = new World()
 
 ![Alt text]({{ site.url }}/public/jvm/jvm-5-1.png)
 
-相信你可以比其他Java開發者看得更深 更透徹
+相信這張讀透之後 你在未來遇到同樣的問題 可以比其他Java開發者看得更深 更透徹

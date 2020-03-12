@@ -491,7 +491,7 @@ World world = new World()
 
 本地方法代表這個方法是用其他語言寫的 在早期的時候Java還沒有那麼快 跑最快的還是當之無愧的C 對於某些要求性能的某些程式區塊 我們就可以呼叫其他語言的函示 來加速執行 
 
-注意 [Effective Java](/toc/effective_java/)的作者並不提倡使用本地方法
+注意 [Effective Java的作者並不提倡使用本地方法](/2018/06/10/use-native-methods-judiciously/)
 
 ### 本地方法棧
 

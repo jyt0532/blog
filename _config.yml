@@ -26,6 +26,8 @@ plugins_dir:
 
 gems: [jekyll-paginate,jekyll-gist,jekyll-twitter-plugin]
 
+plugins: [jekyll-paginate,jekyll-gist,jekyll-twitter-plugin]
+
 github:
   repo:           https://github.com/jyt0532
 

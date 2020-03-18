@@ -14,6 +14,8 @@ title: Effective Engineer
 
 [Item4 - 透過私有構造器來禁止實例化](/2018/04/15/enforce-noninstantiability-with-a-private-constructor/)
 
+[Item5 - 依賴注入優於硬連接資源](/2020/03/17/prefer-dependency-injection-to-hardwiring-resources/)
+
 [Item6 - 避免創建不必要的對象](/2018/07/01/avoid-creating-unnecessary-objects/)
 
 [Item7 - 消除過期的對象引用](/2018/07/22/eliminate-obsolete-object-references/)

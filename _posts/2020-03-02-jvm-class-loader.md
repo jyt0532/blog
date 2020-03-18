@@ -808,7 +808,7 @@ public class StaticOrder {
 [Loaded java.lang.Math$RandomNumberGeneratorHolder from /Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home/jre/lib/rt.jar]
 [Loaded java.util.Random from /Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home/jre/lib/rt.jar]
 9
-6: 3
+6: 9
 7
 12
 15
@@ -826,8 +826,8 @@ public class StaticOrder {
 8
 11
 10
-6
-0
+4
+2
 16
 
 {% endhighlight %}
@@ -859,7 +859,7 @@ public class StaticOrder {
 [Loaded java.lang.Math$RandomNumberGeneratorHolder from /Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home/jre/lib/rt.jar]
 [Loaded java.util.Random from /Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home/jre/lib/rt.jar]
 9
-6: 3
+6: 9
 {% endhighlight %}
 
 但Subclass.var2 就不一樣了 var2是運行期的變數 符合主動使用的第三個時機 所以我們必須初始化Subclass
@@ -919,8 +919,6 @@ random是Math類別的靜態函式 符合主動使用的第二個時機 所以�
 {% highlight txt %}
 4
 2
-6
-0
 16
 {% endhighlight %}
 

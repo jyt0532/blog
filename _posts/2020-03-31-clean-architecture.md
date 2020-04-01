@@ -77,9 +77,6 @@ excerp: 本文介紹整潔的架構
 ### 跨邊界
 
 
-![Alt text]({{ site.url }}/public/crush-1.gif)
-
-
 架構圖的右下方說明了如何跨越邊界 
 
 ![Alt text]({{ site.url }}/public/clean-architecture-2.png)

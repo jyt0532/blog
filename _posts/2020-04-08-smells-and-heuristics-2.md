@@ -10,12 +10,6 @@ excerp: 本文介紹程式碼的氣味和啟發
 
 這篇文章討論 《Clean Code》 裡面收官的章節 - *程式碼的氣味和啟發* 以及《重構 - 改善既有程式的設計》裡第三章 - *程式碼的壞味道*
 
-因為這篇是搭配兩書的類似概念 所以你看到
-
-英文字母配個數字(C1, G2, T3)的就是《CleanCode》 的項目
-
-3.X(3.1, 3.12)的 就是《重構 - 改善既有程式的設計》也有提及的項目
-
 圖片以及程式碼來源自[Clean Code](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)以及[重構 - 改善既有程式的設計](https://www.tenlong.com.tw/products/9789861547534)
 
 
@@ -23,22 +17,22 @@ excerp: 本文介紹程式碼的氣味和啟發
 
 G1 - 同份原始檔存在多種語言: 一個Source File就是一個語言 有超過一個語言就會讓人困惑
 
-G2 - 明顯該有的行為未被實現: 比如一個將星期幾轉成enum函式
+G2 - 明顯該有的行為未被實現: 比如一個將星期幾轉成enum的函式
 
 {% highlight java %}
 Day day = DayDate.StringToDay(String dayName);
 {% endhighlight %}
 
-你可能會預期輸入"Monday"會回傳Day.MONDAY 但其他使用者可能會覺得"monday", "MON", "mon", "MONDAY"等等都要回傳正確的值 
+你可能會預期輸入 "Monday" 會回傳 `Day.MONDAY` 但其他使用者可能會覺得 "monday", "MON", "mon", "MONDAY"等等都要回傳正確的值 
 如果你沒有全部實作的話 會失去大家對這個函式的信賴
 
 G3 - 邊界上的不正確行為: 為你的演算法在所有情況都寫好測試 不要依賴直覺
 
-G4 - 無視安全規範: 比如手動控管`[serialVersionUID](/2017/10/12/decrypting-serialized-java-object/)` 或是把Compiler的警告關掉 都是很危險的事
+G4 - 無視安全規範: 比如手動控管[`serialVersionUID`](/2017/10/12/decrypting-serialized-java-object/) 或是把Compiler的警告關掉 都是很危險的事
 
 G5 - 重複的程式碼: 本書最重要的規範之一 要非常認真看待
 
-如果你看到相同的程式碼 代表在過去發生了該進行抽象而未進行抽象的情形
+如果你看到相同的程式碼 代表在過去發生了**該進行抽象而未進行抽象**的情形
 
 常見的情況如下
 
@@ -60,7 +54,11 @@ public interface Stack {
 }
 
 {% endhighlight %}
-有沒有哪個函式看起來怪怪? `percentFull` 因為不是所有的Stack都有 多滿 的概念 這種東西就應該放在比如`BoundedStack`之類的衍生類別裡
+有沒有哪個函式看起來怪怪? 
+
+沒錯 `percentFull` 
+
+因為不是所有的Stack都有 多滿 的概念 這種東西就應該放在比如`BoundedStack`之類的衍生類別裡
 
 G8 - 過多的資訊: 限制類別和模組中曝露的介面數量 當一個類別擁有的方法數量越少越好 當一個函式知道的變數越少越好 當一個類別擁有的實體變數越少越好
 
@@ -78,11 +76,11 @@ G11/G24 - 不一致性: 不論是命名還是其他事項 都應該遵從一樣�
 
 G12 - 雜亂的程式: 用不到的東西 不需要的東西 都全部拿掉 比如default constructor就可以直接拿掉
 
-G13 - 人為的耦合(artificial coupling): 比如說把enum或是某個static變數宣告在某個類別裡 這樣會迫使使用者必須了解整個類別 
+G13 - 人為的耦合(artificial coupling): 比如說把enum或是某個static變數宣告在某個類別裡 這樣會迫使enum的使用者必須了解整個類別 
 
 這種人為的刻意把兩個東西的關聯性變強 都應該避免
 
-G14(3.7) - 特色留戀(Feature Ency): 一個類別的方法 應該只對同一個類別的變數和函式感興趣 而不是對其他類別的感興趣
+G14(3.7) - 特色留戀(Feature Envy): 一個類別的方法 應該只對同一個類別的變數和函式感興趣 而不是對其他類別的感興趣
 
 來看個例子
  
@@ -150,7 +148,7 @@ HourlyPayCalculator.calculatePay(employee, overtimeRate)
 
 這樣的話 每當我們需要support一個子類 我們就得把這個子類的`calculatePay`加進子類的靜態函式 可想而知 重複性太高
 
-總而言之 你應該偏向使用非靜態函式 當你真的需要把它變成靜態的時候 先考慮你不需要在未來支持多型
+總而言之 你應該偏向使用非靜態函式 當你真的需要把它變成靜態的時候 先考慮你需不需要在未來支持多型
 
 G19 - 使用具解釋性的變數: 就是變數命名要清楚
 
@@ -160,7 +158,7 @@ G20 - 函數名稱要說到做到
 
 如果你必須仔細看這個函式的實作 才知道它到底做了什麼 那你應該取個好點的名稱
 
-G21 - 暸解演算法: 你必須先瞭解你要實作的算法 在去寫實作的函式
+G21 - 暸解演算法: 你必須先瞭解你要實作的算法 再去寫實作的函式
 
 G22 - 讓邏輯相依變成實體相依: 其實跟G17很像 就是當兩個模組有依賴關係的時候 哪個模組要負責那些資料要跟清楚
 
@@ -187,11 +185,13 @@ class Employee {
 class Salesman{
   int payAmount(Employee emp) {
     return emp.getMonthlySalary() + emp.getCommission();
+  }
 }
 class Manager{
   int payAmount(Employee emp) {
     return emp.getMonthlySalary() + emp.getBonus();
   }
+}
 {% endhighlight %}
 
 別忘了把base class的函式改成抽象函式
@@ -205,9 +205,15 @@ G25 - 用帶有名稱的常數取代Magic number: 比如用`SECOND_PER_DAY`而�
 
 G26 - 要精確: 模稜兩可和不精確的程式碼 是由懶惰以及不一致所造成的 比如
 
-單純用浮點數來代表貨幣利率幾乎是犯罪行為 或是因為不想處理同步問題所以不用lock或是transaction management 或是明明宣告List就夠了你卻硬要宣告為ArrayList來過度限制 或是讓所有變數都沒有access modifier(直接變成package protected)
+1.單純用浮點數來代表貨幣利率(幾乎是犯罪行為) 
 
-當你在程式碼中下決定時 都要有充足的理由
+2.因為不想處理同步問題所以不用lock或是transaction management 
+
+3.明明宣告List就夠了你卻硬要宣告為ArrayList來過度限制 
+
+4.讓所有變數都沒有access modifier(直接變成package protected)
+
+當你在程式碼中下任何決定時 都要有充足的理由 不要得過且過
 
 G28 - 把條件判斷封裝
 
@@ -278,9 +284,10 @@ public class MoogDiver{
 
 當我們`dive`的時候 **一定**需要按照這三個順序 `saturateGradient` -> `reticulataSplines` -> `diveForMoog`
 
-你程式這樣寫很合理 但這就可能讓任何人其他的函式 用任何他想用的順序呼叫 你無法保證呼叫的順序 
+你程式這樣寫很合理 但這可能讓任何其他的函式 用任何他想用的順序呼叫 你身為這段程式碼的擁有者 無法保證被呼叫的順序 
 
-當你函式的時序需求的時候 你可以這麼搞
+當你函式有時間順序需求的時候 你可以這麼搞
+
 {% highlight java %}
 public class MoogDiver{
   Gradient gradient;
@@ -320,7 +327,7 @@ if(nextLevel < tags.length) {
 
 好看多了
 
-G34 - 函式內容應該下降抽象層次一層: 在一個函式裡的statement 都應該屬於同一個層次的抽象 哪一層呢 就是這個函式本身的低一層
+G34 - **函式內容應該下降抽象層次一層**: 在一個函式裡的statement 都應該屬於同一個層次的抽象 哪一層呢 就是這個函式本身的低一層
 
 比如說一個兩級抽象深的函式 裡面的內容就只能是三級抽象深的表達式 當你要使用四級抽象深的表達式 你需要再呼叫一個函式
 
@@ -336,7 +343,9 @@ public String render() throws Exception {
 }
 {% endhighlight %}
 
-這個函式混雜了至少兩種以上的抽象層次 一種是水平線的粗細概念 一種是水平線的syntax
+這個函式混雜了至少兩種以上的抽象層次 一種是水平線的粗細概念 一種是水平線的syntax概念
+
+希望看到這裡的你 已經在心中有些sense 這兩個概念不該是同一層的
 
 重構之後這這樣
 
@@ -355,11 +364,11 @@ private String hrSize(int height) {
 
 這個重構把水平線應該要多粗 跟 如何畫粗水平線的概念分開 如果所有`render()`裡面的表達式都是第n層深的抽象的話 那`hrSize()`裡面的表達式都是第n+1層抽象
 
-劃分抽象程式概念 是進行函式重構時 最重要的行為之一
+**劃分抽象程式概念 是進行函式重構時 最重要的行為之一**
 
 G35 - 可以configure的資料放在高階層次
 
-如果你有一個常數 比如說有預設值或是設定值 可以configurable的 那就要擺在高階的抽象層次上 不要藏到低層次的函式裡
+如果你有一個常數 比如說有預設值或是設定值 是configurable的 那就要擺在高階的抽象層次上 不要藏到低層次的函式裡
 
 G36(3.15) - 避免過度耦合的訊息鏈:
 
@@ -398,9 +407,15 @@ class Department {
 }
 {% endhighlight %}
 
-這種情況下 你想知道一個人的老闆 只能`john.getDepartment().getManager()` 這樣增加了`Person`跟`Department`的耦合 畢竟`Person`根本就不Care `Department`
+這種情況下 你想知道一個人的老闆 只能
 
-那怎麼辦 就在Person裡面加一個Delegate method
+{% highlight java %}
+john.getDepartment().getManager()
+{% endhighlight %}
+
+但這樣增加了`Person`跟`Department`的耦合 畢竟`Person`根本就不Care `Department`
+
+那怎麼辦 就在Person裡面加一個Delegate method: `getManager()` 
 
 {% highlight java %}
 class Person {

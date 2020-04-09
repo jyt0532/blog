@@ -14,3 +14,7 @@ title: Table of Contents
 [Effective java](/toc/effective_java)
 
 [Designing Data-Intensive Applications](/toc/designing_data_intensive-application)
+
+[Clean Code](/toc/clean_code)
+
+[Clean Architecture](/toc/clean_architecture)

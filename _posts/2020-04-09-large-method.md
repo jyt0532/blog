@@ -8,7 +8,7 @@ author: jyt0532
 excerp: 本文介紹重構Large Method
 ---
 
-這篇文章討論《重構 - 改善既有程式的設計》裡的3.3 - Large Method
+這篇文章討論《重構 - 改善既有程式的設計》裡的3.2 - Large Method
 
 圖片以及程式碼來源自[重構 - 改善既有程式的設計](https://www.tenlong.com.tw/products/9789861547534)
 

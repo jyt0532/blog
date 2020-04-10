@@ -2,7 +2,7 @@
 layout: post
 title: 重構 - 改善既有程式的設計 - Large Method
 comments: True
-subtitle: 一般狀況
+subtitle: 如何重構過長的函式
 tags: refacforing
 author: jyt0532
 excerp: 本文介紹重構Large Method

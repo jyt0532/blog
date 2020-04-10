@@ -62,33 +62,7 @@ E2 - 需要多個步驟來進行測試: 你應該只需要一個步驟就可以�
 
 F1(3.4) - 過多的參數: 函式的參數不能太多 最好是不要有參數 要是有超過三個參數 那必要性是非常值得懷疑的
 
-有兩個常見的方法可以減少參數 
-
-1.**[Replace Parameter with Method](/2020/04/09/large-method/#replace-temp-with-query)**:如果被呼叫端也可以自己拿到那個參數 就可以直接讓被呼叫端自己算
-
-比如原本是這樣
-{% highlight java %}
-int basePrice = _quantity * _itemPrice;
-discountLevel = getDiscountLevel();
-double finalPrice = discountedPrice (basePrice, discountLevel);
-{% endhighlight %}
-那其實discountLevel不用丟進去 讓discountedPrice自己算
-{% highlight java %}
-int basePrice = _quantity * _itemPrice;
-double finalPrice = discountedPrice (basePrice);
-{% endhighlight %}
-
-特別是OOP `discountLevel`應該要是存在物件層級的變數 不應該還在函式之間傳來傳去
-
-2.**[Preserve Whole Object](/2020/04/09/large-method/#preserve-whole-object)**: 如果參數間的關係很強 可以把參數們包成一個參數物件
-
-{% highlight java %}
-amountInvoicedIn(Date start, Date end)
-{% endhighlight %}
-變成
-{% highlight java %}
-amountInvoicedIn(DateRange range)
-{% endhighlight %}
+請參考[重構 - 改善既有程式的設計 - Long Parameter List](/2020/04/10/long-parameter-list/)
 
 F2 - 輸出型參數: 讀者通常預期參數是用來輸入的 而不是用來輸出結果的
 

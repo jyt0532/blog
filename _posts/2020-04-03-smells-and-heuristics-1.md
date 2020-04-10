@@ -64,7 +64,7 @@ F1(3.4) - 過多的參數: 函式的參數不能太多 最好是不要有參數 
 
 有兩個常見的方法可以減少參數 
 
-1.**Replace Parameter with Method**:如果被呼叫端也可以自己拿到那個參數 就可以直接讓被呼叫端自己算
+1.**[Replace Parameter with Method](/2020/04/09/large-method/#replace-temp-with-query)**:如果被呼叫端也可以自己拿到那個參數 就可以直接讓被呼叫端自己算
 
 比如原本是這樣
 {% highlight java %}
@@ -80,7 +80,7 @@ double finalPrice = discountedPrice (basePrice);
 
 特別是OOP `discountLevel`應該要是存在物件層級的變數 不應該還在函式之間傳來傳去
 
-2.**Preserve Whole Object**: 如果參數間的關係很強 可以把參數們包成一個參數物件
+2.**[Preserve Whole Object](/2020/04/09/large-method/#preserve-whole-object)**: 如果參數間的關係很強 可以把參數們包成一個參數物件
 
 {% highlight java %}
 amountInvoicedIn(Date start, Date end)

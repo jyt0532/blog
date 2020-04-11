@@ -22,11 +22,7 @@ excerp: 本文介紹重構Switch Statements
 你需要仔細看清楚你的switch 是否可以用多型優雅的解決
 
 
-## 例外 
 
-1.當switch只是拿來取代多層if-else的簡單情況 多型就殺雞用牛刀
-
-2.當switch只是用來實作[Factory Method](/2017/04/28/factory-method/)或是[Abstract factory](/2017/05/03/abstract-factory/)
 ## 解法
 
 如果可以用多型的話 該怎麼做呢
@@ -127,3 +123,10 @@ class NullBird extends Bird {
 Bird b = getSomeBird();
 speed = b.getSpeed();
 {% endhighlight %}
+
+## 不應該重構的情況
+
+1.當switch只是拿來取代多層if-else的簡單情況 多型就殺雞用牛刀
+
+2.當switch只是用來實作[Factory Method](/2017/04/28/factory-method/)或是[Abstract factory](/2017/05/03/abstract-factory/)
+

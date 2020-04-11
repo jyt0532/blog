@@ -20,3 +20,5 @@ title: Clean Architecture
 
 3.9 [基本型別偏執](/2020/04/10/primitive-obsession/)
 
+3.10 [Switch Statement](/2020/04/11/switch-statement/)
+

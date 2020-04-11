@@ -24,7 +24,7 @@ excerp: 本文介紹重構Switch Statements
 
 ## 例外 
 
-1.當switch只是拿來取代複雜的if-else
+1.當switch只是拿來取代多層if-else的簡單情況 多型就殺雞用牛刀
 
 2.當switch只是用來實作[Factory Method](/2017/04/28/factory-method/)或是[Abstract factory](/2017/05/03/abstract-factory/)
 ## 解法
@@ -83,8 +83,6 @@ class NorwegianBlue extends Bird {
 ### Replace Parameter with Explicit Methods
 
 如果你的switch裡面 每個條件是離散的 而且目標是呼叫函式 那就可以直接針對每個情況寫單獨的函式
-
-什麼是Type Code呢 就是一個Class裡面列出了某個欄位的所有可能的值 有點像是enum的概念 比如說血型就是A或B或O或AB
 
 ### Introduce Null Object
 

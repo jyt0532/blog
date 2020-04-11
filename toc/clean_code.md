@@ -2,7 +2,9 @@
 layout: default
 title: Clean Code
 ---
-# Clean Code - 無瑕的程式碼 筆記
+# 無瑕的程式碼 心得筆記
+
+![Alt text]({{ site.url }}/public/clean_code.jpg)
 
 [無瑕的程式碼 - 物件及資料結構](/2020/03/15/objects-and-data-structure/)
 

@@ -26,15 +26,16 @@ excerp: 本文介紹重構Feature Envy
 
 來聊聊常見的解法
 
+### [Extract Method](/2020/04/09/large-method/#extract-method)
+
 ### Move Method
 
 這是重構中最常用到的方法
 
 ![Alt text]({{ site.url }}/public/move-method.png)
 
-就是把 aMethod 把 Class1 移到 Class2
+就是把 aMethod 從 Class1 移到 Class2
 
-### [Extract Method](/2020/04/09/large-method/#extract-method)
 
 ## 到底要移到哪裡去呢
 
@@ -46,4 +47,6 @@ excerp: 本文介紹重構Feature Envy
 
 有時候 我們刻意要把資料本身 跟 行為分開 那就不能refactor 
 
-什麼時候呢 答對了 就是我們想要[動態改](/2017/04/07/strategy/)[變行為](/2017/05/30/state/)的時候
+什麼時候呢? 
+
+答對了 就是我們想要[動態改](/2017/04/07/strategy/)[變行為](/2017/05/30/state/)的時候

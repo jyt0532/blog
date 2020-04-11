@@ -2,7 +2,9 @@
 layout: default
 title: Effective Engineer
 ---
-# The Effective Java 筆記
+# The Effective Java 心得筆記
+
+![Alt text]({{ site.url }}/public/effective_java.jpg)
 
 ## 第二章 物件的創造跟銷毀
 

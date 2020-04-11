@@ -18,3 +18,5 @@ title: Table of Contents
 [Clean Code](/toc/clean_code)
 
 [Clean Architecture](/toc/clean_architecture)
+
+[重構 - 改善既有程式的設計](/toc/refactoring)

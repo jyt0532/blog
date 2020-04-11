@@ -2,7 +2,9 @@
 layout: default
 title: Clean Architecture
 ---
-# Clean Architecture - 無瑕的程式碼(整潔的軟體設計與架構篇) 筆記
+# 無瑕的程式碼(整潔的軟體設計與架構篇) 筆記
+
+![Alt text]({{ site.url }}/public/clean_architecture.jpg)
 
 [深入淺出單一職責原則 Single Responsibility Principle](/2020/03/18/srp/)
 

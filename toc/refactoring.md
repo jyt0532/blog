@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Clean Architecture
+title: Refactoring - Improve the design of existing code
 ---
 # 重構 - 改善既有程式的設計 筆記
 
@@ -22,3 +22,6 @@ title: Clean Architecture
 
 3.10 [Switch Statement](/2020/04/11/switch-statement/)
 
+3.14 [Temporary Field](/2020/04/11/temporary-field/)
+
+3.21 [Refused Bequest](/2020/04/12/refused-bequest/)

@@ -18,7 +18,7 @@ excerp: 本文介紹重構Duplicated Code
 就是重複的程式碼 這是比[Alternative Classes with Different Interfaces](/2020/04/13/alternative-classes-with-different-interfaces/)更通用的情況
 
 
-## 解法 - 看重複的程式碼在同一個類別的情況
+## 解法 - 重複的程式碼在同一個類別的情況
 
 ### [Extract Method](/2020/04/09/large-method/#extract-method)
 

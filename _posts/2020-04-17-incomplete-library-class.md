@@ -49,11 +49,13 @@ class Report {
 }
 {% endhighlight %}
 
-為什麼要提到這個呢 因為這個函式庫有著大部分你想要的功能 就只差一個函式是你特別常用的 因為差別很細微 所以很多legacy code就直接寫死 不把他單獨獨立成一個新的函式 維護起來測試起來都很困難
+為什麼要提到這個呢 因為這個函式庫有著大部分你想要的功能 就只差一個函式是你特別常用的 但卻沒有提供
+
+所以很多legacy code就直接inline在程式碼裡 不把他單獨獨立成一個新的函式 維護起來測試起來都很困難
 
 ### Introduce Local Extension
 
-那當你需要多加的[Foriegn Method](#introduce-foreign-method)太多了 那就不如把這些外加的函式包在一起 變成一個subclass或是wrapper吧
+那當你需要多加的[Foreign Method](#introduce-foreign-method)太多了 那就不如把這些外加的函式包在一起 變成一個subclass或是wrapper吧
 
 ![Alt text]({{ site.url }}/public/introduce-local-extension.png)
 

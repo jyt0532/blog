@@ -19,7 +19,7 @@ excerp: 本文介紹重構Middle Man
 
 比如說你問你老闆有沒有時間參加一個會議 老闆就把這個訊息delegate給他的記事本 然後再回答你 你不用知道老闆的記事本是電子的還是紙本的
 
-但如果一個類別過度使用delegation 比如果一個類別有超過一半的函式 都是去委託別人做的 那這樣就是過度使用delegation
+但如果一個類別有著過多delegation 比如果一個類別有超過一半的函式 都是去委託別人做的 那這樣就是過度使用delegation
 
 
 ## 解法
@@ -48,7 +48,7 @@ departmentCode = john.getDepartmentCode();
 departmentColor = john.getDepartmentColor();
 {% endhighlight %}
 
-當然這例子有點牽強 你必須在**不斷重構**的過程中 找到最適合的平衡 到底應該加多少中間人 到底應該delegate到什麼程度
+當然這例子有點牽強 你必須在**不斷重構**的過程中 找到最適合的平衡 到底應該加多少中間人 以及到底應該delegate到什麼程度
 
 
 ## 例外

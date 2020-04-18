@@ -25,7 +25,7 @@ excerp: 本文介紹重構Speculative Generality
 
 ## 解法
 
-### [Collapse Hierarchy](2020/04/15/lazy-class/)
+### [Collapse Hierarchy](/2020/04/15/lazy-class/#collapse-hierarchy)
 
 把用不到的抽象類別移除
 

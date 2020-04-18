@@ -8,6 +8,8 @@ title: Refactoring - Improve the design of existing code
 
 ## 程式碼的壞味道
 
+3.1 [重複的程式碼](/2020/04/15/duplicate-code/)
+
 3.2 [過長的函式](/2020/04/09/large-method/)
 
 3.3 [過大的類別](/2020/04/10/large-class/)
@@ -28,9 +30,23 @@ title: Refactoring - Improve the design of existing code
 
 3.11 [平行繼承體系](/2020/04/13/parallel-inheritance-hierarchies/)
 
+3.12 [冗員類別](/2020/04/15/lazy-class/)
+
+3.13 [誇誇其談未來性](/2020/04/16/speculative-generality/)
+
 3.14 [令人迷惑的暫時欄位](/2020/04/11/temporary-field/)
 
+3.15 [過度耦合的訊息鏈](/2020/04/17/message-chains/)
+
+3.16 [中間轉手人](/2020/04/17/middle-man/)
+
+3.17 [不恰當的親密關係](/2020/04/16/inappropriate-intimacy/)
+
 3.18 [異曲同工的類別](/2020/04/13/alternative-classes-with-different-interfaces/)
+
+3.19 [不完美的程式庫類別](/2020/04/17/incomplete-library-class/)
+
+3.20 [純稚的資料類別](/2020/04/16/data-class/)
 
 3.21 [被拒絕的遺贈](/2020/04/12/refused-bequest/)
 

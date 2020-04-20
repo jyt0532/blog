@@ -117,7 +117,7 @@ public double getPayAmount() {
 
 這樣一目了然 
 
-大方向就是 if-else的條件是 給人的感覺是 if的情況跟else的情況同等的重要 
+大方向就是 if-else的條件給人的感覺是 if的情況跟else的情況同等的重要 
 
 但guard clause不同 就是用來專門處理比較特別的情況
 

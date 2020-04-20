@@ -8,7 +8,7 @@ author: jyt0532
 excerp: 本文介紹如何簡化函式呼叫
 ---
 
-這篇文章討論《重構 - 改善既有程式的設計》裡的第八章 - Making Method Calls Simpler
+這篇文章討論《重構 - 改善既有程式的設計》裡的第十章 - Making Method Calls Simpler
 
 主要會討論[程式碼的壞味道](/toc/refactoring/)中 沒有被提及的重構方法裡面有關於 簡化函式呼叫 的內容
 
@@ -94,7 +94,7 @@ void setHeightToTen(){
 }
 {% endhighlight %}
 
-### Preserve Whole Object(/2020/04/09/large-method/#preserve-whole-object)
+### [Preserve Whole Object](/2020/04/09/large-method/#preserve-whole-object)
 
 你從一個物件中取出某些值 去傳給其他函式 那你不如直接把那個物件丟進去
 

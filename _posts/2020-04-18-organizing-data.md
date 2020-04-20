@@ -32,7 +32,7 @@ excerp: 本文介紹如何重新組織資料
 
 別激動別激動 我一開始看也是看不懂 我來說說我的理解吧
 
-我們繼續使用[Replace Data Value with Object](#replace-data-value-with-bject)的例子 在使用[Replace Data Value with Object](#replace-data-value-with-bject)重構之後 
+我們繼續使用[Replace Data Value with Object](#replace-data-value-with-object)的例子 在使用[Replace Data Value with Object](#replace-data-value-with-object)重構之後 
 每張`Order`上都有一個`Customer`物件而不是String
 
 {% highlight java %}
@@ -76,7 +76,7 @@ class Order{
 
 好麻煩 怎麼辦呢
 
-我們使用[Replace Constructor with Factory Method](/making-method-calls-simpler/#replace-constructor-with-factory-method) 我們就可以控制Customer的創建過程
+我們使用[Replace Constructor with Factory Method](/2020/04/19/making-method-calls-simpler/#replace-constructor-with-factory-method) 我們就可以控制Customer的創建過程
 {% highlight java %}
 class Customer {
   //用一個hash table紀錄目前有的顧客
@@ -90,20 +90,10 @@ class Customer {
   }
 
   private final String name;
-  public static Customer getNamed(String name) {
-    if(!map.containsKey(name)) return null;
-    return map.get(name);
-  }
-  private Customer(String name) {
-    this.name = name;
-  }
-  public String getName() {
-    return name;
-  }
 }
 {% endhighlight %}
 
-那Order只要有customerName 就很好辦了
+有了`create`這個靜態工廠之後 Order只要有customerName 就很好辦了
 
 {% highlight java %}
 class Order {
@@ -171,17 +161,17 @@ double potentialEnergy(double mass, double height) {
 
 檢查是不是對於Collections也都做好了封裝
 
-### Type Code三兄弟之老大: [Replace Type Code with Class](/2020/04/10/primitive-obsession/#replace-type-code-with-class)
+### [Replace Type Code with Class](/2020/04/10/primitive-obsession/#replace-type-code-with-class)
 
-類別之中有一個數值型別代碼(numeric type code) 但他不影響類別的行為
+Type Code三兄弟之老大: 類別之中有一個數值型別代碼(numeric type code) 但他不影響類別的行為
 
-### Type Code三兄弟之老二: [Replace Type Code with Subclasses](/2020/04/10/primitive-obsession/#replace-type-code-with-subclasses)
+### [Replace Type Code with Subclasses](/2020/04/10/primitive-obsession/#replace-type-code-with-subclasses)
 
-當類別之中的數值型別代碼會影響類別行為的時候 就用這個方法
+Type Code三兄弟之老二: 當類別之中的數值型別代碼會影響類別行為的時候 就用這個方法
 
-### Type Code三兄弟之老三: [Replace Type Code with State/Strategy](/2020/04/10/primitive-obsession/#replace-type-code-with-statestrategy)
+### [Replace Type Code with State/Strategy](/2020/04/10/primitive-obsession/#replace-type-code-with-statestrategy)
 
-當你想動態的改變類別的行為的時候 就用這個方法
+Type Code三兄弟之老三: 當你想動態的改變類別的行為的時候 就用這個方法
 
 ### Replace Subclass with Fields
 

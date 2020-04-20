@@ -50,7 +50,7 @@ class Person {
 
 ### Encapsulate Collection
 
-在檢查是不是對於Collections也都做好了封裝
+再檢查是不是對於Collections也都做好了封裝
 
 ![Alt text]({{ site.url }}/public/encapsulate-collection.png)
 

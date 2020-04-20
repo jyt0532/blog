@@ -2,19 +2,19 @@
 layout: post
 title: 重構 - 改善既有程式的設計 - Moving Features between Objects
 comments: True
-subtitle: 在物件之間搬移特性
+subtitle: 在物件之間移動特性
 tags: refacforing
 author: jyt0532
-excerp: 本文介紹如何在物件之間搬移特性
+excerp: 本文介紹如何在物件之間移動特性
 ---
 
 這篇文章討論《重構 - 改善既有程式的設計》裡的第七章 - Moving Features between Objects
 
-主要會討論[程式碼的壞味道](/toc/refactoring/)中 沒有被提及的重構方法裡面有關於 在物件之間搬移特性 的內容
+主要會討論[程式碼的壞味道](/toc/refactoring/)中 沒有被提及的重構方法裡面有關於 在物件之間移動特性 的內容
 
 圖片以及程式碼來源自[重構 - 改善既有程式的設計](https://www.tenlong.com.tw/products/9789861547534)
 
-## 在物件之間搬移特性
+## 在物件之間移動特性
 
 在重構的過程中 數一數二重要的是 就是**決定把責任放在哪** 
 我們有許多重構技巧可以讓我們把責任放在對的類別

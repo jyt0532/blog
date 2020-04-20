@@ -51,3 +51,19 @@ title: Refactoring - Improve the design of existing code
 3.21 [被拒絕的遺贈](/2020/04/12/refused-bequest/)
 
 3.22 [過多的註釋](/2020/04/15/comments/)
+
+## 重構方法
+
+[重新組織你的函式](/2020/04/18/composing-methods/)
+
+[在物件之間移動特性](/2020/04/18/moving-features-between-objects/)
+
+[重新組織資料](/2020/04/18/organizing-data/)
+
+[簡化條件式](/2020/04/19/simplifying-conditional-expression/)
+
+[簡化函式呼叫](/2020/04/19/making-method-calls-simpler/)
+
+[處理繼承關係](/2020/04/19/dealing-with-generalization/)
+
+

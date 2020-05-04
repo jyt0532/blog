@@ -59,7 +59,7 @@ Martin Kleppmann 前領英工程師 貢獻了許多open source專案比如Apache
 
 ## Part3: Derived Data
 
-Part3: Intro
+[Part3: Intro](/2020/05/03/derived-data/)
 
 [Batch Processing](/2019/11/24/batch-processing/)
 

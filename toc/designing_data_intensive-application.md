@@ -71,6 +71,6 @@ Part3: Intro
 
 3. [處理流](/2019/07/28/processing-streams/)
 
-The Future of Data System
+[The Future of Data System](/2020/05/03/the-future-of-data-system/)
 
 

@@ -99,7 +99,7 @@ nice value != 0 的代表niced task, nice value = 0 的代表un-niced task
 
 ### ps
 
-列出所有active的process的資訊 比較常用的是`px aux`
+列出所有active的process的資訊 比較常用的是`ps aux`
 
 ![Alt text]({{ site.url }}/public/performance/ps-1.png)
 

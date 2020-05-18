@@ -23,30 +23,30 @@ excerpt: 本文講解常用的觀察Linux效能的工具
 
 ### strace
 
-system call tracer 就是可以上你追蹤系統調用
+system call tracer 就是可以讓你追蹤系統調用
 
-什麼是系統調用呢 就是你跟OS Kernel發出的調用 通常是在你需要
+什麼是系統調用呢 就是你跟OS Kernel發出的調用 System call通常發生在
 
-1.Process的創建或管理(fork(), wait(), kill()...)
+1.Process的創建或管理(`fork()`, `wait()`, `kill()`...)
 
-2.Intormation管理(getpid(), alarm(), sleep()...)
+2.Intormation管理(`getpid()`, `alarm()`, `sleep()`...)
 
-3.檔案讀寫 資料夾管理(open(), close()...)
+3.檔案讀寫 資料夾管理(`open()`, `close()`...)
 
-4.Device I/O(loctl(), read(), write()...)
+4.Device I/O(`loctl()`, `read()`, `write()`...)
 
-5.Communication(pipe(), msgget()...)
+5.Communication(`pipe()`, `msgget()`...)
 
 
 知道什麼是System Call之後 再來看看我們該怎麼用`strace`
 
 #### 第一種用法 
 
-就是你可以看到一個你下達一個command之後 這個command到底幫你調用了多少system call
+你可以看到一個你下達一個command之後 這個command到底幫你調用了多少system call
 
 ![Alt text]({{ site.url }}/public/performance/strace-1.png)
 
-哇靠 原來只是`cat`一下居然發生了這麼多事 你可以看到所有調用的system call 還有每個system call的參數
+哇靠 原來只是`cat`一下居然發生了這麼多事 你可以看到所有被呼叫的system call 還有每個system call的參數
 
 那如果`cat`一個不存在的檔案呢
 
@@ -68,7 +68,9 @@ ok 了解 就是可以讓你完完整整地看到我們發給OS的函式和參�
 
 <div id="strace-demo"></div>
 
-你會發現 啊 原來每一個鍵盤輸入 都會調用system call啊 你如果真的想深入研究 可以去看每個指令的document 但我們的demo中常見的`read` `write` 的第一個參數`fd = 0` 也就是輸入是來自standard input 就是我們的鍵盤
+你會發現 啊 原來每一個鍵盤輸入 都會調用system call啊 你如果真的想深入研究 可以去看每個指令的document 
+
+在我們的demo中常見的`read` `write` 的第一個參數`fd = 0` 也就是輸入是來自standard input 就是我們的鍵盤
 
 我已經示範了怎麼完完全全的監控某個進程的所有系統調用了 你手上的工具又比別人多了一個 以後別人問你
 
@@ -112,15 +114,18 @@ State的可能值可以參考[這裡](http://man7.org/linux/man-pages/man8/netst
 
 這個是列出所有socket的情況 還有一個常見的用法
 
-`netstat -s`: s代表summary 列出每個協定的總結
+#### `netstat -s`
+
+s代表summary 列出每個協定的總結
 
 ![Alt text]({{ site.url }}/public/performance/netstat-s.png)
 
 ### nicstat
 
+列出關於網路流量的統計數據
+
 ![Alt text]({{ site.url }}/public/performance/nicstat.png)
 
-列出關於網路流量的統計數據
 
 | 代號  | 解釋 |
 | --- | --- |
@@ -216,7 +221,7 @@ Linux Task的統計數據
 
 1.我們承諾給了它4MB 分別是虛擬記憶體的0~4MB的空間
 
-2.但事實上 只有0-1MB內存是給他的 1MB-4MB的東西在硬碟裡
+2.但事實上 只有0-1MB的物理內存是給他的 剩下1MB-4MB的東西在硬碟裡
 
 3.先這樣 等它需要用到1MB~4MB再說
 
@@ -238,7 +243,7 @@ Linux Task的統計數據
 
 這就是Page Fault 也稱為Major Page Fault
 
-那什麼是Minor Page Fault呢 就是其實3MB-4MB的東西其實是在物理內存裡的沒錯 但這並不是留給這個進程用的(可能別的進程剛好也需要這個資料) 那這就比較好處理 MMU只要稍微記一下 多了一個進程要用同一個東西 就可以開心得給它用了 不用再去問Disk
+那什麼是Minor Page Fault呢 就是其實3MB-4MB的東西其實是在物理內存裡的沒錯 但這並不是留給這個進程用的(可能別的進程剛好也需要這個資料) 那這就比較好處理 MMU只要稍微記一下 多了一個進程要用同一個東西 就可以開心得給它用了 不用再去跟Disk要資料來swap
 
 #### 我們回來 `pidstat -r`
 
@@ -298,7 +303,7 @@ Linux Task的統計數據
 
 ![Alt text]({{ site.url }}/public/performance/lsof-2.png)
 
-哇靠 原來這些都是檔案喔 或是常見的FD 非常建議各位讀者去讀一下`lsof`的doc
+哇靠 原來這些都是檔案喔XD 非常建議各位讀者去讀一下`lsof`的doc
 
 
 如果只是輸入`lsof`的話 秀出的資訊實在太多了 所以你通常會需要加上一些option
@@ -313,7 +318,7 @@ Linux Task的統計數據
 
 我們來試試看吧 先開一個terminal用vim開啟一個檔案
 
-再開一個terminal 用`lsof`來看一下
+再開另一個terminal 用`lsof`來看一下
 
 ![Alt text]({{ site.url }}/public/performance/lsof-1.png)
 

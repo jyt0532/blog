@@ -204,9 +204,9 @@ r:讀, w:寫, rq: request, qu: queue, sz: size, a: 平均, tm: 時間, svc: 服�
 |%nice|user-level並且有指定nice的任務的CPU使用量|
 |%sys|system-level的CPU使用量| 
 |%iowait|當有I/O request的時候 CPU閒置的時間比例|
-|%irq|CPU處理hardware interrupts的時間比利|
-|%soft|CPU處理software interrupts的時間比利|
-|%steal|這個CPU等待其他CPU|
+|%irq|CPU處理hardware interrupts的時間比例|
+|%soft|CPU處理software interrupts的時間比例|
+|%steal|這個CPU等待其他CPU計算佔用的時間比例|
 |%guest|Show the percentage of time spent by the CPU or CPUs to run a virtual processor|
 |%gnice|Show the percentage of time spent by the CPU or CPUs to run a niced guest|
 |%idle|CPU閒置的時間百分比|

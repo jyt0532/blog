@@ -243,4 +243,4 @@ free 欄位跟available欄位不是應該要一樣嗎? 不對 free指的是真�
 
 ![Alt text]({{ site.url }}/public/performance/performance-basic.png)
 
-下一篇會講解中階的指令
+[下一篇](/2020/05/17/linux-performance-tool-2/)會講解中階的指令

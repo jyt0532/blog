@@ -392,4 +392,4 @@ System Activity Reporter 系統活動報告
 
 ![Alt text]({{ site.url }}/public/performance/performance-intermediate.png)
 
-下一篇是進階篇 盡請期待
+[下一篇](/2020/05/24/linux-performance-tool-3/)是進階篇 盡請期待

@@ -148,9 +148,10 @@ nice value != 0 的代表niced task, nice value = 0 的代表un-niced task
 
 如果bi或bo不為0 代表有IO正在跑
 
-什麼是buffer呢 舉個例子來說我們想送1MB的資料給deviceA 但deviceA每秒鐘只能接受100KB 那我們就得要先把多的放進buffer裡 
+什麼是buffer呢 舉個例子來說我們想送1MB的資料給deviceA 但deviceA每秒鐘只能接受100KB 那我們就得要先把多的放進buffer裡 **用於Disk I/O**
 
-那什麼是cache呢 就是把常用的data先暫時借放的地方 這樣下次存取會比較快
+那什麼是cache呢 就是把常用的data先暫時借放的地方 這樣下次存取會比較快 **用於檔案系統**
+
 
 
 ### iostat

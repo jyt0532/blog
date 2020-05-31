@@ -20,3 +20,5 @@ title: Table of Contents
 [Clean Architecture](/toc/clean_architecture)
 
 [重構 - 改善既有程式的設計](/toc/refactoring)
+
+[Linux 效能工具](/toc/linux-performance)

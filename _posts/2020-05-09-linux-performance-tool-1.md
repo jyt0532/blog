@@ -8,7 +8,6 @@ author: jyt0532
 excerpt: 本文講解常用的觀察Linux效能的工具
 ---
 
-{% include av.html %}
 {% include copyright.html %}
 
 最近看到[大神 Brendan D. Gregg](http://www.brendangregg.com/)的演講 覺得自己對於Linux的工具實在是太不熟了 於是想稍微熟讀一下

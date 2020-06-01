@@ -8,7 +8,6 @@ author: jyt0532
 excerpt: 本文講解常用的觀察Linux效能的工具
 ---
 
-{% include av.html %}
 {% include copyright.html %}
 
 {% include perf_top_youtube_tracking.html %}

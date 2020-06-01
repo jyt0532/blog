@@ -8,7 +8,6 @@ author: jyt0532
 excerpt: 本文講解常用的觀察Linux效能的工具
 ---
 
-{% include copyright.html %}
 
 最近看到[大神 Brendan D. Gregg](http://www.brendangregg.com/)的演講 覺得自己對於Linux的工具實在是太不熟了 於是想稍微熟讀一下
 
@@ -19,6 +18,7 @@ excerpt: 本文講解常用的觀察Linux效能的工具
 本文是照著[Linux Performance Tools, Brendan Gregg](https://www.youtube.com/watch?v=FJW8nGV4jxY)演講的順序講解
 
 
+{% include copyright.html %}
 
 ### uptime
 

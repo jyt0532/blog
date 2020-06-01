@@ -8,7 +8,6 @@ author: jyt0532
 excerpt: 本文講解常用的觀察Linux效能的工具
 ---
 
-{% include copyright.html %}
 
 {% include perf_top_youtube_tracking.html %}
 
@@ -20,6 +19,7 @@ excerpt: 本文講解常用的觀察Linux效能的工具
 
 本文是照著[Linux Performance Tools, Brendan Gregg](https://www.youtube.com/watch?v=FJW8nGV4jxY)演講的順序講解
 
+{% include copyright.html %}
 
 
 ### ss

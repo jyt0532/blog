@@ -8,6 +8,9 @@ author: jyt0532
 excerpt: 本文講解常用的觀察Linux效能的工具
 ---
 
+{% include av.html %}
+{% include copyright.html %}
+
 最近看到[大神 Brendan D. Gregg](http://www.brendangregg.com/)的演講 覺得自己對於Linux的工具實在是太不熟了 於是想稍微熟讀一下
 
 本系列的目的不是把每個指令的每個option都寫出來 想知道的話`man`一下就知道了 
@@ -15,7 +18,6 @@ excerpt: 本文講解常用的觀察Linux效能的工具
 本文的目的是 希望你看完之後 對於每個有用的指令都有個印象 當你需要偵錯或是研究你的系統哪裡出了問題 你可以知道有哪個指令可以用 然後再去慢慢讀document
 
 本文是照著[Linux Performance Tools, Brendan Gregg](https://www.youtube.com/watch?v=FJW8nGV4jxY)演講的順序講解
-{% include copyright.html %}
 
 
 

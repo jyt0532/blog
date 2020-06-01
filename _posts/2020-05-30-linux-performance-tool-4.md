@@ -7,6 +7,8 @@ tags: performance
 author: jyt0532
 excerpt: 本文講解常用的觀察Linux效能的工具
 ---
+{% include av.html %}
+{% include copyright.html %}
 
 [前](/2020/05/09/linux-performance-tool-1/)[三](/2020/05/17/linux-performance-tool-2/)[篇](/2020/05/24/linux-performance-tool-3/)文章 我們複習了許多Linux查看效能的指令 但真正發生問題的時候 到底該從哪裡開始一步步往下檢測呢
 
@@ -28,7 +30,6 @@ top
 
 總共十個推薦指令 你可以把這篇文章當作一個索引 每個指令的細節我有提供連結 可以連回比較細節的教學文章
 
-{% include copyright.html %}
 
 
 

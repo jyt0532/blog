@@ -1,8 +1,8 @@
 ---
 layout: post
-title: The Pragmatic Programmer 筆記
+title: The Pragmatic Programmer - 務實的哲學
 comments: True 
-subtitle: The Pragmatic Programmer 筆記
+subtitle: A Pragmatic Philosophy
 tags: performance
 author: jyt0532
 excerpt: 本文記錄了讀完The Pragmatic Programmer的讀後筆記

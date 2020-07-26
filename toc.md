@@ -22,3 +22,5 @@ title: Table of Contents
 [重構 - 改善既有程式的設計](/toc/refactoring)
 
 [Linux 效能工具](/toc/linux-performance)
+
+[The Pragmatic Programmer](/toc/the-pragmatic-programmer)

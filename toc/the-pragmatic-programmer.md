@@ -17,7 +17,7 @@ title: The Programatic Programmer
 
 [彎曲或弄壞](/2020/07/25/bend-or-break/)
 
-並行
+[並行](/2020/08/09/concurrency/)
 
 當您寫程式時
 

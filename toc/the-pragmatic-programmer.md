@@ -19,9 +19,9 @@ title: The Programatic Programmer
 
 [並行](/2020/08/09/concurrency/)
 
-當您寫程式時
+[當您寫程式時](/2020/08/17/while-you-are-coding/)
 
-專案啟動前
+[專案啟動前](/2020/08/23/while-you-are-coding/)
 
 務實的專案
 

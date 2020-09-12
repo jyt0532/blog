@@ -23,5 +23,6 @@ title: The Programatic Programmer
 
 [專案啟動前](/2020/08/23/while-you-are-coding/)
 
-務實的專案
+[務實的專案](/2020/09/12/pragmatic-projects/)
+
 

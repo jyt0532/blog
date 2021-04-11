@@ -24,3 +24,5 @@ title: Table of Contents
 [Linux 效能工具](/toc/linux-performance)
 
 [The Pragmatic Programmer](/toc/the-pragmatic-programmer)
+
+[掌握市場週期](/toc/mastering-the-market-cycle)

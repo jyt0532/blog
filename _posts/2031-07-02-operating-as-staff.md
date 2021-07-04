@@ -9,6 +9,8 @@ excerpt: 本文介紹Operating at Staff
 ---
 
 
+翻譯比較難 很多英文
+
 千呼萬喚 終於等到[Pragmatic Programmer 20週年紀念版](http://books.gotop.com.tw/v_ACL057200) 如果沒聽過這本書 你大概也聽過[程序員修煉之道︰從小工到專家](https://www.books.com.tw/products/CN10279423)這本暢銷了20年的書 終於等到了再版 
 
 在再版裡面 刪掉了比較過時的內容和範例 收集了20年來收到的feedback 在讓這本書的內容也可以適用於2020年的程序員 但在我細細品嚐後發現 其實很多人生的哲學並不是只適用於程序員 各行各業看了都可以有所收穫
@@ -44,9 +46,9 @@ excerpt: 本文介紹Operating at Staff
 
 4.Stay aligned with authority: 身為一個有效率的領導者 大多數時候你必須要align with你上級的要求和需求 才會贏得信賴
 
-5.To lead, you have to follow: 
+5.To lead, you have to follow:了解一件事情應該要怎麼發生 是個好領導者的必要條件 但更重要的是你需要結合周圍其他人的想法 並且在某些時候把領導的機會給別人 
 
-6.Learn to never be wrong: 
+6.Learn to never be wrong: 心態從"你永遠是對的"轉換成去聆聽他人和溝通 去跟他寫有不同prority和不同觀點的人合作
 
 7.Create space for others: 讓你的組成長的比你自己一人還快
 

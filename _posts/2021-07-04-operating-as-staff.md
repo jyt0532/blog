@@ -43,7 +43,7 @@ excerpt: 本文介紹Operating at Staff
 
 我們會討論八個大主題
 
-1.Work on what matters: 充分運用你為數不多的工作時間 特別是當你的人生有了其他除了工作以外的事情需要處理
+1.[Work on what matters](/2021/07/04/working-on-what-matters/): 充分運用你為數不多的工作時間 特別是當你的人生有了其他除了工作以外的事情需要處理
 
 2.Write Engineering strategy: 去領導你們的組織針對公司business objective的方法 從architecture, technology selection和organizational structure的角度
 

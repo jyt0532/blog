@@ -45,7 +45,7 @@ excerpt: 本文介紹Operating at Staff
 
 1.[Work on what matters](/2021/07/04/working-on-what-matters/): 充分運用你為數不多的工作時間 特別是當你的人生有了其他除了工作以外的事情需要處理
 
-2.Write Engineering strategy: 去領導你們的組織針對公司business objective的方法 從architecture, technology selection和organizational structure的角度
+2.[Write Engineering strategy](/2021/07/05/write-an-engineering-strategy/): 去領導你們的組織針對公司business objective的方法 從architecture, technology selection和organizational structure的角度
 
 3.Curate technical quality: 去維持你們公司程式碼的質量水平 不論是架構上還是軟體上
 

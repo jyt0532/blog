@@ -49,7 +49,7 @@ excerpt: 本文介紹Operating at Staff
 
 3.Curate technical quality: 去維持你們公司程式碼的質量水平 不論是架構上還是軟體上
 
-4.Stay aligned with authority: 身為一個有效率的領導者 大多數時候你必須要align with你上級的要求和需求 才會贏得信賴
+4.[Stay aligned with authority](/2021/07/17/write-an-engineering-strategy/): 身為一個有效率的領導者 大多數時候你必須要align with你上級的要求和需求 才會贏得信賴
 
 5.To lead, you have to follow:了解一件事情應該要怎麼發生 是個好領導者的必要條件 但更重要的是你需要結合周圍其他人的想法 並且在某些時候把領導的機會給別人 
 

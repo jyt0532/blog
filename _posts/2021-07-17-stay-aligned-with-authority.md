@@ -5,7 +5,7 @@ comments: True
 subtitle: Stay aligned with authority 
 tags: staffEngineer
 author: jyt0532
-excerpt: 本文介紹如何Writing engineering strategy
+excerpt: 本文介紹如何Stay aligned with authority
 ---
 
 

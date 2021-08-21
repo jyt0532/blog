@@ -15,7 +15,7 @@ excerpt: 本文介紹如何在傳達對的觀點的同時為他人創造空間
 當他們的資歷越來越資深 他們會感覺越來越有說服力 但這也很有可能只是同事漸漸放棄跟他爭辯 
 
 
-作者認為真正好的領導 也是**可以never be wrong 但不會dominate the room**
+作者認為真正好的領導人 也是**可以never be wrong 但不會dominate the room**
 
 > to be right while creating space for others
 

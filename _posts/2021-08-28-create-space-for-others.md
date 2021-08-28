@@ -5,7 +5,7 @@ comments: True
 subtitle: Create space for others
 tags: staffEngineer
 author: jyt0532
-excerpt: 本文介紹Create space for others
+excerpt: 本文介紹如何為他人創造成長空間
 ---
 
 

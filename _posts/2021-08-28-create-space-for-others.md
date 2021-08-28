@@ -1,14 +1,13 @@
 ---
 layout: post
-title: Operating at Staff
+title: Create space for others
 comments: True 
-subtitle: Operating at Staff
+subtitle: Create space for others
 tags: staffEngineer
 author: jyt0532
-excerpt: 本文介紹Operating at Staff
+excerpt: 本文介紹Create space for others
 ---
 
-Create space for others
 
 其中一個最容易衡量你長期的Staff-plus的表現的評斷標準 就是你周圍的人有沒有因為你的貢獻而受惠 注意這裡的英文是benefit from you而不是rely on you
 
@@ -26,7 +25,7 @@ Create space for others
 
 作者在這裡提出了幾個建議
 
-1.把你的直接貢獻 轉化成 問問題 問一個好的問題可以讓大家更積極參與
+1.把你的**直接貢獻 轉化成 問問題** 問一個好的問題可以讓大家不會走錯路 並且更積極參與
 
 2.如果你看到會議中有人不太積極的討論參與 把他們拉進來 **一次一個** 一次拉一個大家比較會認真的想辦法參與 一次拉兩個或以上 那大家可能都不會那麼重視
 
@@ -45,11 +44,13 @@ Create space for others
 
 1.write it down
 
-在你做決定的時候 把尋求答案的過程寫下來 一步一步最好能沙盤推演但下決定 讓你周圍的或底下的人直接學習你怎麼做決定的
+在你做決定的時候 把尋求答案的過程 一步一步寫下來 最好能沙盤推演 讓你周圍的或底下的人直接學習你怎麼做決定的
+
+> learn from our decisions, not being directed by
 
 2.Circulate early
 
-在你做決定前 就該積極的來回分享 收集early feedback 把那些回覆回饋考慮進去 反覆修改決定 讓他們感覺到他們在參與 並且讓他們看到他們的參與是如何改變了這個決定
+在你做決定前 就該積極的來回分享 收集early feedback 把那些回覆回饋考慮進去 反覆修改決定 讓他們感覺到他們在參與 並且**讓他們看到他們的參與是如何改變了這個決定**
 
 3.Separate style from substance
 
@@ -70,7 +71,7 @@ Create space for others
 
 ## Sponsorship
 
-剛剛聊到 藉由讓身邊的人參與討論 參與決定 是個讓身邊的人成長的好辦法 但在那之後 你還事必需邁出下一步
+剛剛聊到 藉由讓身邊的人參與討論 參與決定 是個讓身邊的人成長的好辦法 但在那之後 你還是必需邁出下一步
 
 > instead of involving them in your work, make the work theirs
 

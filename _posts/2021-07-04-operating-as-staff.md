@@ -55,7 +55,7 @@ excerpt: 本文介紹Operating at Staff
 
 6.[Learn to never be wrong](/08/21/learn-to-never-be-wrong/): 心態從"你永遠是對的"轉換成去聆聽他人和溝通 去跟那些有不同prority和不同觀點的人合作
 
-7.Create space for others: 讓你的組成長的比你自己一人還快
+7.[Create space for others](/2021/08/28/create-space-for-others/): 讓你的組成長的比你自己一人還快
 
 8.Build a network of peers: 建立你的人際網路
 

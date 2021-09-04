@@ -57,7 +57,7 @@ excerpt: 本文介紹Operating at Staff
 
 7.[Create space for others](/2021/08/28/create-space-for-others/): 讓你的組成長的比你自己一人還快
 
-8.Build a network of peers: 建立你的人際網路
+8.[Build a network of peers](/2021/09/04/build-a-network-of-peers/): 建立你的人際網路
 
 
 

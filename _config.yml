@@ -10,7 +10,7 @@ title:            jyt0532's Blog
 tagline:          'Simple Made Easy'
 description:      'Learning never ends'
 url:              https://www.jyt0532.com
-baseurl:          https://www.jyt0532.com/
+baseurl:          /
 
 author:
   name:           'BoYu'

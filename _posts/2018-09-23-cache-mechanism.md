@@ -8,9 +8,9 @@ author: jyt0532
 excerpt: 本篇文章介紹緩存如何處理讀跟寫的問題 以及緩存一致性如何達到
 ---
 
-今天來看看電腦科學中最難的問題之一 順便小小demo一下jekyll裡面怎麼embedded twitter post
+今天來看看電腦科學中最難的問題之一
 
-{% twitter https://twitter.com/rubygems/status/7269997868 %}
+![Alt text]({{ site.url }}/public/cache_incinsistency.png)
 
 緩存的一致性的要求其實就我看來 跟分布式系統中的consistency的要求有異曲同工之妙
 
